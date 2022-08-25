@@ -1,14 +1,17 @@
-<div class="app-side-bar col-3 col-sm-4 col-md-3 col-lg-12 px-sm-2 px-0 bg-dark position-fixed">
+<div class="offcanvas-lg offcanvas-end offcanvas-md offcanvas-sm  app-side-bar col-3 col-sm-4 col-md-3 col-lg-12 px-sm-2 px-0 bg-dark position-fixed" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
     
-    <div class="d-flex flex-column flex-md-column flex-lg-row align-items-center align-items-sm-start px-3 pt-5 py-lg-2 text-white h-100">
+    <div class="offcanvas-header d-lg-none d-none">
+        <button type="button" class="btn-close text-reset float-end" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body container d-flex flex-column flex-md-column flex-lg-row align-items-center align-items-sm-end px-3 pt-5 py-lg-2 text-white h-100">
         
         <!--Nav Bar Logo -->
-        <a href="/" class="pb-3 pb-md-3 pb-lg-0 mb-md-0 me-md-auto text-white text-decoration-none my-lg-auto" routerLink="/">
+        <a href="/" class="pb-3 pb-md-3 pb-lg-0 mb-md-0 me-lg-auto text-white text-decoration-none my-lg-auto" routerLink="/">
             <span class="fs-5 d-sm-inline">Jose</span>
         </a>
 
         <!-- App Links -->
-        <ul class="nav nav-pills flex-column flex-md-column flex-lg-row mb-auto mb-md-auto my-lg-auto align-items-center align-items-sm-start" id="menu">
+        <ul class="nav nav-pills flex-column flex-md-column flex-lg-row mb-auto mb-md-auto my-lg-auto align-items-center align-items-sm-end" id="menu">
 
                 <!-- Home -->
             <li class="nav-item me-lg-4" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
@@ -26,18 +29,19 @@
                 </a>
             </li>
 
-             <!-- Resume -->
-            <li class="nav-item me-lg-4" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <a href="#" data-bs-toggle="collapse" class="nav-link px-0 align-middle d-flex align-items-center" routerLink="/">
-                    <i class=" fs-4 bi bi-file-text"></i>
-                    <span class="ms-1 d-none d-sm-inline">Resume</span> </a>
-            </li>
-
              <!-- Contact Me -->
             <li class="nav-item me-lg-4" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a href="#" class="nav-link px-0 align-middle d-flex align-items-center" routerLink="/Contact">
                     <i class="fs-4 bi bi-telephone"></i>
                     <span class="ms-1 d-none d-sm-inline">Contact Me</span></a>
+            </li>
+
+
+            <!-- Resume -->
+            <li class="nav-item me-lg-4" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <a href="../../assets/files/Test.docx" download class="nav-link px-0 align-middle d-flex align-items-center">
+                <i class=" fs-4 bi bi-file-text"></i>
+                <span class="ms-1 d-none d-sm-inline">Resume</span> </a>
             </li>
         </ul>
 
@@ -55,3 +59,7 @@
 
     </div>
 </div>
+
+<button class="btn btn-outline-dark d-lg-none d-block position-fixed bottom-0 end-0 m-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+    <i class="fs-4 bi bi-arrow-bar-left"></i>
+</button>

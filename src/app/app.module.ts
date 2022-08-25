@@ -5,6 +5,7 @@ import { RoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { ContactAuthorComponent } from './contact-author/contact-author.component';
+import { HeroComponent } from './home/hero/hero.component';
 import { HomeComponent } from './home/home.component';
 import { NavigationBar } from './navigation-bar/navigation-bar.component';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -17,7 +18,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     HomeComponent,
     AboutAuthorComponent,
     ContactAuthorComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    HeroComponent
   ],
   imports: [
     BrowserModule,
