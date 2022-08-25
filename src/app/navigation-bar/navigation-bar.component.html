@@ -1,0 +1,57 @@
+<div class="app-side-bar col-3 col-sm-4 col-md-3 col-lg-12 px-sm-2 px-0 bg-dark position-fixed">
+    
+    <div class="d-flex flex-column flex-md-column flex-lg-row align-items-center align-items-sm-start px-3 pt-5 py-lg-2 text-white h-100">
+        
+        <!--Nav Bar Logo -->
+        <a href="/" class="pb-3 pb-md-3 pb-lg-0 mb-md-0 me-md-auto text-white text-decoration-none my-lg-auto" routerLink="/">
+            <span class="fs-5 d-sm-inline">Jose</span>
+        </a>
+
+        <!-- App Links -->
+        <ul class="nav nav-pills flex-column flex-md-column flex-lg-row mb-auto mb-md-auto my-lg-auto align-items-center align-items-sm-start" id="menu">
+
+                <!-- Home -->
+            <li class="nav-item me-lg-4" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a href="#" class="nav-link align-middle px-0 d-flex align-items-center d-flex align-items-center" routerLink="/">
+                    <i class="fs-4 bi bi-house"></i>
+                    <span class="ms-1 d-none d-sm-inline">Home</span>
+                </a>
+            </li>
+
+             <!-- About -->
+            <li class="nav-item me-lg-4" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a href="#" class="nav-link align-middle px-0 d-flex align-items-center" routerLink="/About">
+                    <i class=" fs-4 bi bi-person-badge"></i>
+                    <span class="ms-1 d-none d-sm-inline">About Author</span>
+                </a>
+            </li>
+
+             <!-- Resume -->
+            <li class="nav-item me-lg-4" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a href="#" data-bs-toggle="collapse" class="nav-link px-0 align-middle d-flex align-items-center" routerLink="/">
+                    <i class=" fs-4 bi bi-file-text"></i>
+                    <span class="ms-1 d-none d-sm-inline">Resume</span> </a>
+            </li>
+
+             <!-- Contact Me -->
+            <li class="nav-item me-lg-4" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a href="#" class="nav-link px-0 align-middle d-flex align-items-center" routerLink="/Contact">
+                    <i class="fs-4 bi bi-telephone"></i>
+                    <span class="ms-1 d-none d-sm-inline">Contact Me</span></a>
+            </li>
+        </ul>
+
+        <!-- CrossFit API -->
+        <div class="dropdown pb-5 pb-md-5 pb-lg-0 my-lg-auto ms-0 ms-lg-5">
+            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle d-flex align-items-center" id="wod-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fs-4 bi bi-trophy"></i>
+                <span class="d-none d-sm-inline ms-2">CrossFit</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark shadow" aria-labelledby="wod-toggle">
+                <li><a class="dropdown-item" href="#">WOD</a></li>
+                <li><a class="dropdown-item" href="#">SignIn</a></li>
+            </ul>
+        </div>
+
+    </div>
+</div>
