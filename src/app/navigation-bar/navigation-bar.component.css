@@ -4,6 +4,11 @@
     width: auto;
 }
 
+#nav-toggle
+{
+    z-index: 100;
+}
+
 /*Medium devices (tablets, 768px and up)*/
 @media (max-width: 991px) 
 {

@@ -1,0 +1,18 @@
+.skills-watermark
+{
+    background-image: url(../../../assets/images/do-something-great.jpg);
+    height: 200px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 1;
+}
+
+.skill-logos 
+{
+    z-index: 2;
+}
+
+.skills-header{
+    z-index: 2;
+}

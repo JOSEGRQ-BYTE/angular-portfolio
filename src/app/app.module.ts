@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { ContactAuthorComponent } from './contact-author/contact-author.component';
 import { HeroComponent } from './home/hero/hero.component';
 import { HomeComponent } from './home/home.component';
+import { SkillComponent } from './home/skills/skills.component';
 import { NavigationBar } from './navigation-bar/navigation-bar.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
@@ -19,7 +20,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     AboutAuthorComponent,
     ContactAuthorComponent,
     NotFoundComponent,
-    HeroComponent
+    HeroComponent,
+    SkillComponent
   ],
   imports: [
     BrowserModule,
