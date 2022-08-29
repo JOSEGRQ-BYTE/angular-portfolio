@@ -1,0 +1,46 @@
+
+.my-contact-info > span::before{
+    content: "";
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    left: -10px;
+    bottom: 0;
+    border-radius: 50%;
+    background-color: #7FC7B6;
+}
+.my-contact-info > span::after{
+    content: "";
+    position: absolute;
+    height: 25px;
+    width: 20px;
+    left: -20px;
+    bottom: 1px;
+    border-radius: 7px;
+    background-color: #193931;
+}
+
+.my-contact-info > span{
+    font-weight: 300;
+    background-color: #7FC7B6;
+    padding: 0.5em 1em;
+    border-radius: 2em;
+    position: relative;
+    color: #1B2432;;
+}
+.my-contact-info
+{
+    z-index: 0;
+}
+.my-contact-info::after{
+    content: "";
+    width: 700px;
+    height: 400px;
+    position: absolute;
+    top: -30%;
+    z-index: -1;
+    background-color: #193931;
+    border-radius: 21rem;
+    left: -130%;
+    filter: drop-shadow(0px 0px 3px #193931);
+} 

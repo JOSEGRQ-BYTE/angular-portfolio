@@ -5,11 +5,15 @@ import { RoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { ContactAuthorComponent } from './contact-author/contact-author.component';
+import { FooterComponent } from './home/footer/footer.component';
 import { HeroComponent } from './home/hero/hero.component';
 import { HomeComponent } from './home/home.component';
-import { SkillComponent } from './home/skills/skills.component';
+import { ProjectCardComponent } from './home/projects/project-card/project-card.component';
+import { ProjectsComponent } from './home/projects/projects.component';
+import { SkillsComponent } from './home/skills/skills.component';
 import { NavigationBar } from './navigation-bar/navigation-bar.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { WaveDividerComponent } from './wave-divider/wave-divider.component';
 
 
 @NgModule({
@@ -21,7 +25,11 @@ import { NotFoundComponent } from './not-found/not-found.component';
     ContactAuthorComponent,
     NotFoundComponent,
     HeroComponent,
-    SkillComponent
+    SkillsComponent,
+    ProjectsComponent,
+    ProjectCardComponent,
+    WaveDividerComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
