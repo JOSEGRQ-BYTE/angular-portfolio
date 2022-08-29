@@ -5,7 +5,7 @@ import { RoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { ContactAuthorComponent } from './contact-author/contact-author.component';
-import { FooterComponent } from './home/footer/footer.component';
+import { FooterComponent } from './footer/footer.component';
 import { HeroComponent } from './home/hero/hero.component';
 import { HomeComponent } from './home/home.component';
 import { ProjectCardComponent } from './home/projects/project-card/project-card.component';
