@@ -19,43 +19,6 @@
 
 
 
-
-
-.terminal-buttons {
-    position: relative;
-    background-color: yellow;
-    width: 1rem;
-    height: 1rem;
-    border-radius: 50%;
-    display: block;
-    margin-left: 1em;
-}
-.terminal-buttons::after {
-    content: "";
-    position: absolute;
-    left: 100%;
-    background-color: green;
-    width: 1rem;
-    height: 1rem;
-    border-radius: 50%;
-    display: block;
-    margin-left: .4em;
-}
-
-.terminal-buttons::before {
-    content: "";
-    position: absolute;
-    right: 100%;
-    background-color: red;
-    width: 1rem;
-    height: 1rem;
-    border-radius: 50%;
-    display: block;
-    margin-right: .4em;
-}
-
-
-
 @media (max-width: 991px) {
     .inner-nav {
         position: absolute;

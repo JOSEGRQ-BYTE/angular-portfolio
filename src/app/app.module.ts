@@ -10,6 +10,10 @@ import { HeroComponent } from './home/hero/hero.component';
 import { HomeComponent } from './home/home.component';
 import { ProjectCardComponent } from './home/projects/project-card/project-card.component';
 import { ProjectsComponent } from './home/projects/projects.component';
+import { BackendComponent } from './home/skills/back-end/back-end.component';
+import { DevelopmentComponent } from './home/skills/development/development.component';
+import { FrameworksComponent } from './home/skills/frameworks/frameworks.component';
+import { FrontendComponent } from './home/skills/front-end/front-end.component';
 import { SkillsComponent } from './home/skills/skills.component';
 import { NavigationBar } from './navigation-bar/navigation-bar.component';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -29,7 +33,12 @@ import { WaveDividerComponent } from './wave-divider/wave-divider.component';
     ProjectsComponent,
     ProjectCardComponent,
     WaveDividerComponent,
-    FooterComponent
+    FooterComponent,
+    BackendComponent,
+    FrontendComponent,
+    FrameworksComponent,
+    DevelopmentComponent
+    
   ],
   imports: [
     BrowserModule,

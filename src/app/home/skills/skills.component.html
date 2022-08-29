@@ -1,8 +1,5 @@
 <section class="container position-relative bg-dark text-light min-vh-100 p-4 d-flex">
-    <div class="row my-auto">
-
-
-
+    <div class="row my-auto w-100 col">
         <div class="col-12 position-relative">
             <h2 class="mb-4 section-header">Top Skills</h2>
         </div>
@@ -23,34 +20,29 @@
 
 
 
-                    <div class="row position-relative col-12 m-auto">
+                    <div class=" row position-relative col-12 m-auto">
                         <ul class="inner-nav shadow nav nav-pills d-lg-flex d-block flex-nowrap flex-lg-column position-lg-relative flex-row p-3 col-12 col-lg-3 justify-content-evenly" style="overflow-x: auto;white-space: nowrap;">
                             <li class="nav-item d-inline-block me-2 d-none">
                               <a class="nav-link navbar-brand p-0" href="#"><h3>Top Skills</h3></a>
                             </li>
                             <li class="nav-item d-inline-block me-2">
-                              <a class="nav-link" href="#">Front End</a>
+                              <a class="nav-link" href="#" routerLinkActive="active" routerLink="/Home/Frontend" [routerLinkActiveOptions]="{exact: true}">Front End</a>
                             </li>
                             <li class="nav-item d-inline-block me-2">
-                              <a class="nav-link active" href="#">Back End</a>
+                              <a class="nav-link" href="#" routerLinkActive="active" routerLink="/Home/Backend" [routerLinkActiveOptions]="{exact: true}">Back End</a>
                             </li>
                             <li class="nav-item d-inline-block me-2">
-                              <a class="nav-link" href="#">Frameworks</a>
+                              <a class="nav-link" href="#" routerLinkActive="active" routerLink="/Home/Frameworks" [routerLinkActiveOptions]="{exact: true}">Frameworks</a>
                             </li>
                             <li class="nav-item d-inline-block me-2">
-                                <a class="nav-link" href="#">Development</a>
+                                <a class="nav-link" href="#" routerLinkActive="active" routerLink="/Home/Development" [routerLinkActiveOptions]="{exact: true}">Development</a>
                               </li>
                         </ul>
 
 
                           
                         <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-offset="0" tabindex="0" class="col-12 col-lg-9 mt-5 p-2 pt-4 mt-lg-0" style="min-height: 50vh;">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat pretium nibh ipsum consequat nisl vel. Vitae congue mauris rhoncus aenean vel elit scelerisque. Ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Eget nullam non nisi est sit amet. Lectus nulla at volutpat diam ut venenatis. Condimentum mattis pellentesque id nibh. Sit amet cursus sit amet dictum sit amet justo donec. At varius vel pharetra vel turpis nunc. Vulputate enim nulla aliquet porttitor lacus. Faucibus purus in massa tempor nec feugiat nisl. Eget egestas purus viverra accumsan. Malesuada bibendum arcu vitae elementum curabitur vitae nunc sed. Amet nisl suscipit adipiscing bibendum est ultricies integer quis. Et netus et malesuada fames ac turpis. Tortor at risus viverra adipiscing at in tellus. Id velit ut tortor pretium viverra suspendisse.
-                            </p>
-                            <p>
-                                Ut placerat orci nulla pellentesque dignissim enim. Et odio pellentesque diam volutpat commodo. Iaculis urna id volutpat lacus laoreet non curabitur gravida. Scelerisque eleifend donec pretium vulputate sapien nec sagittis. Dui accumsan sit amet nulla facilisi morbi tempus iaculis urna. Placerat orci nulla pellentesque dignissim enim sit amet. Nunc consequat interdum varius sit amet. Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt vitae. Lorem sed risus ultricies tristique nulla aliquet. Ipsum dolor sit amet consectetur adipiscing elit. Neque laoreet suspendisse interdum consectetur libero id. Morbi quis commodo odio aenean sed. Turpis in eu mi bibendum neque egestas congue quisque egestas. Vel elit scelerisque mauris pellentesque pulvinar. Justo laoreet sit amet cursus sit amet dictum sit. Velit euismod in pellentesque massa placerat. Dolor sed viverra ipsum nunc. Dignissim cras tincidunt lobortis feugiat vivamus at. Odio ut sem nulla pharetra diam sit amet nisl suscipit.                  
-                            </p>
+                            <router-outlet></router-outlet>
                         </div>
                     </div>
 
