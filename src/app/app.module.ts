@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AboutAuthorComponent } from './about-author/about-author.component';
 import { RoutingModule } from './app-routing.module';
@@ -42,7 +43,8 @@ import { WaveDividerComponent } from './wave-divider/wave-divider.component';
   ],
   imports: [
     BrowserModule,
-    RoutingModule
+    RoutingModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
