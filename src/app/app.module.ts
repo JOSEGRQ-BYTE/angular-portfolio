@@ -18,7 +18,9 @@ import { FrontendComponent } from './home/skills/front-end/front-end.component';
 import { SkillsComponent } from './home/skills/skills.component';
 import { NavigationBar } from './navigation-bar/navigation-bar.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { SignInComponent } from './sign-in/sign-in.component';
 import { WaveDividerComponent } from './wave-divider/wave-divider.component';
+import { WODComponent } from './wod/wod.component';
 
 
 @NgModule({
@@ -38,8 +40,9 @@ import { WaveDividerComponent } from './wave-divider/wave-divider.component';
     BackendComponent,
     FrontendComponent,
     FrameworksComponent,
-    DevelopmentComponent
-    
+    DevelopmentComponent,
+    SignInComponent,
+    WODComponent
   ],
   imports: [
     BrowserModule,

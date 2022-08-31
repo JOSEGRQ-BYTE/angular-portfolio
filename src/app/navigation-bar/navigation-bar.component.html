@@ -52,8 +52,12 @@
                 <span class="d-none d-sm-inline ms-2">CrossFit</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-dark shadow" aria-labelledby="wod-toggle">
-                <li><a class="dropdown-item" href="#">WOD</a></li>
-                <li><a class="dropdown-item" href="#">SignIn</a></li>
+                <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                    <a class="dropdown-item" href="#" routerLink="/WOD">WOD</a>
+                </li>
+                <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                    <a class="dropdown-item" href="#" routerLink="/SignIn">SignIn</a>
+                </li>
             </ul>
         </div>
 

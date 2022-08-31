@@ -8,6 +8,8 @@ import { DevelopmentComponent } from "./home/skills/development/development.comp
 import { FrameworksComponent } from "./home/skills/frameworks/frameworks.component";
 import { FrontendComponent } from "./home/skills/front-end/front-end.component";
 import { NotFoundComponent } from "./not-found/not-found.component";
+import { SignInComponent } from "./sign-in/sign-in.component";
+import { WODComponent } from "./wod/wod.component";
 
 const appRoutes: Routes = [
     {path: 'Home', component: HomeComponent, children: [
@@ -16,6 +18,8 @@ const appRoutes: Routes = [
         {path: 'Development', component: DevelopmentComponent},
         {path: 'Frameworks', component: FrameworksComponent}
     ] },
+    {path: 'SignIn', component: SignInComponent},
+    {path: 'WOD', component: WODComponent},
     {path: 'About', component: AboutAuthorComponent},
     {path: 'Contact', component: ContactAuthorComponent},
     {path: '', redirectTo: '/Home', pathMatch: 'full'},
