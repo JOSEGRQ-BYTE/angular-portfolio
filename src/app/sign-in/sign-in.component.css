@@ -9,6 +9,62 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    min-height: 100vh;
     opacity: 0.5;
+}
+
+
+.login-content{
+    max-width: unset;
+    min-width: unset;
+    width: 100%;
+}
+
+@media (min-width: 500px ) {
+    .login-content{
+        max-width: 400px;
+        min-width: 400px;
+    }
+}
+
+
+/*Medium devices (tablets, 768px and up)*/
+@media (max-width: 991px) 
+{
+    .login-content
+    {
+        position: relative;
+        width: unset;
+        top: unset;
+        right: unset;
+        bottom: unset;
+        display: unset;
+        justify-content: unset;
+    }
+
+    .login-container, .login-background{
+        min-height: 100vh;
+    }
+
+}
+
+/*Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) 
+{
+
+    .login-content
+    {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        min-width: 400px;
+        width: auto;
+        display: flex;
+        justify-content: center;
+        border-radius: 0;
+    }
+
+    .login-container, .login-background{
+        min-height: calc(100vh - 75px);
+    }
 }
