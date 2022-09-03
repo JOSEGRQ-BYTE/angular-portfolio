@@ -1,3 +1,10 @@
 <div>
-    <div *ngFor="let wod of (wods$ | async)" >{{ wod.title }}</div>
+    <div *ngFor="let wod of (wods$ | async)" >
+        <div>{{ wod.title }}</div>
+        <div style="white-space: pre-line;">{{ wod.description }}</div>
+        <div>{{ wod.level }}</div>
+        <div>{{ wod.date }}</div>
+        <div>{{ wod.coachTip }}</div>
+        <div>{{ wod.results }}</div>
+    </div>
 </div>

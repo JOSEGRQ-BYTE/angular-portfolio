@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
 import { WOD } from "../models/wod";
 import { WODService } from "../services/wods/wod.service";
@@ -8,12 +8,25 @@ import { WODService } from "../services/wods/wod.service";
     templateUrl: './wod.component.html',
     styleUrls: ['./wod.component.css']
 })
-export class WODComponent
+export class WODComponent implements OnInit
 {
-    wods$: Observable<WOD[]>;
+    public wods$: Observable<WOD[]>;
 
     constructor(private wodService: WODService)
     {
         this.wods$ =  this.wodService.wods;
+    }
+
+    ngOnInit() 
+    {
+        this.wodService.getWODs()
+        .subscribe({
+            next: (wods) => 
+            {
+                console.log(wods);
+            },
+            error: (error) => console.error(error)
+            //complete: () => console.info('complete') 
+         });
     }
 }
