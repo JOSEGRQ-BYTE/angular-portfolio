@@ -13,12 +13,10 @@ export class SignInComponent implements OnInit
 {
     public signInForm!: FormGroup;
     private returnUrl!: string;
-    isLoggedIn: boolean;
 
     constructor(private activatedRoute: ActivatedRoute, private router: Router, private authService: AuthService)
     {
-        this.returnUrl = '/Home'
-        this.isLoggedIn = this.authService.currentUserValue.isLoggedIn;
+        this.returnUrl = '/Home';
     }
 
     ngOnInit()
