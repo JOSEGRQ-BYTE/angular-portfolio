@@ -59,7 +59,7 @@
                     <a class="dropdown-item" href="#" routerLink="/SignIn">Sign In</a>
                 </li>
                 <li *ngIf="(userDetails$ | async)?.isLoggedIn">
-                    <a class="dropdown-item" href="#" >Sign Out</a>
+                    <a class="dropdown-item" href="#" (click)="onSignOut()" >Sign Out</a>
                 </li>
             </ul>
         </div>

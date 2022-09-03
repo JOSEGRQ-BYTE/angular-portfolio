@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { AuthService } from "../services/auth.service";
+import { AuthService } from "../services/authentication/auth.service";
 import { first } from 'rxjs/operators';
 import { ActivatedRoute, Router } from "@angular/router";
 
@@ -39,11 +39,12 @@ export class SignInComponent implements OnInit
             this.authService.login(this.signInForm.value)
             .pipe(first())
             .subscribe({
-                next: (user) => {
+                next: (user) => 
+                {
                     this.router.navigate([this.returnUrl]);
                 },
-                error: (error) => console.error(error),
-                complete: () => console.info('complete') 
+                error: (error) => console.error(error)
+                //complete: () => console.info('complete') 
              });
         }
     }

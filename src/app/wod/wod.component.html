@@ -1,3 +1,3 @@
 <div>
-    WOD
+    <div *ngFor="let wod of (wods$ | async)" >{{ wod.title }}</div>
 </div>

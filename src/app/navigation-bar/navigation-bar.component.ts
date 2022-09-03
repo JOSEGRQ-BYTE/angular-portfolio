@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { BehaviorSubject, Observable, pipe, Subject } from "rxjs";
 import { User } from "../models/user";
-import { AuthService } from "../services/auth.service";
+import { AuthService } from "../services/authentication/auth.service";
 
 @Component({
     selector: "app-navigation-bar",
@@ -15,5 +15,10 @@ export class NavigationBar
     constructor(private authService: AuthService)
     {
         this.userDetails$ =  this.authService.user;
+    }
+
+    onSignOut()
+    {
+        this.authService.logout();
     }
 }
