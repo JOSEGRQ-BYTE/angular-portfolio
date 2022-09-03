@@ -1,4 +1,7 @@
 import { Component, OnInit } from "@angular/core";
+import { BehaviorSubject, Observable, pipe, Subject } from "rxjs";
+import { User } from "../models/user";
+import { AuthService } from "../services/auth.service";
 
 @Component({
     selector: "app-navigation-bar",
@@ -7,4 +10,10 @@ import { Component, OnInit } from "@angular/core";
 })
 export class NavigationBar
 {
+    userDetails$: Observable<User>;
+
+    constructor(private authService: AuthService)
+    {
+        this.userDetails$ =  this.authService.user;
+    }
 }

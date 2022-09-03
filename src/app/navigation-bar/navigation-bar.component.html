@@ -55,8 +55,11 @@
                 <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                     <a class="dropdown-item" href="#" routerLink="/WOD">WOD</a>
                 </li>
-                <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                    <a class="dropdown-item" href="#" routerLink="/SignIn">SignIn</a>
+                <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="!(userDetails$ | async)?.isLoggedIn">
+                    <a class="dropdown-item" href="#" routerLink="/SignIn">Sign In</a>
+                </li>
+                <li *ngIf="(userDetails$ | async)?.isLoggedIn">
+                    <a class="dropdown-item" href="#" >Sign Out</a>
                 </li>
             </ul>
         </div>

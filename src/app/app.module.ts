@@ -21,7 +21,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { WaveDividerComponent } from './wave-divider/wave-divider.component';
 import { WODComponent } from './wod/wod.component';
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -48,6 +48,7 @@ import { WODComponent } from './wod/wod.component';
     BrowserModule,
     RoutingModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
