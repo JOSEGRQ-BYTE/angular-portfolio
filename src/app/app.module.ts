@@ -22,6 +22,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { WaveDividerComponent } from './wave-divider/wave-divider.component';
 import { WODComponent } from './wod/wod.component';
 import { HttpClientModule } from '@angular/common/http';
+import { WODCardComponent } from './wod/wod-card/wod-card.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { HttpClientModule } from '@angular/common/http';
     FrameworksComponent,
     DevelopmentComponent,
     SignInComponent,
-    WODComponent
+    WODComponent,
+    WODCardComponent
   ],
   imports: [
     BrowserModule,

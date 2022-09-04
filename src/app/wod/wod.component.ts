@@ -11,10 +11,12 @@ import { WODService } from "../services/wods/wod.service";
 export class WODComponent implements OnInit
 {
     public wods$: Observable<WOD[]>;
+    public wodSelected: string;
 
     constructor(private wodService: WODService)
     {
         this.wods$ =  this.wodService.wods;
+        this.wodSelected = '';
     }
 
     ngOnInit() 
@@ -28,5 +30,24 @@ export class WODComponent implements OnInit
             error: (error) => console.error(error)
             //complete: () => console.info('complete') 
          });
+    }
+
+    onCardSelected(card: any)
+    {
+        card.preventDefault();
+
+        const wodCard:HTMLElement = card.target as HTMLElement;
+        const anchorCard: HTMLAnchorElement = wodCard.closest('a.card') as HTMLAnchorElement;
+        const parent = wodCard.closest('div#wod-container') as HTMLDivElement;
+
+        parent.querySelectorAll('a.card').forEach(wod => {
+
+            wod.classList.remove('selected');
+
+        });
+
+        this.wodSelected = anchorCard.getAttribute('data-id') != null? anchorCard.getAttribute('data-id') as string : '';
+        anchorCard.classList.add('selected');
+
     }
 }

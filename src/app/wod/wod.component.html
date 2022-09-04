@@ -1,10 +1,26 @@
-<div>
-    <div *ngFor="let wod of (wods$ | async)" >
-        <div>{{ wod.title }}</div>
-        <div style="white-space: pre-line;">{{ wod.description }}</div>
-        <div>{{ wod.level }}</div>
-        <div>{{ wod.date }}</div>
-        <div>{{ wod.coachTip }}</div>
-        <div>{{ wod.results }}</div>
+<div class="container-fluid p-0 m-0 position-relative">
+    <div class="row mt-4 " *ngIf="wodSelected != ''">
+        <div class="col-12 d-flex flex-row justify-content-between">
+            <div class="col">
+                <button type="button" class="btn btn-outline-light me-3">Add</button>
+            </div>
+            <div class="col d-flex flex-row flex-nowrap justify-content-end">
+                <button type="button" class="btn btn-outline-light me-3">Edit</button>
+                <button type="button" class="btn btn-outline-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div id="wod-container" class="col-12 d-flex flex-row flex-wrap justify-content-center">
+
+            <app-wod-card class="col-3 mb-2 me-2" (cardSelected)="onCardSelected($event)"></app-wod-card>
+            <app-wod-card class="col-3 mb-2 me-2" (cardSelected)="onCardSelected($event)"></app-wod-card>
+            <app-wod-card class="col-3 mb-2 me-2" (cardSelected)="onCardSelected($event)"></app-wod-card>
+            <app-wod-card class="col-3 mb-2 me-2" (cardSelected)="onCardSelected($event)"></app-wod-card>
+            <app-wod-card class="col-3 mb-2 me-2" (cardSelected)="onCardSelected($event)"></app-wod-card>
+            <app-wod-card class="col-3 mb-2 me-2" (cardSelected)="onCardSelected($event)"></app-wod-card>
+            <app-wod-card class="col-3 mb-2 me-2" (cardSelected)="onCardSelected($event)"></app-wod-card>
+            <app-wod-card *ngFor="let wod of (wods$ | async)" class="col-3 mb-2 me-2" (cardSelected)="onCardSelected($event)" [wod]="wod"></app-wod-card>
+        </div>
     </div>
 </div>
