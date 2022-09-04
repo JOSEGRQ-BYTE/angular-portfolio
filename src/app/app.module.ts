@@ -23,6 +23,7 @@ import { WaveDividerComponent } from './wave-divider/wave-divider.component';
 import { WODComponent } from './wod/wod.component';
 import { HttpClientModule } from '@angular/common/http';
 import { WODCardComponent } from './wod/wod-card/wod-card.component';
+import { WODEditComponent } from './wod/wod-edit/wod-edit.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { WODCardComponent } from './wod/wod-card/wod-card.component';
     DevelopmentComponent,
     SignInComponent,
     WODComponent,
-    WODCardComponent
+    WODCardComponent,
+    WODEditComponent
   ],
   imports: [
     BrowserModule,

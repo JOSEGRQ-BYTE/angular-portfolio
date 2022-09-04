@@ -8,11 +8,11 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 })
 export class ContactAuthorComponent implements OnInit
 {
-    public contactForm!: FormGroup;
+    public contactForm: FormGroup;
 
     constructor() 
     {
-
+        this.contactForm = new FormGroup({});
     }
 
     ngOnInit() 

@@ -1,6 +1,9 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { Observable } from "rxjs";
+import { User } from "../models/user";
 import { WOD } from "../models/wod";
+import { AuthService } from "../services/authentication/auth.service";
 import { WODService } from "../services/wods/wod.service";
 
 @Component({
@@ -13,10 +16,15 @@ export class WODComponent implements OnInit
     public wods$: Observable<WOD[]>;
     public wodSelected: string;
 
-    constructor(private wodService: WODService)
+
+    userDetails$: Observable<User>;
+
+    constructor(private wodService: WODService, private router: Router, private authService: AuthService)
     {
         this.wods$ =  this.wodService.wods;
         this.wodSelected = '';
+
+        this.userDetails$ = this.authService.user;
     }
 
     ngOnInit() 
@@ -48,6 +56,11 @@ export class WODComponent implements OnInit
 
         this.wodSelected = anchorCard.getAttribute('data-id') != null? anchorCard.getAttribute('data-id') as string : '';
         anchorCard.classList.add('selected');
+
+        if(this.authService.currentUserValue.isLoggedIn && this.wodSelected != '')
+            this.router.navigate([`/WOD/${this.wodSelected}`]);
+
+        console.log(this.authService.currentUserValue.isLoggedIn && this.wodSelected != '');
 
     }
 }

@@ -1,0 +1,40 @@
+.admin-control {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #212529;
+    padding: 1em;
+    margin: 0 !important;
+    z-index: 1;
+}
+
+
+.extra-space {
+    margin-top: 4em !important;
+}
+
+
+
+@media (min-width: 992px) {
+    .admin-control {
+        top: unset;
+        left: unset;
+        background-color: unset;
+        padding: unset;
+        margin: unset;
+        z-index: unset;
+
+
+
+
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        height: calc(100vh - 150px);
+        justify-content: center;
+        width: 75px;
+        gap: 1em;
+        right: -75px;
+    }
+}

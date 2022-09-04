@@ -1,26 +1,14 @@
 <div class="container-fluid p-0 m-0 position-relative">
-    <div class="row mt-4 " *ngIf="wodSelected != ''">
-        <div class="col-12 d-flex flex-row justify-content-between">
-            <div class="col">
-                <button type="button" class="btn btn-outline-light me-3">Add</button>
-            </div>
-            <div class="col d-flex flex-row flex-nowrap justify-content-end">
-                <button type="button" class="btn btn-outline-light me-3">Edit</button>
-                <button type="button" class="btn btn-outline-danger">Delete</button>
-            </div>
-        </div>
-    </div>
-    <div class="row mt-4">
-        <div id="wod-container" class="col-12 d-flex flex-row flex-wrap justify-content-center">
-
-            <app-wod-card class="col-3 mb-2 me-2" (cardSelected)="onCardSelected($event)"></app-wod-card>
-            <app-wod-card class="col-3 mb-2 me-2" (cardSelected)="onCardSelected($event)"></app-wod-card>
-            <app-wod-card class="col-3 mb-2 me-2" (cardSelected)="onCardSelected($event)"></app-wod-card>
-            <app-wod-card class="col-3 mb-2 me-2" (cardSelected)="onCardSelected($event)"></app-wod-card>
-            <app-wod-card class="col-3 mb-2 me-2" (cardSelected)="onCardSelected($event)"></app-wod-card>
-            <app-wod-card class="col-3 mb-2 me-2" (cardSelected)="onCardSelected($event)"></app-wod-card>
-            <app-wod-card class="col-3 mb-2 me-2" (cardSelected)="onCardSelected($event)"></app-wod-card>
-            <app-wod-card *ngFor="let wod of (wods$ | async)" class="col-3 mb-2 me-2" (cardSelected)="onCardSelected($event)" [wod]="wod"></app-wod-card>
+    <div class="row m-0 pt-4 mt-lg-4">
+        <div id="wod-container" class="col-12 d-flex flex-row flex-wrap justify-content-evenly">
+            <app-wod-card *ngFor="let wod of (wods$ | async)" class="col-12 col-md-5 col-lg-3 mb-2 me-2" (cardSelected)="onCardSelected($event)" [wod]="wod"></app-wod-card>
+            <app-wod-card class="col-12 col-md-5 col-lg-3 mb-2 me-2" (cardSelected)="onCardSelected($event)"></app-wod-card>
+            <app-wod-card class="col-12 col-md-5 col-lg-3 mb-2 me-2" (cardSelected)="onCardSelected($event)"></app-wod-card>
+            <app-wod-card class="col-12 col-md-5 col-lg-3 mb-2 me-2" (cardSelected)="onCardSelected($event)"></app-wod-card>
+            <app-wod-card class="col-12 col-md-5 col-lg-3 mb-2 me-2" (cardSelected)="onCardSelected($event)"></app-wod-card>
+            <app-wod-card class="col-12 col-md-5 col-lg-3 mb-2 me-2" (cardSelected)="onCardSelected($event)"></app-wod-card>
+            <app-wod-card class="col-12 col-md-5 col-lg-3 mb-2 me-2" (cardSelected)="onCardSelected($event)"></app-wod-card>
+            <app-wod-card class="col-12 col-md-5 col-lg-3 mb-2 me-2" (cardSelected)="onCardSelected($event)"></app-wod-card>
         </div>
     </div>
 </div>
