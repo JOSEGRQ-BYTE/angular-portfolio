@@ -25,6 +25,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { WODCardComponent } from './wod/wod-card/wod-card.component';
 import { WODEditComponent } from './wod/wod-edit/wod-edit.component';
 
+
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import {MatNativeDateModule} from '@angular/material/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCardModule } from '@angular/material/card';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,13 +55,19 @@ import { WODEditComponent } from './wod/wod-edit/wod-edit.component';
     SignInComponent,
     WODComponent,
     WODCardComponent,
-    WODEditComponent
+    WODEditComponent,
   ],
   imports: [
     BrowserModule,
     RoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

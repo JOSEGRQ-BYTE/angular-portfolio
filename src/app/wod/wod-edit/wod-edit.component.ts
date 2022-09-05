@@ -23,7 +23,7 @@ export class WODEditComponent implements OnInit {
             'description': new FormControl(null, Validators.required),
             'level': new FormControl(null, [Validators.required]),
             'date': new FormControl(null, [Validators.required]),
-            'coachTip': new FormControl(null),
+            'coach-tip': new FormControl(null),
             'results': new FormControl(null, [Validators.required])
         });
 

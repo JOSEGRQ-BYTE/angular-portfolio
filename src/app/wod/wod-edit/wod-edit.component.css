@@ -1,0 +1,16 @@
+.calendar{
+    width: 300px;
+}
+
+
+.mat-form-field-underline{
+    position: absolute !important;
+    bottom: 0 !important;
+}
+
+
+
+
+.mat-form-field {
+    width: 100%;
+}
