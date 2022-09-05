@@ -21,7 +21,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { WaveDividerComponent } from './wave-divider/wave-divider.component';
 import { WODComponent } from './wod/wod.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { WODCardComponent } from './wod/wod-card/wod-card.component';
 import { WODEditComponent } from './wod/wod-edit/wod-edit.component';
 
@@ -29,9 +29,10 @@ import { WODEditComponent } from './wod/wod-edit/wod-edit.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import {MatNativeDateModule} from '@angular/material/core';
+import { MatNativeDateModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
+import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
 
 
 @NgModule({
@@ -69,7 +70,9 @@ import { MatCardModule } from '@angular/material/card';
     MatInputModule,
     MatCardModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

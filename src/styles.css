@@ -147,12 +147,26 @@ small, .text_small {font-size: 0.618rem;}
 }
 
 .mat-form-field-appearance-fill .mat-form-field-flex  {
-  background-color: transparent;
+  background-color: #fff;
   padding: 0 !important;
   outline: 1px solid #ced4da;
   border-radius: .33em !important;
 }
 
+.mat-input-element {
+  color: black !important;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-infix {
+  padding-left: .75em;
+  padding-top: 0;
+}
+
 .mat-form-field-underline{
   display: none;
+}
+
+
+.mat-form-field-suffix {
+  margin: auto;
 }

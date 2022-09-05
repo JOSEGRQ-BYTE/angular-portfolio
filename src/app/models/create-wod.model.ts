@@ -1,9 +1,5 @@
-export interface WOD 
+export interface CreateWODDTO 
 {
-    id: string;
-    //userId: string,
-    //firstName: string,
-    //lastName: string,
     title: string,
     description: string,
     level: number,

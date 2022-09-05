@@ -1,9 +1,10 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, map, Observable } from "rxjs";
+import { BehaviorSubject, map, Observable, tap } from "rxjs";
 import { User } from "../../models/user";
 import { environment } from '../../../environments/environment';
 import { WOD } from "src/app/models/wod";
+import { CreateWODDTO } from "src/app/models/create-wod.model";
 
 @Injectable({ providedIn: 'root' })
 export class WODService 
@@ -32,5 +33,33 @@ export class WODService
                     return wods;
                 })
             );
+    }
+
+    public getWOD(id: string): Observable<WOD>
+    {
+        return this.http.get<WOD>(`${environment.wodURL}/${id}`)
+            .pipe(
+                map(wod => {
+                    return wod;
+                })
+            );
+    }
+
+    public addWOD(wod: CreateWODDTO): Observable<WOD>
+    {
+        console.log(wod, "CREATING");
+        return this.http.post<WOD>(`${environment.wodURL}`, wod)
+            .pipe(
+                tap(newlyCreatedWOD => {
+
+                    console.log(newlyCreatedWOD, "Looks");
+                })
+            );
+    }
+
+
+    public updateWOD(id: string, wod: CreateWODDTO): Observable<void>
+    {
+        return this.http.put<void>(`${environment.wodURL}/${id}`, wod);
     }
 }

@@ -22,6 +22,7 @@ const appRoutes: Routes = [
     {path: 'SignIn', component: SignInComponent},
     {path: 'WOD', component: WODComponent},
     {path: 'WOD/:id', component: WODEditComponent},
+    {path: 'WOD/Create', component: WODEditComponent},
     {path: 'About', component: AboutAuthorComponent},
     {path: 'Contact', component: ContactAuthorComponent},
     {path: '', redirectTo: '/Home', pathMatch: 'full'},
