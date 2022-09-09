@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { User } from "../models/user";
+import { UserAuthentication } from "../models/user-auth.model";
 import { WOD } from "../models/wod";
 import { AuthService } from "../services/authentication/auth.service";
 import { WODService } from "../services/wods/wod.service";
@@ -17,7 +18,7 @@ export class WODComponent implements OnInit
     public wodSelected: string;
 
 
-    userDetails$: Observable<User>;
+    userDetails$: Observable<UserAuthentication>;
 
     constructor(private wodService: WODService, private router: Router, private authService: AuthService)
     {

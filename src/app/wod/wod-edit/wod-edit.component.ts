@@ -28,6 +28,7 @@ export class WODEditComponent implements OnInit, OnDestroy {
 
     // Flag to know whether user is editing or creating one
     public isEditing!: boolean;
+    private wodID: string;
 
     // Parameter Subscribtion
     private paramSubcription!: Subscription;
@@ -41,6 +42,7 @@ export class WODEditComponent implements OnInit, OnDestroy {
         this.wodForm = new FormGroup({});
 
         this.wodItem$ = new Observable<WOD>();
+        this.wodID = '';
     }
 
     ngOnInit() 
@@ -61,6 +63,7 @@ export class WODEditComponent implements OnInit, OnDestroy {
                 else 
                 {
                     this.isEditing = true;
+                    this.wodID = params['id']
                     this.wodItem$ = this.wodService.getWOD(params['id']);
 
 
@@ -110,6 +113,21 @@ export class WODEditComponent implements OnInit, OnDestroy {
         // Update existing WOD
         if(this.wodForm.valid && this.isEditing)
         {
+            console.log(this.wodForm.value)
+            this.wodItem$ = this.wodService.updateWOD(this.wodID ,this.wodForm.value);
+
+
+            this.wodItem$.subscribe({
+                next: (wod) => {
+                    console.log(wod, "NEXT UPDATE");
+                },
+                error: (error) => {
+                    console.log(error, "ERROR UPDATE");
+                },
+                complete: () => {
+                    console.log("COMPLETE UPDATE");
+                }
+            });
             /*this.authService.login(this.signInForm.value)
             .pipe(first())
             .subscribe({
@@ -136,7 +154,7 @@ export class WODEditComponent implements OnInit, OnDestroy {
                 complete: () => {
                     console.log("COMPLETE");
                 }
-            })
+            });
         }
     }
 

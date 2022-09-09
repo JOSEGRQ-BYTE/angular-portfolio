@@ -3,6 +3,29 @@
   <app-navigation-bar></app-navigation-bar>
 
   <div class="container-fluid container-lg bg-dark text-light min-vh-100">
+    <!-- OVERLAY -->
+    <div class="overlay" [ngClass]="(toast$ | async)?.type == 0 ? 'd-none' : 'd-none'" (click)="onDismissToast()">
+    </div>
+
+    <!-- TOAST -->
+    <div class="position-fixed toast-container" style="z-index: 12; top: 1rem; right: 1rem;">
+      <div class="toast" [ngClass]="(toast$ | async)?.type == 0 ? 'hide' : 'show'" role="alert"  aria-atomic="true">
+        <div class="toast-header text-dark">
+          <span class="rounded me-2" [ngStyle]="{'background-color': getToastColor((toast$ | async)?.type)}" style="width: 20px; height: 20px;"></span>
+          <strong class="me-auto">{{ (toast$ | async)?.header }}</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body text-dark">
+          {{ (toast$ | async)?.body }}
+        </div>
+      </div>
+    </div>
+
+    <!-- SPINNER -->
+    <div [ngClass]="(loading$ | async)? 'd-block' : 'd-none'" class="spinner-border text-light" role="status" style="position: fixed; width: 50px; height: 50px; top: calc(50% - 25px); left: calc(50% - 25px); z-index: 1;">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+
     <router-outlet></router-outlet>
   </div>
   

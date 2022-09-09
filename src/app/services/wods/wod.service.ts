@@ -58,8 +58,8 @@ export class WODService
     }
 
 
-    public updateWOD(id: string, wod: CreateWODDTO): Observable<void>
+    public updateWOD(id: string, wod: CreateWODDTO): Observable<WOD>
     {
-        return this.http.put<void>(`${environment.wodURL}/${id}`, wod);
+        return this.http.put<WOD>(`${environment.wodURL}/${id}`, wod);
     }
 }

@@ -1,26 +1,20 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpParams, HttpRequest } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { User } from "../models/user";
+import { UserAuthentication } from "../models/user-auth.model";
 
 export class AuthInterceptorService implements HttpInterceptor
 { 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable< HttpEvent<any> > 
     {
         // You can retrict what request you need to modify by the url
-        const storedInfo = localStorage.getItem('userDetails'); // you probably want to store it in localStorage or something
-        let userDetails: User;
+        const storedInfo = localStorage.getItem('userDetails');
+        let userDetails: UserAuthentication;
 
         if(!!storedInfo)
-            userDetails = JSON.parse(storedInfo) as User;
+            userDetails = JSON.parse(storedInfo) as UserAuthentication;
         else
-            userDetails = {
-                email: null,
-                firstName: null,
-                lastName: null,
-                token: null,
-                expiration: null,
-                isLoggedIn: false
-            };
+            userDetails = new UserAuthentication(null, null, null, null, null, false);
 
         // Handle Original Request
         if (!userDetails.token)
@@ -28,7 +22,15 @@ export class AuthInterceptorService implements HttpInterceptor
 
 
         // Clone/Modify Original Request & Append Token
-        const modifiedRequest = request.clone({ headers: request.headers.append('Authorization', `Bearer ${userDetails.token}`) });
+        //const modifiedRequest = request.clone({ params: new HttpParams().set('Authorization', `Bearer ${userDetails.token}`) });
+
+
+        const modifiedRequest = request.clone({
+            setHeaders: {
+            Authorization: `Bearer ${userDetails.token}`,
+            //'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+            }
+            });
 
         console.log(request, 'ORIGINAL');
         console.log(modifiedRequest, 'MODIFIED');
