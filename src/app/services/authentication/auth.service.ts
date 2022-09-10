@@ -43,10 +43,8 @@ export class AuthService
 
             // Manipulate Data as needed
             .pipe(
-                map(user => {
-
-
-                    console.log(user);
+                map(user => 
+                {
                     localStorage.setItem('userDetails', JSON.stringify(user));
 
                     // Notify subscribers of change

@@ -5,6 +5,7 @@ import { User } from "../../models/user";
 import { environment } from '../../../environments/environment';
 import { WOD } from "src/app/models/wod";
 import { CreateWODDTO } from "src/app/models/create-wod.model";
+import { LoadingStatusService } from "../loading-status/loading-status.service";
 
 @Injectable({ providedIn: 'root' })
 export class WODService 
@@ -37,24 +38,12 @@ export class WODService
 
     public getWOD(id: string): Observable<WOD>
     {
-        return this.http.get<WOD>(`${environment.wodURL}/${id}`)
-            .pipe(
-                map(wod => {
-                    return wod;
-                })
-            );
+        return this.http.get<WOD>(`${environment.wodURL}/${id}`);
     }
 
     public addWOD(wod: CreateWODDTO): Observable<WOD>
     {
-        console.log(wod, "CREATING");
-        return this.http.post<WOD>(`${environment.wodURL}`, wod)
-            .pipe(
-                tap(newlyCreatedWOD => {
-
-                    console.log(newlyCreatedWOD, "Looks");
-                })
-            );
+        return this.http.post<WOD>(`${environment.wodURL}`, wod);
     }
 
 

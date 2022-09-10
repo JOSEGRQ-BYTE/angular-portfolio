@@ -9,12 +9,14 @@ import { Toast, ToastType } from "src/app/models/toast.model";
 @Injectable({ providedIn: 'root' })
 export class LoadingStatusService 
 {
-    public loadingSubject: BehaviorSubject<boolean>;
+    private loadingSubject: BehaviorSubject<boolean>;
+    public loading$: Observable<boolean>;
 
 
     constructor()
     {
         this.loadingSubject = new BehaviorSubject<boolean>(false);
+        this.loading$ = this.loadingSubject.asObservable();
     }
 
 

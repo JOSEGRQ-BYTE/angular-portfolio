@@ -2,7 +2,10 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Params } from "@angular/router";
 import { first, Observable, Subscription } from "rxjs";
+import { Toast, ToastType } from "src/app/models/toast.model";
 import { WOD } from "src/app/models/wod";
+import { LoadingStatusService } from "src/app/services/loading-status/loading-status.service";
+import { ToastNotificationService } from "src/app/services/notification/toast-notification.service";
 import { WODService } from "src/app/services/wods/wod.service";
 
 @Component({
@@ -36,7 +39,10 @@ export class WODEditComponent implements OnInit, OnDestroy {
     public wodItem$: Observable<WOD>;
 
 
-    constructor(private activatedRoute: ActivatedRoute, private wodService: WODService)
+    constructor(private activatedRoute: ActivatedRoute, 
+        private wodService: WODService,
+        private loadingService: LoadingStatusService,
+        private toastService: ToastNotificationService)
     {
         this.minDate.setDate(this.minDate.getDate() - 5);
         this.wodForm = new FormGroup({});
@@ -66,11 +72,17 @@ export class WODEditComponent implements OnInit, OnDestroy {
                     this.wodID = params['id']
                     this.wodItem$ = this.wodService.getWOD(params['id']);
 
+                    Promise.resolve().then(() => {
+                        this.loadingService.setLoadingStatus(true)
+                    });
 
                     // Fetch WOD Info & Load Form
                     this.wodItem$.subscribe({
                         next: (data) => 
                         {
+
+                            this.loadingService.setLoadingStatus(false);
+
                             this.wodForm.get('date')?.setValue(data.date);
                             this.wodForm.get('title')?.setValue(data.title);
                             this.wodForm.get('level')?.setValue(data.level);
@@ -80,7 +92,13 @@ export class WODEditComponent implements OnInit, OnDestroy {
                         },
                         error: (error) => 
                         {
-                            console.log(error, "ERROR");
+                            this.loadingService.setLoadingStatus(false);
+                            const toast: Toast = {
+                                type: ToastType.ERROR,
+                                header: 'WOD Fetch',
+                                body: 'Error occurred while fetching WOD.'
+                            };
+                            this.toastService.showToast(toast);
                         }
                     });
                 }
@@ -113,47 +131,60 @@ export class WODEditComponent implements OnInit, OnDestroy {
         // Update existing WOD
         if(this.wodForm.valid && this.isEditing)
         {
-            console.log(this.wodForm.value)
             this.wodItem$ = this.wodService.updateWOD(this.wodID ,this.wodForm.value);
 
+            this.loadingService.setLoadingStatus(true);
 
             this.wodItem$.subscribe({
-                next: (wod) => {
-                    console.log(wod, "NEXT UPDATE");
+                next: (wod) => 
+                {
+                    this.loadingService.setLoadingStatus(false);
+                    const toast: Toast = {
+                        type: ToastType.SUCCESS,
+                        header: 'WOD Updated',
+                        body: 'Successfully updated WOD!'
+                    };
+                    this.toastService.showToast(toast);
                 },
-                error: (error) => {
-                    console.log(error, "ERROR UPDATE");
-                },
-                complete: () => {
-                    console.log("COMPLETE UPDATE");
+                error: (error) => 
+                {
+                    this.loadingService.setLoadingStatus(false);
+                    const toast: Toast = {
+                        type: ToastType.ERROR,
+                        header: 'WOD Updating Error',
+                        body: 'Error occurred while updating WOD.'
+                    };
+                    this.toastService.showToast(toast);
                 }
             });
-            /*this.authService.login(this.signInForm.value)
-            .pipe(first())
-            .subscribe({
-                next: (user) => 
-                {
-                    this.router.navigate([this.returnUrl]);
-                },
-                error: (error) => console.error(error)
-                //complete: () => console.info('complete') 
-            });*/
         }
         // Create New WOD
         else if(this.wodForm.valid && !this.isEditing)
         {
             this.wodItem$ = this.wodService.addWOD(this.wodForm.value);
 
+            this.loadingService.setLoadingStatus(true);
+
             this.wodItem$.subscribe({
-                next: (wod) => {
-                    console.log(wod, "NEXT");
+                next: (wod) => 
+                {
+                    this.loadingService.setLoadingStatus(false);
+                    const toast: Toast = {
+                        type: ToastType.SUCCESS,
+                        header: 'WOD Created',
+                        body: 'WOD was successfully created!'
+                    };
+                    this.toastService.showToast(toast);
                 },
-                error: (error) => {
-                    console.log(error, "ERROR");
-                },
-                complete: () => {
-                    console.log("COMPLETE");
-                }
+                error: (error) => 
+                {
+                    this.loadingService.setLoadingStatus(false);
+                    const toast: Toast = {
+                        type: ToastType.ERROR,
+                        header: 'WOD Creation Error',
+                        body: 'Error occurred while creating WOD.'
+                    };
+                    this.toastService.showToast(toast);                }
             });
         }
     }

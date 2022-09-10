@@ -63,3 +63,11 @@
 form input, form textarea {
     background-color: #a4a5aa;
 }
+
+
+@media (min-width: 992px) 
+{
+    .container {
+        min-height: calc(100vh - 75px) !important;
+    }
+}

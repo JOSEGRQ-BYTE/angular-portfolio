@@ -14,3 +14,53 @@
 .mat-form-field {
     width: 100%;
 }
+
+
+.wod-background {
+
+    background-image: url(../../../assets/images/barbell.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    filter: blur(1px);
+    display: block;
+}
+
+.wod-form-container, .container {
+    min-height: 100vh;
+}
+
+
+.wod-form {
+    max-width: 700px;
+}
+
+@media (min-width: 768px) 
+{
+    .wod-form {
+        max-width: 700px;
+    }
+}
+
+@media (min-width: 992px) 
+{
+    .wod-form-container, .container {
+        min-height: calc(100vh - 75px);
+    }
+}
+
+@media (max-width: 767px) 
+{
+    .wod-form {
+        border: none;
+    }
+
+    .wod-background {
+        display: none;
+    }
+}

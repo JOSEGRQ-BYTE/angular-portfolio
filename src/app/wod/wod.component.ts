@@ -1,10 +1,13 @@
-import { Component, OnInit } from "@angular/core";
+import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs";
+import { Toast, ToastType } from "../models/toast.model";
 import { User } from "../models/user";
 import { UserAuthentication } from "../models/user-auth.model";
 import { WOD } from "../models/wod";
 import { AuthService } from "../services/authentication/auth.service";
+import { LoadingStatusService } from "../services/loading-status/loading-status.service";
+import { ToastNotificationService } from "../services/notification/toast-notification.service";
 import { WODService } from "../services/wods/wod.service";
 
 @Component({
@@ -20,7 +23,11 @@ export class WODComponent implements OnInit
 
     userDetails$: Observable<UserAuthentication>;
 
-    constructor(private wodService: WODService, private router: Router, private authService: AuthService)
+    constructor(private wodService: WODService, 
+        private router: Router, 
+        private authService: AuthService,
+        private loadingService: LoadingStatusService,
+        private toastService: ToastNotificationService)
     {
         this.wods$ =  this.wodService.wods;
         this.wodSelected = '';
@@ -30,15 +37,32 @@ export class WODComponent implements OnInit
 
     ngOnInit() 
     {
+        this.onFetchWODs();
+    }
+
+    onFetchWODs()
+    {
+        Promise.resolve().then(() => this.loadingService.setLoadingStatus(true));
+
         this.wodService.getWODs()
         .subscribe({
             next: (wods) => 
             {
-                console.log(wods);
+                this.loadingService.setLoadingStatus(false);
             },
-            error: (error) => console.error(error)
-            //complete: () => console.info('complete') 
-         });
+            error: (error) => 
+            {
+                this.loadingService.setLoadingStatus(false);
+
+                const toast: Toast = {
+                    type: ToastType.ERROR,
+                    header: 'WOD Fetch',
+                    body: 'Error occurred while fetchign WODs.'
+                };
+                this.toastService.showToast(toast);
+            }
+        });
+
     }
 
     onCardSelected(card: any)

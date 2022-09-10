@@ -1,11 +1,11 @@
-<div class="app-container bg-dark">
+<div class="app-container bg-dark position-relative">
     <!-- NAV BAR -->
   <app-navigation-bar></app-navigation-bar>
 
-  <div class="container-fluid container-lg bg-dark text-light min-vh-100">
-    <!-- OVERLAY -->
+  <div class="container-fluid app-container-fluid container-lg bg-dark text-light h-100">
+    <!-- OVERLAY
     <div class="overlay" [ngClass]="(toast$ | async)?.type == 0 ? 'd-none' : 'd-none'" (click)="onDismissToast()">
-    </div>
+    </div> -->
 
     <!-- TOAST -->
     <div class="position-fixed toast-container" style="z-index: 12; top: 1rem; right: 1rem;">
@@ -21,10 +21,10 @@
       </div>
     </div>
 
-    <!-- SPINNER -->
+    <!-- SPINNER
     <div [ngClass]="(loading$ | async)? 'd-block' : 'd-none'" class="spinner-border text-light" role="status" style="position: fixed; width: 50px; height: 50px; top: calc(50% - 25px); left: calc(50% - 25px); z-index: 1;">
       <span class="visually-hidden">Loading...</span>
-    </div>
+    </div> -->
 
     <router-outlet></router-outlet>
   </div>

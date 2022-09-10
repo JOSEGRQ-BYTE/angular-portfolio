@@ -18,7 +18,7 @@ export class AppComponent {
   constructor(private toastService: ToastNotificationService, private loadingService: LoadingStatusService)
   {
     this.toast$ = this.toastService.toastSubject.asObservable();
-    this.loading$ = this.loadingService.loadingSubject.asObservable();
+    this.loading$ = this.loadingService.loading$;
   }
 
   getToastColor(type: ToastType | undefined)
@@ -40,7 +40,6 @@ export class AppComponent {
 
   onDismissToast()
   {
-    console.log("click")
     this.toastService.dismissToast();
   }
 }

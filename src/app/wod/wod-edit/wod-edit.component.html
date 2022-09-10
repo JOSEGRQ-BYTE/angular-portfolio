@@ -1,7 +1,7 @@
-<div class="container min-vh-100">
-    <div class="row py-4">
-        <div class="col-12 px-0 px-md-3">
-            <form class="mt-5 card bg-dark text-light p-3 mx-auto" style="max-width: 750px;" [formGroup]="wodForm" (ngSubmit)="onSubmit()">
+<div class="container">
+    <div class="row wod-form-container position-relative h-100 d-flex align-items-center">
+            <div class="wod-background"></div>
+            <form class="col-12 m-0 mt-md-5 card bg-dark text-light py-3 px-0 px-md-3 mx-auto wod-form" [formGroup]="wodForm" (ngSubmit)="onSubmit()">
 
                 <!-- User Input -->
 
@@ -64,15 +64,20 @@
                     <div *ngIf="!wodForm.get('results')?.valid && wodForm.get('results')?.touched" id="results-feedback" class="form-text text-danger">Results is required.</div>
                 </div>
 
-                <!-- Submit -->
-                <button class="btn btn-primary" type="submit" style="width: fit-content;">{{ isEditing? 'Update' : 'Create' }}</button>
-            </form>
+                <div class="row m-0">
+                    <!-- Submit -->
+                    <div class="col p-0">
+                        <button class="btn btn-primary me-2" type="submit" style="width: fit-content;">{{ isEditing? 'Update' : 'Add' }}</button>
+                        <button *ngIf="isEditing" class="btn btn-danger" type="button" style="width: fit-content;">Delete</button>
+                    </div>
+                    
 
-            <div class="row mt-4" *ngIf="isEditing">
-                <div class="col-12">
-                    <a class="btn btn-primary float-end" href="#" routerLink="/WOD/Create" >Add New Results</a>
+
+                    <div class="col p-0">
+                        <a *ngIf="isEditing" class="btn btn-primary float-end" href="#" routerLink="/WOD/Create" >Add New</a>
+                        <a *ngIf="!isEditing" class="btn btn-primary float-end" href="#" routerLink="/WOD" >WODs</a>
+                    </div>
                 </div>
-            </div>
-        </div>
+            </form>
     </div>
 </div>
