@@ -30,7 +30,7 @@ export class WODEditComponent implements OnInit, OnDestroy {
     public minDate: Date = new Date();
 
     // Flag to know whether user is editing or creating one
-    public isEditing!: boolean;
+    public viewMode: string;
     private wodID: string;
 
     // Parameter Subscribtion
@@ -49,6 +49,8 @@ export class WODEditComponent implements OnInit, OnDestroy {
 
         this.wodItem$ = new Observable<WOD>();
         this.wodID = '';
+
+        this.viewMode = "READ";
     }
 
     ngOnInit() 
@@ -61,14 +63,14 @@ export class WODEditComponent implements OnInit, OnDestroy {
                 // Creating a New WOD
                 if(params['id']=='Create')
                 {
-                    this.isEditing = false;
+                    this.viewMode = "CREATE";
                     this.wodItem$ = new Observable<WOD>();
                     this.wodForm.reset();
                 }
                 // Editing and Existing WOD
                 else 
                 {
-                    this.isEditing = true;
+                    this.viewMode = "VIEW";
                     this.wodID = params['id']
                     this.wodItem$ = this.wodService.getWOD(params['id']);
 
@@ -129,7 +131,7 @@ export class WODEditComponent implements OnInit, OnDestroy {
             return;
 
         // Update existing WOD
-        if(this.wodForm.valid && this.isEditing)
+        if(this.wodForm.valid && this.viewMode == "EDIT")
         {
             this.wodItem$ = this.wodService.updateWOD(this.wodID ,this.wodForm.value);
 
@@ -159,7 +161,7 @@ export class WODEditComponent implements OnInit, OnDestroy {
             });
         }
         // Create New WOD
-        else if(this.wodForm.valid && !this.isEditing)
+        else if(this.wodForm.valid && this.viewMode == "CREATE")
         {
             this.wodItem$ = this.wodService.addWOD(this.wodForm.value);
 
@@ -192,5 +194,10 @@ export class WODEditComponent implements OnInit, OnDestroy {
     ngOnDestroy()
     {
         this.paramSubcription.unsubscribe();
+    }
+
+    onEdit()
+    {
+        this.viewMode = 'EDIT';
     }
 }

@@ -13,9 +13,9 @@
                     <div class="col-12 col-sm-6">
                         <label for="date" class="form-label">Date</label>
                         <mat-form-field appearance="fill">
-                            <input [ngClass]="{'is-invalid': wodForm.get('date')?.errors && (wodForm.get('date')?.touched || wodForm.get('date')?.dirty), 'is-valid':wodForm.get('date')?.valid}"  matInput [matDatepicker]="picker" [min]="minDate" formControlName="date" placeholder="MM/DD/YYYY">
+                            <input [readonly]="viewMode == 'VIEW'" [ngClass]="{'is-invalid': wodForm.get('date')?.errors && (wodForm.get('date')?.touched || wodForm.get('date')?.dirty), 'is-valid':wodForm.get('date')?.valid}"  matInput [matDatepicker]="picker" [min]="minDate" formControlName="date" placeholder="MM/DD/YYYY">
                             
-                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker-toggle [disabled]="viewMode == 'VIEW'" matSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
                         </mat-form-field>
                         <div *ngIf="!wodForm.get('date')?.valid && wodForm.get('date')?.touched" id="date-feedback" class="form-text text-danger">Date is required.</div>
@@ -27,14 +27,14 @@
 
                     <div class="col-12 col-sm-6">
                         <label for="title" class="form-label">Title</label>
-                        <input formControlName="title" [ngClass]="{'is-invalid': wodForm.get('title')?.errors && (wodForm.get('title')?.touched || wodForm.get('title')?.dirty), 'is-valid':wodForm.get('title')?.valid}" type="text" class="form-control" id="title" aria-describedby="title-feedback">
+                        <input [readonly]="viewMode == 'VIEW'" formControlName="title" [ngClass]="{'is-invalid': wodForm.get('title')?.errors && (wodForm.get('title')?.touched || wodForm.get('title')?.dirty), 'is-valid':wodForm.get('title')?.valid}" type="text" class="form-control" id="title" aria-describedby="title-feedback">
                         <div *ngIf="!wodForm.get('title')?.valid && wodForm.get('title')?.touched" id="title-feedback" class="form-text text-danger">Title is required.</div>
                     </div>
 
 
                     <div class="col-12 col-sm-6">
                         <label for="level" class="form-label">Level</label>
-                        <select [ngClass]="{'is-invalid': wodForm.get('level')?.errors && (wodForm.get('level')?.touched || wodForm.get('level')?.dirty), 'is-valid':wodForm.get('level')?.valid}" id="level" class="form-select" formControlName="level">
+                        <select [ngClass]="{'is-invalid': wodForm.get('level')?.errors && (wodForm.get('level')?.touched || wodForm.get('level')?.dirty), 'is-valid':wodForm.get('level')?.valid}" id="level" class="form-select" formControlName="level" [attr.disabled]="viewMode == 'VIEW'? 'disabled' : null">
                             <option *ngFor="let level of levels" [ngValue]="level" [ngValue]="level.id">{{ level.name }}</option>
                           </select>
                         <div *ngIf="!wodForm.get('level')?.valid && wodForm.get('level')?.touched" id="level-feedback" class="form-text text-danger">Level is required.</div>
@@ -44,7 +44,7 @@
                 <!-- Description -->
                 <div class="mb-3">
                     <label for="description" class="form-label">Description</label>
-                    <textarea rows="3" [ngClass]="{'is-invalid': wodForm.get('description')?.errors && (wodForm.get('description')?.touched || wodForm.get('description')?.dirty), 'is-valid':wodForm.get('description')?.valid}" class="form-control" id="description" aria-describedby="description-feedback" formControlName="description">
+                    <textarea [readonly]="viewMode == 'VIEW'" rows="3" [ngClass]="{'is-invalid': wodForm.get('description')?.errors && (wodForm.get('description')?.touched || wodForm.get('description')?.dirty), 'is-valid':wodForm.get('description')?.valid}" class="form-control" id="description" aria-describedby="description-feedback" formControlName="description">
                     </textarea>
                     <div *ngIf="!wodForm.get('description')?.valid && wodForm.get('description')?.touched" id="description-feedback" class="form-text text-danger">Description is required.</div>
                 </div>
@@ -52,14 +52,14 @@
                 <!-- Coach Tip -->
                 <div class="mb-3">
                     <label for="coach-tip" class="form-label">Coach Tip</label>
-                    <textarea class="form-control" id="coach-tip" rows="3" formControlName="coach-tip">
+                    <textarea [readonly]="viewMode == 'VIEW'" class="form-control" id="coach-tip" rows="3" formControlName="coach-tip">
                     </textarea>
                 </div>
 
                 <!-- Results -->
                 <div class="mb-3">
                     <label for="results" class="form-label">Results</label>
-                    <textarea [ngClass]="{'is-invalid': wodForm.get('results')?.errors && (wodForm.get('results')?.touched || wodForm.get('results')?.dirty), 'is-valid':wodForm.get('results')?.valid}" class="form-control" id="results" rows="3" formControlName="results">
+                    <textarea [readonly]="viewMode == 'VIEW'"  [ngClass]="{'is-invalid': wodForm.get('results')?.errors && (wodForm.get('results')?.touched || wodForm.get('results')?.dirty), 'is-valid':wodForm.get('results')?.valid}" class="form-control" id="results" rows="3" formControlName="results">
                     </textarea>
                     <div *ngIf="!wodForm.get('results')?.valid && wodForm.get('results')?.touched" id="results-feedback" class="form-text text-danger">Results is required.</div>
                 </div>
@@ -67,15 +67,16 @@
                 <div class="row m-0">
                     <!-- Submit -->
                     <div class="col p-0">
-                        <button class="btn btn-primary me-2" type="submit" style="width: fit-content;">{{ isEditing? 'Update' : 'Add' }}</button>
-                        <button *ngIf="isEditing" class="btn btn-danger" type="button" style="width: fit-content;">Delete</button>
+                        <button *ngIf="viewMode == 'VIEW'" class="btn btn-primary me-2" type="button" style="width: fit-content;" (click)="onEdit()">Edit</button>
+                        <button *ngIf="viewMode != 'VIEW'" class="btn btn-primary me-2" type="submit" style="width: fit-content;">{{ viewMode != 'EDIT'? 'Update' : 'Add' }}</button>
+                        <button *ngIf="viewMode == 'EDIT'" class="btn btn-danger" type="button" style="width: fit-content;">Delete</button>
                     </div>
                     
 
 
                     <div class="col p-0">
-                        <a *ngIf="isEditing" class="btn btn-primary float-end" href="#" routerLink="/WOD/Create" >Add New</a>
-                        <a *ngIf="!isEditing" class="btn btn-primary float-end" href="#" routerLink="/WOD" >WODs</a>
+                        <a class="btn btn-primary float-end" href="#" routerLink="/WOD" >WODs</a>
+                        <a *ngIf="viewMode != 'CREATE'" class="btn btn-primary float-end me-2" href="#" routerLink="/WOD/Create" >Add New</a>
                     </div>
                 </div>
             </form>
