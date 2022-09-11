@@ -1,12 +1,15 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { ActivatedRoute, Params } from "@angular/router";
+import { ActivatedRoute, Params, Router } from "@angular/router";
 import { first, Observable, Subscription } from "rxjs";
 import { Toast, ToastType } from "src/app/models/toast.model";
 import { WOD } from "src/app/models/wod";
 import { LoadingStatusService } from "src/app/services/loading-status/loading-status.service";
 import { ToastNotificationService } from "src/app/services/notification/toast-notification.service";
 import { WODService } from "src/app/services/wods/wod.service";
+
+
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'app-wod-edit',
@@ -42,7 +45,9 @@ export class WODEditComponent implements OnInit, OnDestroy {
     constructor(private activatedRoute: ActivatedRoute, 
         private wodService: WODService,
         private loadingService: LoadingStatusService,
-        private toastService: ToastNotificationService)
+        private toastService: ToastNotificationService,
+        private router: Router,
+        private modalService: NgbModal)
     {
         this.minDate.setDate(this.minDate.getDate() - 5);
         this.wodForm = new FormGroup({});
@@ -128,7 +133,15 @@ export class WODEditComponent implements OnInit, OnDestroy {
 
         // Do nothing if form is invalid
         if (this.wodForm.invalid)
+        {
+            const toast: Toast = {
+                type: ToastType.WARNING,
+                header: 'Invalid Form',
+                body: 'Please check your input!'
+            };
+            this.toastService.showToast(toast);
             return;
+        }
 
         // Update existing WOD
         if(this.wodForm.valid && this.viewMode == "EDIT")
@@ -146,17 +159,24 @@ export class WODEditComponent implements OnInit, OnDestroy {
                         header: 'WOD Updated',
                         body: 'Successfully updated WOD!'
                     };
+                    this.viewMode = 'VIEW';
                     this.toastService.showToast(toast);
                 },
                 error: (error) => 
                 {
+
+
+                    if (error.status != 401) 
+                    {
+                        const toast: Toast = {
+                            type: ToastType.ERROR,
+                            header: 'WOD Updating Error',
+                            body: 'Unexpected error occurred while updating WOD.'
+                        };
+                        this.toastService.showToast(toast);
+                    }
+
                     this.loadingService.setLoadingStatus(false);
-                    const toast: Toast = {
-                        type: ToastType.ERROR,
-                        header: 'WOD Updating Error',
-                        body: 'Error occurred while updating WOD.'
-                    };
-                    this.toastService.showToast(toast);
                 }
             });
         }
@@ -177,16 +197,24 @@ export class WODEditComponent implements OnInit, OnDestroy {
                         body: 'WOD was successfully created!'
                     };
                     this.toastService.showToast(toast);
+
+                    this.router.navigate(['/WOD']);
                 },
                 error: (error) => 
                 {
-                    this.loadingService.setLoadingStatus(false);
-                    const toast: Toast = {
-                        type: ToastType.ERROR,
-                        header: 'WOD Creation Error',
-                        body: 'Error occurred while creating WOD.'
-                    };
-                    this.toastService.showToast(toast);                }
+
+                    if (error.status != 401) 
+                    {
+                        const toast: Toast = {
+                            type: ToastType.ERROR,
+                            header: 'WOD Creation Error',
+                            body: 'Unexpected error occurred while creating WOD.'
+                        };
+                        this.toastService.showToast(toast);  
+                    }
+
+                    this.loadingService.setLoadingStatus(false);              
+                }
             });
         }
     }
@@ -199,5 +227,53 @@ export class WODEditComponent implements OnInit, OnDestroy {
     onEdit()
     {
         this.viewMode = 'EDIT';
+    }
+
+    onConfirm(content: any)
+    {
+        console.log(content)
+        this.modalService.open(content, { centered: true, backdropClass: 'light-blue-backdrop' }).result
+        .then(
+            (result) => 
+            {
+                console.log(`Closed with: ${result}`);
+            }, 
+            (reason) => {
+                console.log(`Dismissed ${reason}`);
+            });
+    }
+ 
+
+    onDeleteWOD()
+    {
+        this.loadingService.setLoadingStatus(true);
+        this.wodService.deleteWOD(this.wodID).subscribe({
+            next: () => 
+            {
+                const toast: Toast = {
+                    type: ToastType.SUCCESS,
+                    header: 'WOD Deletion',
+                    body: 'Successfully deleted WOD!'
+                };
+                this.toastService.showToast(toast);
+                this.router.navigate(['/WOD']);
+            },
+            error: (error) => 
+            {
+                this.loadingService.setLoadingStatus(false);
+
+                if (error.status != 401) 
+                {
+                    const toast: Toast = {
+                        type: ToastType.ERROR,
+                        header: 'WOD Deletion',
+                        body: 'Unexpected error occurred while deleting WOD.'
+                    };
+                    this.toastService.showToast(toast);
+                }
+            }
+        });
+
+        this.modalService.dismissAll('Delete WOD');
     }
 }

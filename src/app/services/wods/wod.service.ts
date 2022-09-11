@@ -51,4 +51,9 @@ export class WODService
     {
         return this.http.put<WOD>(`${environment.wodURL}/${id}`, wod);
     }
+
+    public deleteWOD(id: string): Observable<void>
+    {
+        return this.http.delete<void>(`${environment.wodURL}/${id}`);
+    }
 }

@@ -52,14 +52,19 @@ export class WODComponent implements OnInit
             },
             error: (error) => 
             {
-                this.loadingService.setLoadingStatus(false);
+                console.log(error, 'HERE');
 
-                const toast: Toast = {
-                    type: ToastType.ERROR,
-                    header: 'WOD Fetch',
-                    body: 'Error occurred while fetchign WODs.'
-                };
-                this.toastService.showToast(toast);
+                if (error.status != 401) 
+                {
+                    const toast: Toast = {
+                        type: ToastType.ERROR,
+                        header: 'WOD Fetch',
+                        body: 'Unexpected occurred while fetching WODs.'
+                    };
+                    this.toastService.showToast(toast);
+                }
+
+                this.loadingService.setLoadingStatus(false);
             }
         });
 
@@ -84,8 +89,6 @@ export class WODComponent implements OnInit
 
         if(this.authService.currentUserValue.isLoggedIn && this.wodSelected != '')
             this.router.navigate([`/WOD/${this.wodSelected}`]);
-
-        console.log(this.authService.currentUserValue.isLoggedIn && this.wodSelected != '');
 
     }
 }
