@@ -1,0 +1,46 @@
+.skills:before {
+    content: "";
+    width: .2em;
+    height: 100%;
+    background: white;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: block;
+}
+
+
+.skill-logo::before {
+    content: "";
+    position: absolute;
+    width: 50%;
+    top: 0;
+    right: 0;
+    height: 2px;
+    background-color: white;
+    display: block;
+}
+
+.skills > div:nth-child(even) .skill-logo::before {
+    left: 0;
+}
+
+.skills > div:nth-child(even) {
+    flex-direction: row-reverse;
+}
+.skills > div:nth-child(odd) {
+    flex-direction: row; 
+}
+
+
+@media (max-width: 767px) {
+    .skills:before {
+        display: none;
+    }
+    .skill-logo::before {
+        display: none;
+    }
+}
