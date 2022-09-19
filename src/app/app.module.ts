@@ -33,6 +33,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
+import { SkillCard } from './home/skills/skill-card/skill-card.component';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { AuthInterceptorService } from './interceptors/auth-interceptor.service'
     WODComponent,
     WODCardComponent,
     WODEditComponent,
+    SkillCard
   ],
   imports: [
     BrowserModule,
