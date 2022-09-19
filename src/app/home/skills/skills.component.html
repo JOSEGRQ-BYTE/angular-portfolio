@@ -26,23 +26,42 @@
                               <a class="nav-link navbar-brand p-0" href="#"><h3>Top Skills</h3></a>
                             </li>
                             <li class="nav-item d-inline-block me-2">
-                              <a class="nav-link" href="#" routerLinkActive="active" [skipLocationChange]="true" routerLink="/Home/Frontend" [routerLinkActiveOptions]="{exact: true}">Front End</a>
+                              <a class="nav-link" href="#" name="filter" data-value="Frontend" id="frontend-skill" (click)="onFilter($event)">Front End</a>
                             </li>
                             <li class="nav-item d-inline-block me-2">
-                              <a class="nav-link" href="#" routerLinkActive="active" [skipLocationChange]="true" routerLink="/Home/Backend" [routerLinkActiveOptions]="{exact: true}">Back End</a>
+                              <a class="nav-link" href="#" name="filter" data-value="Backend" id="backend-skill" (click)="onFilter($event)">Back End</a>
                             </li>
                             <li class="nav-item d-inline-block me-2">
-                              <a class="nav-link" href="#" routerLinkActive="active" [skipLocationChange]="true" routerLink="/Home/Frameworks" [routerLinkActiveOptions]="{exact: true}">Frameworks</a>
+                              <a class="nav-link" href="#" name="filter" data-value="Frameworks" id="frameworks-skill" (click)="onFilter($event)">Frameworks</a>
                             </li>
                             <li class="nav-item d-inline-block me-2">
-                                <a class="nav-link" href="#" routerLinkActive="active" [skipLocationChange]="true" routerLink="/Home/Development" [routerLinkActiveOptions]="{exact: true}">Development</a>
+                                <a class="nav-link" name="filter" href="#" data-value="Development" id="development-skill" (click)="onFilter($event)">Development</a>
                               </li>
                         </ul>
 
 
                           
                         <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-offset="0" tabindex="0" class="col-12 col-lg-9 mt-5 p-2 pt-4 mt-lg-0" style="min-height: 50vh;">
-                            <router-outlet></router-outlet>
+                          <div class="container">
+                            <div class="skills position-relative mt-4">
+                            
+                                <div class="row col-12 m-0 mb-4 d-flex" *ngFor="let skill of mySkills$ | async">
+                                    <div class="skill-logo position-relative col-12 col-md-6 d-flex justify-content-center pe-0 mb-3 m-md-0">
+                                        <div class="rounded-circle bg-light d-flex justify-content-center" style="width: 150px; height: 150px">
+                                        <img src="../../../assets/svg/{{skill.image}}" style="width: 100px;">
+                                        </div>
+                                    </div>
+                                    <div class="position-relative col-12 col-md-6 pe-0">
+                                        <h5 class="h4">{{skill.title}}</h5>
+                                        <p class="">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed efficitur ex sit amet massa scelerisque scelerisque. Aliquam erat volutpat. Aenean interdum finibus efficitur. Praesent dapibus dolor felis, eu ultrices elit molestie.
+                                        </p>
+                                    </div>
+                                </div>
+                            
+                            </div>
+                        </div>
+                          <!--<router-outlet></router-outlet>-->
                         </div>
                     </div>
 
