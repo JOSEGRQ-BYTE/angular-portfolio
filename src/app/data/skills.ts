@@ -9,17 +9,17 @@ export const Skills: { [key: string]: Skill[] } = {
         {
             title: 'Angular',
             image: 'angular.svg',
-            description: 'In Angular I have had the opportunity to work with many of its advanced techniques such as directives (), pipes, interceptors, services, observables, reactive forms, managing subscriptions, injectables (dependency injection), and become familiar with the component lifecycle.'
+            description: "I've worked with many of Angular's advanced techniques such as directives (Component, Structural, Attribute), pipes, interceptors, services, observables, reactive forms, managing subscriptions, injectables (dependency injection), and become familiar with the component lifecycle."
         },
         {
             title: 'Bootstrap',
             image: 'bootstrap.svg',
-            description: 'I have used Bootstrap in man projects because it is easy to use and powerful for building responsive web applications. I am familiar with its grid system, variety of components, helper classes, utility classes and comfortable dealing with responsive media content. Also, expertice with expressive forms through the use of validators.'
+            description: "I've utilized Bootstrap in many projects because it is easy to use and powerful for building responsive web applications. I am familiar with its grid system, variety of components, helper classes, utility classes and comfortable dealing with responsive media content. Also, expertice with expressive forms through the use of validators."
         },
         {
             title: 'CSS',
             image: 'css.svg',
-            description: 'My experience with CSS ranges from applying simple typography style changes to creating complex responsive web applications. I have contributed to implementing complex components (including but not limited to dropdowns, navigation bars, cards, and reactive forms)'
+            description: "My experience with CSS ranges from applying simple typography style changes to creating complex responsive web applications. I've contributed to implementing complex components (including but not limited to dropdowns, navigation bars, cards, and reactive forms). I've implemented dark and light mode on web applications from a simple static web page to a dynamic one-page application (Angular and React)."
         },
         {
             title: 'HTML',
@@ -29,12 +29,12 @@ export const Skills: { [key: string]: Skill[] } = {
         {
             title: 'JavaScript/Typescript',
             image: 'typescript.svg',
-            description: 'JavaScript along with Typescript can help the development process a long way with DOM manipulation. Some of the techniques I have touched on include event listeners, dynamically updating/controlling content, building components, and asynchronous operations. I have experience working with the powerful type system Typescript bring to the table with generics, interfaces, inheritance, type guards, and union types.'
+            description: "Some of the techniques I've worked on include creating event listener functions, dynamically updating/controlling content (manipulating the DOW), building complex dynamic components, and asynchronous operations. I've experience working with the powerful type system Typescript brings to the table with generics, interfaces, inheritance, type guards, union types and many more."
         },
         {
             title: 'JQuery',
             image: 'jquery.svg',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ullamcorper a lacus vestibulum sed arcu. Eros donec ac odio tempor.'
+            description: "I've worked with this library to ensure and maintain the feasibility of UI/UX of sites. Used it to optimize existing components for higher scalability and performance. Maintain code efficiency by debugging and troubleshooting issues and manipulating the DOM for dynamic content."
         }
     ],
     'Backend': [
@@ -64,7 +64,7 @@ export const Skills: { [key: string]: Skill[] } = {
         {
             title: 'Angular',
             image: 'angular.svg',
-            description: 'In Angular I have had the opportunity to work with many of its advanced techniques such as directives (), pipes, interceptors, services, observables, reactive forms, managing subscriptions, injectables (dependency injection), and become familiar with the component lifecycle.'
+            description: "I've worked with many of Angular's advanced techniques such as directives (Component, Structural, Attribute), pipes, interceptors, services, observables, reactive forms, managing subscriptions, injectables (dependency injection), and become familiar with the component lifecycle."
         },
         {
             title: 'ASP.NET Core',
@@ -74,7 +74,7 @@ export const Skills: { [key: string]: Skill[] } = {
         {
             title: 'Bootstrap',
             image: 'bootstrap.svg',
-            description: 'I have used Bootstrap in man projects because it is easy to use and powerful for building responsive web applications. I am familiar with its grid system, variety of components, helper classes, utility classes and comfortable dealing with responsive media content. Also, expertice with expressive forms through the use of validators.'
+            description: "I've utilized Bootstrap in many projects because it is easy to use and powerful for building responsive web applications. I am familiar with its grid system, variety of components, helper classes, utility classes and comfortable dealing with responsive media content. Also, expertice with expressive forms through the use of validators."
         },    
         {
             title: 'Entity Framework',
