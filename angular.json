@@ -30,7 +30,17 @@
               "node_modules/bootstrap-icons/font/bootstrap-icons.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              {
+                  "input": "src/light-mode.scss",
+                  "bundleName": "light",
+                  "inject": true
+              },
+              {
+                  "input": "src/dark-mode.scss",
+                  "bundleName": "dark",
+                  "inject": false
+              }
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"

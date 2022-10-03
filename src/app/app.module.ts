@@ -34,6 +34,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
 import { SkillCard } from './home/skills/skill-card/skill-card.component';
+import { ModeToggleComponent } from './shared/mode-toggle/mode-toggle.component';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import { SkillCard } from './home/skills/skill-card/skill-card.component';
     WODComponent,
     WODCardComponent,
     WODEditComponent,
-    SkillCard
+    SkillCard,
+    ModeToggleComponent
   ],
   imports: [
     BrowserModule,
