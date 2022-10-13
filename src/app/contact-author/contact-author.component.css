@@ -7,7 +7,7 @@
     left: -10px;
     bottom: 0;
     border-radius: 50%;
-    background-color: #a4a5aa;
+    background-color: #1982FC;
 }
 .my-contact-info > span::after{
     content: "";
@@ -22,7 +22,7 @@
 
 .my-contact-info > span{
     font-weight: 300;
-    background-color: #a4a5aa;
+    background-color: #1982FC;
     padding: 0.5em 1em;
     border-radius: 2em;
     position: relative;
@@ -59,10 +59,10 @@
     /*filter: drop-shadow(0px 0px 3px #193931);*/
 } 
 
-
+/*
 form input, form textarea {
     background-color: #a4a5aa;
-}
+}*/
 
 
 @media (min-width: 992px) 

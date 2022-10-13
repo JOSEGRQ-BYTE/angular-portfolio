@@ -1,16 +1,16 @@
 <section class="container position-relative bg-dark text-light min-vh-100 p-4 d-flex">
     <div class="row my-auto w-100 col">
         <div class="col-12 position-relative">
-            <h2 class="mb-4 section-header">Top Skills</h2>
+            <h2 class="mb-4 section-header text-light">Top Skills</h2>
         </div>
 
         <div class="col-12 mt-4">
             
-            <div class="card bg-dark text-center col-12 border-white">
+            <div class="card bg-dark text-center col-12 border-light">
                 <div class="card-header p-3">
                     <span class="terminal-buttons"></span>
                 </div>
-                <div class="card-body p-0 border-top border-white">
+                <div class="card-body p-0 border-top border-light">
 
 
 
@@ -22,9 +22,6 @@
 
                     <div class=" row position-relative col-12 m-auto">
                         <ul class="inner-nav shadow nav nav-pills d-lg-flex d-block flex-nowrap flex-lg-column position-lg-relative flex-row p-3 col-12 col-lg-3 justify-content-evenly" style="overflow-x: auto;white-space: nowrap;">
-                            <li class="nav-item d-inline-block me-2 d-none">
-                              <a class="nav-link navbar-brand p-0" href="#"><h3>Top Skills</h3></a>
-                            </li>
                             <li class="nav-item d-inline-block me-2">
                               <a class="nav-link" href="#" name="filter" data-value="Frontend" id="frontend-skill" (click)="onFilter($event)">Front End</a>
                             </li>
@@ -47,13 +44,13 @@
                             
                                 <div class="row col-12 m-0 mb-4 d-flex" *ngFor="let skill of mySkills$ | async">
                                     <div class="skill-logo position-relative col-12 col-md-6 d-flex justify-content-center pe-0 mb-3 m-md-0">
-                                        <div class="rounded-circle bg-light d-flex justify-content-center" style="width: 150px; height: 150px">
+                                        <div class="rounded-circle bg-light d-flex justify-content-center skill-image" style="width: 150px; height: 150px">
                                         <img src="../../../assets/svg/{{skill.image}}" style="width: 100px;">
                                         </div>
                                     </div>
                                     <div class="position-relative col-12 col-md-6 pe-0">
-                                        <h5 class="h4">{{skill.title}}</h5>
-                                        <p class="">
+                                        <h5 class="h3 text-light font-weight-bold">{{skill.title}}</h5>
+                                        <p class="font-weight-light">
                                             {{skill.description}}
                                         </p>
                                     </div>

@@ -51,10 +51,10 @@ import { ModeToggleComponent } from './shared/mode-toggle/mode-toggle.component'
     ProjectCardComponent,
     WaveDividerComponent,
     FooterComponent,
-    BackendComponent,
+    /*BackendComponent,
     FrontendComponent,
     FrameworksComponent,
-    DevelopmentComponent,
+    DevelopmentComponent,*/
     SignInComponent,
     WODComponent,
     WODCardComponent,

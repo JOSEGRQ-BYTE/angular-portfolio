@@ -67,7 +67,6 @@ small, .text_small {font-size: 0.618rem;}
     width: 10px;
     height: 10px;
     position: absolute;
-    outline: 1px solid whitesmoke;
     border-radius: 50%;
     bottom: 6px;
     right: 0;
@@ -80,7 +79,6 @@ small, .text_small {font-size: 0.618rem;}
     position: absolute;
     bottom: 10px;
     left: 0;
-    border-bottom: 2px solid whitesmoke;
 }
 
 

@@ -35,7 +35,6 @@
     content: "";
     width: .2em;
     height: 100%;
-    background: white;
     margin: auto;
     position: absolute;
     top: 0;
@@ -52,8 +51,7 @@
     width: 50%;
     top: 0;
     right: 0;
-    height: 2px;
-    background-color: white;
+    height: 3px;
     display: block;
 }
 
@@ -68,6 +66,12 @@
     flex-direction: row; 
 }
 
+.skills > div:nth-child(even) p {
+    padding-right: 1em;
+}
+.skills > div:nth-child(odd) p {
+    padding-left: 1em;
+}
 
 @media (max-width: 767px) {
     .skills:before {

@@ -9,11 +9,11 @@
 
     <!-- TOAST -->
     <div class="position-fixed toast-container" style="z-index: 12; top: 1rem; right: 1rem;">
-      <div class="toast" [ngClass]="(toast$ | async)?.type == 0 ? 'hide' : 'show'" role="alert"  aria-atomic="true">
-        <div class="toast-header text-dark">
+      <div class="toast bg-light" [ngClass]="(toast$ | async)?.type == 0 ? 'hide' : 'show'" role="alert"  aria-atomic="true">
+        <div class="toast-header text-dark bg-light border-bottom border-dark">
           <span class="rounded me-2" [ngStyle]="{'background-color': getToastColor((toast$ | async)?.type)}" style="width: 20px; height: 20px;"></span>
           <strong class="me-auto">{{ (toast$ | async)?.header }}</strong>
-          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+          <button type="button" class="btn-close bg-dark" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
         <div class="toast-body text-dark">
           {{ (toast$ | async)?.body }}
