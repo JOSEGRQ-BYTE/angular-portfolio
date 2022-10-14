@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
+import { Project } from "src/app/data/projects";
 
 @Component({
     selector:"app-project-card",
@@ -7,5 +8,19 @@ import { Component } from "@angular/core";
 })
 export class ProjectCardComponent 
 {
+    private _projectInfo!: Project;
+    @Input() 
+    public set projectInfo(p:Project)
+    {
+        this._projectInfo = p;
+    };
+    public get projectInfo(): Project{
+        return this._projectInfo;
+    }
+
+    constructor()
+    {
+
+    }
 
 }

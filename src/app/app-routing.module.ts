@@ -3,22 +3,13 @@ import { Routes, RouterModule } from "@angular/router";
 import { AboutAuthorComponent } from "./about-author/about-author.component";
 import { ContactAuthorComponent } from "./contact-author/contact-author.component";
 import { HomeComponent } from "./home/home.component";
-import { BackendComponent } from "./home/skills/back-end/back-end.component";
-import { DevelopmentComponent } from "./home/skills/development/development.component";
-import { FrameworksComponent } from "./home/skills/frameworks/frameworks.component";
-import { FrontendComponent } from "./home/skills/front-end/front-end.component";
 import { NotFoundComponent } from "./not-found/not-found.component";
 import { SignInComponent } from "./sign-in/sign-in.component";
 import { WODEditComponent } from "./wod/wod-edit/wod-edit.component";
 import { WODComponent } from "./wod/wod.component";
 
 const appRoutes: Routes = [
-    {path: 'Home', component: HomeComponent, children: [
-        {path: 'Frontend', component: FrontendComponent},
-        {path: 'Backend', component: BackendComponent},
-        {path: 'Development', component: DevelopmentComponent},
-        {path: 'Frameworks', component: FrameworksComponent}
-    ] },
+    {path: 'Home', component: HomeComponent },
     {path: 'SignIn', component: SignInComponent},
     {path: 'WOD', component: WODComponent},
     {path: 'WOD/:id', component: WODEditComponent},

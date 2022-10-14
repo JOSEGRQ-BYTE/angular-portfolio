@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { Project, Projects } from "../data/projects";
 
 @Component({
     selector: "app-about-author",
@@ -7,4 +8,10 @@ import { Component } from "@angular/core";
 })
 export class AboutAuthorComponent
 {
+    public projects: Project[];
+
+    constructor()
+    {
+        this.projects = Projects;
+    }
 }

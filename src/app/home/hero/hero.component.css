@@ -14,26 +14,14 @@
     background-size: cover;
     background-position: center;
 }
-
-  
-  /*@keyframes move {
-    0%   { transform: scale(2) translate(350%, 100%); }
-    20%  { transform: scale(1) translate(15%, 50%) rotate(160deg); }
-    40%  { transform: scale(1) translate(800%, 100%) rotate(100deg); }
-    60%  { transform: scale(4) translate(10%, 50%) rotate(-20deg); }
-    80%  { transform: scale(1) translate(300%, 50%) rotate(-20deg); }
-    100% { transform: scale(2) translate(300%, 50%); }
-  }*/
-
-
-  .my-image{
-    position: absolute;
-    background-image: linear-gradient(to right, rgb(182, 244, 146), rgb(51, 139, 147));
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
+.my-image{
+  position: absolute;
+  background-image: linear-gradient(to right, rgb(182, 244, 146), rgb(51, 139, 147));
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
