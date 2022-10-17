@@ -5,10 +5,13 @@
 
     <!-- BODY -->
     <div class="card-body text-light">
-      <h5 class="card-title text-light">Success card title</h5>
-      <p class="card-text text-light">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <h5 class="card-title text-light">Workout:</h5>
+      <p class="card-text text-light">{{ wod?.description }}</p>
+
+      <h5 class="card-title text-light">Results:</h5>
+      <p class="card-text text-light">{{ wod?.results }}</p>
     </div>
 
     <!-- FOOTER -->
-    <div class="card-footer bg-transparent border-light">Footer</div>
+    <div class="card-footer bg-transparent border-light">Date: {{ wod?.date | date: 'MM/dd/yyyy' }}</div>
 </a>

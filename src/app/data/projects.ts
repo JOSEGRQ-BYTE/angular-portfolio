@@ -26,6 +26,6 @@ export const Projects: Project[] = [
         image: 'assets/svg/node.svg',
         description: 'This web scraper makes use of the vast amount of publicly available web data for job seekers to make smarter decisions. It collects the list of the top 500 companies, automatically includes the top 10 and looks for those that are of interest like tech companies. It then goes to Indeed and fetches jobs of interest to later convert this list into an Excel file which gets sent to your email. This web scrapper is set scheduled to run every day for you not to let an opportunity pass by! ',
         techStack: ['Node.js', 'Express', 'SQL'],
-        link: ''
+        link: 'https://github.com/JOSEGRQ-BYTE/WebScrapper'
     }
 ]
