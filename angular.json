@@ -34,7 +34,7 @@
               {
                   "input": "src/light-mode.scss",
                   "bundleName": "light",
-                  "inject": true
+                  "inject": false
               },
               {
                   "input": "src/dark-mode.scss",
@@ -51,8 +51,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "2mb",
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",

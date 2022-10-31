@@ -1,3 +1,7 @@
 export const environment = {
-  production: true
+  production: true,
+  apiUrl: '/api',
+  usersURL: '/API/Users',
+  wodURL: '/API/Workouts',
+  contactURL: '/API/Emails'
 };
