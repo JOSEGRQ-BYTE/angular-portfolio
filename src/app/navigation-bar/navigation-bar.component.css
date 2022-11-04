@@ -40,3 +40,18 @@
     font-size: 1.25rem;
     text-decoration: overline;
 }
+
+@media (min-width: 576px) {
+    .offcanvas-lg
+    {
+        min-width: 225px !important;
+    }
+}
+
+
+@media (max-width: 575px) {
+    .offcanvas-lg
+    {
+        max-width: 100px;
+    }
+}
