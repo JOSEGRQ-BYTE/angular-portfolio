@@ -4,6 +4,11 @@ import { BehaviorSubject, map, Observable } from "rxjs";
 import { User } from "../../models/user";
 import { environment } from '../../../environments/environment';
 import { UserAuthentication } from "src/app/models/user-auth.model";
+import { ChangePasswordFailedResponse } from "src/app/models/change-password-failure.model";
+import { ChangePassword } from "src/app/models/change-password.model";
+
+
+
 
 @Injectable({ providedIn: 'root' })
 export class AuthService 
@@ -60,5 +65,11 @@ export class AuthService
     {
         localStorage.removeItem('userDetails');
         this.userSubject.next(new UserAuthentication(null, null, null, null, null, false));
+    }
+
+    // Allows the user to change/update their current password
+    public changePassword(changes: ChangePassword): Observable<ChangePasswordFailedResponse | string>
+    {
+        return this.http.post<ChangePasswordFailedResponse | string>(`${environment.usersURL}/ChangePassword`, changes);
     }
 }

@@ -31,6 +31,9 @@ import { MatCardModule } from '@angular/material/card';
 import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
 import { SkillCard } from './home/skills/skill-card/skill-card.component';
 import { ModeToggleComponent } from './shared/mode-toggle/mode-toggle.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { UserPortalComponent } from './user-portal/user-portal.component';
+import { UserInfoComponent } from './user-info/user-info.component';
 
 
 @NgModule({
@@ -52,7 +55,10 @@ import { ModeToggleComponent } from './shared/mode-toggle/mode-toggle.component'
     WODCardComponent,
     WODEditComponent,
     SkillCard,
-    ModeToggleComponent
+    ModeToggleComponent,
+    UserPortalComponent,
+    ChangePasswordComponent,
+    UserInfoComponent
   ],
   imports: [
     BrowserModule,

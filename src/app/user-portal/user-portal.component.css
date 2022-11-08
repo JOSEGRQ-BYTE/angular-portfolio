@@ -1,0 +1,36 @@
+.row {
+    min-height: calc(100vh - 75px);
+}
+
+.user-side-bar {
+    top: 75px;
+    width: 250px;
+    left: -250px;
+    transition: all .5s;
+}
+
+.user-side-bar.expanded {
+    left: 0px;
+}
+
+.user-side-bar-toggle {
+    position: absolute;
+    top: 10px;
+    right: -60px;
+    width: 50px;
+    height: 50px;
+    font-size: 32px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 2s;
+}
+
+.user-side-bar-toggle.expanded .bi-arrow-right-circle::before {
+    transform: rotate(180deg);
+}
+
+@media (max-width: 991px) {
+    .user-side-bar {
+        top: 0;
+    }
+}

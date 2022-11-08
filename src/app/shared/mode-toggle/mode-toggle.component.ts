@@ -21,12 +21,6 @@ export class ModeToggleComponent implements OnInit
             this.userModeService.userMode = UserModes.DARK;
         else
             this.userModeService.userMode = UserModes.LIGHT;
-        console.log(event)
-        //this.userModeService.userMode = mode as UserModes;
-        /*if (this.userModeService.currentUserMode === UserModes.LIGHT) 
-            this.userModeService.userMode = UserModes.DARK;
-        else
-            this.userModeService.userMode = UserModes.LIGHT;*/
     }
 
     ngOnInit()
@@ -35,7 +29,5 @@ export class ModeToggleComponent implements OnInit
             (document.getElementById('toggle-checkbox') as HTMLInputElement).checked=true;
         else
         (document.getElementById('toggle-checkbox') as HTMLInputElement).checked=false;
-        //this.userModeService.userMode = UserModes.LIGHT;
-        console.log(document.getElementById('toggle-checkbox'))
     }
 }

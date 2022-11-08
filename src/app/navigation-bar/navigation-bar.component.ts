@@ -22,4 +22,10 @@ export class NavigationBar
     {
         this.authService.logout();
     }
+
+    onChangePassword(e: any)
+    {
+        e.preventDefault();
+        console.log("CHNAGE");
+    }
 }

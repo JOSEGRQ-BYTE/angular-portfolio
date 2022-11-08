@@ -33,7 +33,10 @@
     }
 }
 
-
+#nav-toggle:focus {
+    outline: none !important;
+    box-shadow: none;
+}
 .active > a {
     /*color: greenyellow !important;*/
     font-weight: bold;

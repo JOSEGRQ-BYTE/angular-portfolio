@@ -49,22 +49,25 @@
         <div class="d-flex flex-column flex-lg-row justify-content-center align-items-center justify-content-md-right h-100" style="max-height: 200px;">
             <div class="dropdown pb-4 pb-md-4 pb-lg-0 my-lg-auto ms-0 ms-lg-5 me-lg-5">
                 <a href="#" class="d-flex align-items-center text-light text-decoration-none dropdown-toggle d-flex align-items-center" id="wod-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fs-4 bi bi-trophy"></i>
-                    <span class="d-none d-sm-inline ms-2">CrossFit</span>
+                    <i class="fs-4 bi bi-patch-plus"></i>
+                    <span class="d-none d-sm-inline ms-2">Fun</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark shadow bg-dark" aria-labelledby="wod-toggle">
                     <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                        <a class="dropdown-item text-light" href="#" routerLink="/WOD">WOD</a>
+                        <a class="dropdown-item text-light" href="#" routerLink="/WOD">CrossFit Training</a>
                     </li>
-                    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="(userDetails$ | async)?.isLoggedIn">
+                    <!--<li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="(userDetails$ | async)?.isLoggedIn">
                         <a class="dropdown-item text-light" href="#" routerLink="/WOD/Create">Add WOD</a>
-                    </li>
+                    </li>-->
                     <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="!(userDetails$ | async)?.isLoggedIn">
                         <a class="dropdown-item text-light" href="#" routerLink="/SignIn">Sign In</a>
                     </li>
+                    <!--<li *ngIf="!(userDetails$ | async)?.isLoggedIn">
+                        <a class="dropdown-item text-light" href="#" (click)="onChangePassword($event)" >Change Password</a>
+                    </li>
                     <li *ngIf="(userDetails$ | async)?.isLoggedIn">
                         <a class="dropdown-item text-light" href="#" (click)="onSignOut()" >Sign Out</a>
-                    </li>
+                    </li>-->
                 </ul>
             </div>
 
@@ -74,6 +77,6 @@
     </div>
 </div>
 
-<button  id="nav-toggle" class="btn btn-dark d-lg-none d-block position-fixed bottom-0 end-0 m-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style="padding: 0 .5em;">
-    <i class="bi bi-list" style="font-size: 50px;"></i>
+<button  id="nav-toggle" class="btn btn-link d-lg-none d-block position-fixed bottom-0 end-0 m-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style="padding: 0 .5em;">
+    <i class="bi bi-list" style="font-size: 40px;"></i>
 </button>
