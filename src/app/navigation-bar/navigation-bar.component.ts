@@ -17,15 +17,4 @@ export class NavigationBar
     {
         this.userDetails$ =  this.authService.user;
     }
-
-    onSignOut()
-    {
-        this.authService.logout();
-    }
-
-    onChangePassword(e: any)
-    {
-        e.preventDefault();
-        console.log("CHNAGE");
-    }
 }

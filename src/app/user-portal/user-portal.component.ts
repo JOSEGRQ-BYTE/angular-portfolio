@@ -1,4 +1,8 @@
 import { Component } from "@angular/core";
+import { Router } from "@angular/router";
+import { Toast, ToastType } from "../models/toast.model";
+import { AuthService } from "../services/authentication/auth.service";
+import { ToastNotificationService } from "../services/notification/toast-notification.service";
 
 @Component({
     selector: "app-user-portal",
@@ -7,6 +11,10 @@ import { Component } from "@angular/core";
 })
 export class UserPortalComponent
 {
+
+    constructor(private authService: AuthService, private router: Router, private notificationService: ToastNotificationService)
+    {}
+
     onToggleUserPanel(e: any)
     {
         e.preventDefault();
@@ -24,5 +32,20 @@ export class UserPortalComponent
             toggle.classList.add('expanded');
             sideBar.classList.add('expanded');
         }
+    }
+
+    onSignOut(e: any)
+    {
+        e.preventDefault();
+        this.authService.logout();
+
+        const toast: Toast = {
+            type: ToastType.ERROR,
+            header: 'Signed Out',
+            body: 'You were successfully signed out!'
+        };
+        this.notificationService.showToast(toast);  
+        this.router.navigate(['/Home']);
+
     }
 }

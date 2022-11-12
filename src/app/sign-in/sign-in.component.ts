@@ -58,13 +58,13 @@ export class SignInComponent implements OnInit
                     this.toastService.showToast(toast);
                     this.router.navigate([this.returnUrl]);
                 },
-                error: (error) => 
+                error: (res) => 
                 {
                     this.loadingService.setLoadingStatus(false)
                     const toast: Toast = {
                         type: ToastType.ERROR,
                         header: 'Authentication Failure',
-                        body: 'Error occurred while attempting to login.'
+                        body: res.error
                     };
                     this.toastService.showToast(toast);
                 }

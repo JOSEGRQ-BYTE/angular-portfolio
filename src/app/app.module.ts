@@ -34,6 +34,8 @@ import { ModeToggleComponent } from './shared/mode-toggle/mode-toggle.component'
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { UserPortalComponent } from './user-portal/user-portal.component';
 import { UserInfoComponent } from './user-info/user-info.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { EmailVerificationComponent } from './email-verification/email-verification.component';
 
 
 @NgModule({
@@ -58,7 +60,9 @@ import { UserInfoComponent } from './user-info/user-info.component';
     ModeToggleComponent,
     UserPortalComponent,
     ChangePasswordComponent,
-    UserInfoComponent
+    UserInfoComponent,
+    SignUpComponent,
+    EmailVerificationComponent
   ],
   imports: [
     BrowserModule,

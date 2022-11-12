@@ -1,0 +1,18 @@
+<div class="container" style="min-height: calc(100vh - 228px)">
+    <div class="col-12 text-center" *ngIf="(verificationState$ | async) == 'VERIFIED'">
+        <i class="bi bi-envelope-check h1"></i>
+        <h1>Email Verified</h1>
+        <hr class="border-light"/>
+        <p>
+            Thank you for verifying your email. You are now able to login!
+        </p>
+    </div>
+    <div class="col-12 text-center" *ngIf="(verificationState$ | async) == 'FAILED'">
+        <i class="bi bi-envelope-x h1"></i>
+        <h1>Email Verification Failed</h1>
+        <hr class="border-light"/>
+        <p>
+            Your email was not able to be verified. Please try again!
+        </p>
+    </div>
+</div>

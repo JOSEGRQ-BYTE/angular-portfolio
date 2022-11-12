@@ -3,8 +3,8 @@
         <div class="col-12">
             <router-outlet></router-outlet>
         </div>
-        <div class="d-flex flex-column flex-shrink-0 p-3 bg-dark user-side-bar position-fixed bottom-0 text-center border-end border-light expanded">
-            <a class="user-side-bar-toggle expanded" href="#" (click)="onToggleUserPanel($event)">
+        <div class="d-flex flex-column flex-shrink-0 p-3 bg-dark user-side-bar position-fixed bottom-0 text-center border-end border-light">
+            <a class="user-side-bar-toggle" href="#" (click)="onToggleUserPanel($event)">
                 <i class="bi bi-arrow-right-circle"></i>
             </a>
             <div class="d-flex align-items-center link-light text-center ms-auto me-auto">
@@ -25,6 +25,12 @@
                     Change Password
                 </a>
               </li>
+              <li class="nav-item"  routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                <a href="#" class="nav-link link-light px-1" routerLink="./Register">
+                    <i class="bi bi-person-plus fs-4"></i>
+                    Register 
+                </a>
+              </li>
             </ul>
             <hr>
             <div class="dropdown">
@@ -34,7 +40,7 @@
               </a>
               <ul class="dropdown-menu text-small shadow bg-dark" aria-labelledby="userOptions">
                 <li>
-                    <a class="dropdown-item text-light" href="#">
+                    <a class="dropdown-item text-light" href="#" (click)="onSignOut($event)">
                         <i class="bi bi-lock fs-4"></i>
                         Logout
                     </a>

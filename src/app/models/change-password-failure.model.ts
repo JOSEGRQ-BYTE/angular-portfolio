@@ -5,3 +5,8 @@ export interface ChangePasswordFailedResponse {
     traceId: string,
     errors: { [key: string]: string[] }
 }
+
+export interface ChangePasswordResponse {
+    message: string,
+    status: number,
+}

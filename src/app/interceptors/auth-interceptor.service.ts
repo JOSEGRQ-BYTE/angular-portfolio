@@ -27,7 +27,7 @@ export class AuthInterceptorService implements HttpInterceptor
         if(!!storedInfo)
             userDetails = JSON.parse(storedInfo) as UserAuthentication;
         else
-            userDetails = new UserAuthentication(null, null, null, null, null, false);
+            userDetails = new UserAuthentication(null, null, null, null, null, null, false);
 
         // Handle Original Request
         if (!userDetails.token)

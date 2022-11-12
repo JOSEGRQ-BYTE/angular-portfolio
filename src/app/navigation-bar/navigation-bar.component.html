@@ -56,6 +56,9 @@
                     <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                         <a class="dropdown-item text-light" href="#" routerLink="/WOD">CrossFit Training</a>
                     </li>
+                    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="(userDetails$ | async)?.isLoggedIn">
+                        <a class="dropdown-item text-light" href="#" [routerLink]="['User', (userDetails$ | async)?.id]">Settings</a>
+                    </li>
                     <!--<li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="(userDetails$ | async)?.isLoggedIn">
                         <a class="dropdown-item text-light" href="#" routerLink="/WOD/Create">Add WOD</a>
                     </li>-->

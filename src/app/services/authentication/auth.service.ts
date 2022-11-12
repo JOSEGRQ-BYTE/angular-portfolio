@@ -1,11 +1,12 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, map, Observable } from "rxjs";
+import { BehaviorSubject, map, Observable, tap } from "rxjs";
 import { User } from "../../models/user";
 import { environment } from '../../../environments/environment';
 import { UserAuthentication } from "src/app/models/user-auth.model";
-import { ChangePasswordFailedResponse } from "src/app/models/change-password-failure.model";
+import { ChangePasswordFailedResponse, ChangePasswordResponse } from "src/app/models/change-password-failure.model";
 import { ChangePassword } from "src/app/models/change-password.model";
+import { Register } from "src/app/models/register.model";
 
 
 
@@ -28,7 +29,7 @@ export class AuthService
         // Set nullable data when token does not exist
         else
         {
-            this.userSubject = new BehaviorSubject(new UserAuthentication(null, null, null, null, null, false));
+            this.userSubject = new BehaviorSubject(new UserAuthentication(null, null, null, null, null, null, false));
         }
 
         // Set user to be the observable
@@ -48,6 +49,12 @@ export class AuthService
 
             // Manipulate Data as needed
             .pipe(
+                tap( // Log the result or error
+                {
+                  next: (data) => console.log(data, 'HERE 1'),
+                  error: (error) => console.log(error, 'HERE 2')
+                }
+                ),
                 map(user => 
                 {
                     localStorage.setItem('userDetails', JSON.stringify(user));
@@ -64,12 +71,54 @@ export class AuthService
     public logout(): void
     {
         localStorage.removeItem('userDetails');
-        this.userSubject.next(new UserAuthentication(null, null, null, null, null, false));
+        this.userSubject.next(new UserAuthentication(null, null, null, null, null, null, false));
+    }
+
+    public register(model: Register): Observable<Register> 
+    {
+        return this.http.post<Register>(`${environment.usersURL}/SignUpUser`, model)
+        .pipe(
+            tap( // Log the result or error
+            {
+              next: (data) => console.log(data, 'HERE 5'),
+              error: (error) => console.log(error, 'HERE 6')
+            }
+            )
+        );
+
+    }
+
+    public confirmEmail(token: string, email: string): Observable<string>
+    {
+
+        const params = new HttpParams()
+        .set('token', token)
+        .set('email', email);
+
+        return this.http.get<string>(`${environment.usersURL}/ConfirmEmail`, {params})
+        .pipe(tap( {
+            next: (data) => console.log(data, 'ConfirmEmail good'),
+            error: (error) => console.log(error, 'ConfirmEmail')
+          }));
     }
 
     // Allows the user to change/update their current password
-    public changePassword(changes: ChangePassword): Observable<ChangePasswordFailedResponse | string>
+    public changePassword(changes: ChangePassword): Observable<string>
     {
-        return this.http.post<ChangePasswordFailedResponse | string>(`${environment.usersURL}/ChangePassword`, changes);
+        let httpHeaders = new HttpHeaders({
+            'Content-Type' : 'application/json',
+            'Cache-Control': 'no-cache'
+        });
+        //const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
+        return this.http.post<string>(`${environment.usersURL}/ChangePassword`, changes, { headers: httpHeaders, responseType: 'json'});
+        /*.pipe(
+            tap( // Log the result or error
+            {
+              next: (data) => console.log(data, 'HERE'),
+              error: (error) => console.log(error, 'HERE')
+            }
+            )
+          );*/
     }
+
 }

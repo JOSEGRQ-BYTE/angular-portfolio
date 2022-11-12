@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { first } from "rxjs";
-import { ChangePasswordFailedResponse } from "../models/change-password-failure.model";
+import { ChangePasswordFailedResponse, ChangePasswordResponse } from "../models/change-password-failure.model";
 import { Toast, ToastType } from "../models/toast.model";
 import { AuthService } from "../services/authentication/auth.service";
 import { LoadingStatusService } from "../services/loading-status/loading-status.service";
@@ -56,8 +56,9 @@ export class ChangePasswordComponent
             this.authService.changePassword(this.changePasswordForm.value)
             //.pipe(first())
             .subscribe({
-                next: (res : string | ChangePasswordFailedResponse) => 
+                next: (res : string) => 
                 {
+                    console.log(res, 'SUCCESS');
                     this.loadingService.setLoadingStatus(false)
                     const toast: Toast = {
                         type: ToastType.SUCCESS,
@@ -67,13 +68,14 @@ export class ChangePasswordComponent
                     this.toastService.showToast(toast);
                     //this.router.navigate([this.returnUrl]);
                 },
-                error: (error) => 
+                error: (res) => 
                 {
+                    console.log(res, 'ERROR');
                     this.loadingService.setLoadingStatus(false)
                     const toast: Toast = {
                         type: ToastType.ERROR,
                         header: 'Password Update Failed',
-                        body: 'Error occurred while attempting to update password.'
+                        body: res.error,
                     };
                     this.toastService.showToast(toast);
                 }

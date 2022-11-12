@@ -1,6 +1,6 @@
 export class UserAuthentication 
 {
-    constructor(public email:string | null, public firstName:string | null, public lastName:string | null, private _token: string | null, private expiration: string | null, private _isLoggedIn: boolean)
+    constructor(public id:string | null, public email:string | null, public firstName:string | null, public lastName:string | null, private _token: string | null, private expiration: string | null, private _isLoggedIn: boolean)
     {
 
     }
