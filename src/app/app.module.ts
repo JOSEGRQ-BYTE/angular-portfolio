@@ -36,6 +36,8 @@ import { UserPortalComponent } from './user-portal/user-portal.component';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { EmailVerificationComponent } from './email-verification/email-verification.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 
 @NgModule({
@@ -62,7 +64,9 @@ import { EmailVerificationComponent } from './email-verification/email-verificat
     ChangePasswordComponent,
     UserInfoComponent,
     SignUpComponent,
-    EmailVerificationComponent
+    EmailVerificationComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,

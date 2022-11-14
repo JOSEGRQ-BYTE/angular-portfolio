@@ -4,8 +4,10 @@ import { AboutAuthorComponent } from "./about-author/about-author.component";
 import { ChangePasswordComponent } from "./change-password/change-password.component";
 import { ContactAuthorComponent } from "./contact-author/contact-author.component";
 import { EmailVerificationComponent } from "./email-verification/email-verification.component";
+import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
 import { HomeComponent } from "./home/home.component";
 import { NotFoundComponent } from "./not-found/not-found.component";
+import { ResetPasswordComponent } from "./reset-password/reset-password.component";
 import { AuthGuard } from "./services/authentication/auth.guard";
 import { SignInComponent } from "./sign-in/sign-in.component";
 import { SignUpComponent } from "./sign-up/sign-up.component";
@@ -25,6 +27,8 @@ const appRoutes: Routes = [
         {path: 'Register', component: SignUpComponent},
     ]},
     {path: 'EmailVerification', component: EmailVerificationComponent},
+    {path: 'ForgotPassword', component: ForgotPasswordComponent},
+    {path: 'ResetPassword', component: ResetPasswordComponent},
     {path: 'WOD', component: WODComponent},
     {path: 'About', component: AboutAuthorComponent},
     {path: 'Contact', component: ContactAuthorComponent},

@@ -7,6 +7,7 @@ import { UserAuthentication } from "src/app/models/user-auth.model";
 import { ChangePasswordFailedResponse, ChangePasswordResponse } from "src/app/models/change-password-failure.model";
 import { ChangePassword } from "src/app/models/change-password.model";
 import { Register } from "src/app/models/register.model";
+import { ResetPassword } from "src/app/models/reset-password.model";
 
 
 
@@ -119,6 +120,29 @@ export class AuthService
             }
             )
           );*/
+    }
+
+    public forgotPassword(email: string): Observable<string>
+    {
+
+        console.log(email, "INSIDE")
+        const params = new HttpParams()
+        .set('email', email);
+
+        return this.http.get<string>(`${environment.usersURL}/ForgotPassword`, {params});
+    }
+
+    public resetPassword(model: ResetPassword): Observable<string>
+    {
+        return this.http.post<string>(`${environment.usersURL}/ResetPassword`, model)
+        .pipe(
+            tap(
+            {
+              next: (data) => console.log(data, 'RESET GOOD'),
+              error: (error) => console.log(error, 'RESET BAD')
+            }
+            )
+        );
     }
 
 }
