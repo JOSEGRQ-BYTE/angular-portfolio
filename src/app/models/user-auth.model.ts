@@ -1,8 +1,25 @@
 export class UserAuthentication 
 {
-    constructor(public id:string | null, public email:string | null, public firstName:string | null, public lastName:string | null, private _token: string | null, private expiration: string | null, private _isLoggedIn: boolean)
+    constructor(
+        public id:string | null, 
+        public email:string | null, 
+        public firstName:string | null, 
+        public lastName:string | null, 
+        private _token: string | null, 
+        private expiration: string | null, 
+        private _isLoggedIn: boolean,
+        private _isAdministrator: boolean
+        )
     {
 
+    }
+
+    get isAdministrator(): boolean
+    {
+        if(!this.expiration || new Date() > new Date(this.expiration))
+            return false;
+    
+        return this._isAdministrator;
     }
 
     get token()
@@ -15,7 +32,7 @@ export class UserAuthentication
     }
 
 
-    get isLoggedIn()
+    get isLoggedIn(): boolean
     {
         if(!this.expiration || new Date() > new Date(this.expiration))
             return false;

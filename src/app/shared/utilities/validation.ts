@@ -24,4 +24,16 @@ export default class AppValidation
         return null;
     };
   }
+
+  static ContainsValidator(expression: RegExp, error: ValidationErrors): ValidatorFn 
+  {
+    return (control: AbstractControl): { [key: string]: any } | null => 
+    {
+        // If contains value test expression and return null if NO errors otherwise return error
+        if(!!control.value)
+            return expression.test(control.value) ? null : error;
+        else        
+            return null;
+    };
+  }
 }

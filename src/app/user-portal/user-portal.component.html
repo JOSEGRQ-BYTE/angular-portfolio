@@ -25,10 +25,10 @@
                     Change Password
                 </a>
               </li>
-              <li class="nav-item"  routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+              <li class="nav-item"  routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngIf="(userDetails$ | async)?.isLoggedIn && (userDetails$ | async)?.isAdministrator">
                 <a href="#" class="nav-link link-light px-1" routerLink="./Register">
                     <i class="bi bi-person-plus fs-4"></i>
-                    Register 
+                    Register
                 </a>
               </li>
             </ul>

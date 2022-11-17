@@ -46,8 +46,6 @@ export class ForgotPasswordComponent
         .subscribe({
             next: (res : string) => 
             {
-                this.forgotPasswordForm.reset();
-
                 this.loadingService.setLoadingStatus(false);
 
                 const toast: Toast = {
@@ -57,13 +55,15 @@ export class ForgotPasswordComponent
                 };
                 this.toastService.showToast(toast);
 
+                this.forgotPasswordForm.reset();
+
                 this.router.navigate(['/Home']);
             },
             error: (res) => 
             {
 
                 this.loadingService.setLoadingStatus(false);
-                
+
                 const toast: Toast = {
                     type: ToastType.ERROR,
                     header: 'Password Reset Failed',

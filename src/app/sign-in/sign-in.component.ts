@@ -41,36 +41,35 @@ export class SignInComponent implements OnInit
         if (this.signInForm.invalid)
             return;
 
-        if(this.signInForm.valid)
-        {
-            this.loadingService.setLoadingStatus(true);
-            this.authService.login(this.signInForm.value)
-            .pipe(first())
-            .subscribe({
-                next: (user) => 
-                {
-                    this.loadingService.setLoadingStatus(false)
-                    const toast: Toast = {
-                        type: ToastType.SUCCESS,
-                        header: 'Authenticated',
-                        body: 'You were successfully logged in!'
-                    };
-                    this.toastService.showToast(toast);
-                    this.router.navigate([this.returnUrl]);
-                },
-                error: (res) => 
-                {
-                    this.loadingService.setLoadingStatus(false)
-                    const toast: Toast = {
-                        type: ToastType.ERROR,
-                        header: 'Authentication Failure',
-                        body: res.error
-                    };
-                    this.toastService.showToast(toast);
-                }
-                //complete: () => console.info('complete') 
-             });
-        }
+        this.loadingService.setLoadingStatus(true);
+        this.authService.login(this.signInForm.value)
+        .pipe(first())
+        .subscribe({
+            next: (user) => 
+            {
+                this.loadingService.setLoadingStatus(false);
+
+                const toast: Toast = {
+                    type: ToastType.SUCCESS,
+                    header: 'Authenticated',
+                    body: 'You were successfully logged in!'
+                };
+                this.toastService.showToast(toast);
+
+                this.router.navigate([this.returnUrl]);
+            },
+            error: (res) => 
+            {
+                this.loadingService.setLoadingStatus(false);
+
+                const toast: Toast = {
+                    type: ToastType.ERROR,
+                    header: 'Authentication Failure',
+                    body: res.error
+                };
+                this.toastService.showToast(toast);
+            }
+        });
     }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { Observable, Subscription } from "rxjs";
 import { Toast, ToastType } from "../models/toast.model";
@@ -11,7 +11,7 @@ import { ToastNotificationService } from "../services/notification/toast-notific
     templateUrl: "./email-verification.component.html",
     styleUrls: ['./email-verification.component.css'],
 })
-export class EmailVerificationComponent implements OnInit
+export class EmailVerificationComponent implements OnInit, OnDestroy
 {
 
     public verificationState$: Observable<string>;
@@ -80,6 +80,9 @@ export class EmailVerificationComponent implements OnInit
               });
     }
 
-
+    ngOnDestroy()
+    {
+        this.paramSubcription.unsubscribe();
+    }
 
 }

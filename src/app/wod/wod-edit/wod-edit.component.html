@@ -35,7 +35,8 @@
                     <div class="col-12 col-sm-6">
                         <label for="level" class="form-label">Level</label>
                         <select [ngClass]="{'is-invalid': wodForm.get('level')?.errors && (wodForm.get('level')?.touched || wodForm.get('level')?.dirty), 'is-valid':wodForm.get('level')?.valid && viewMode != 'VIEW' }" id="level" class="form-select" formControlName="level" [attr.disabled]="viewMode == 'VIEW'? 'disabled' : null">
-                            <option *ngFor="let level of levels" [ngValue]="level" [ngValue]="level.id">{{ level.name }}</option>
+                            <option [ngValue]="null" selected>Select WOD Level</option>
+                            <option *ngFor="let level of levels" [ngValue]="level.id">{{ level.name }}</option>
                           </select>
                         <div *ngIf="!wodForm.get('level')?.valid && wodForm.get('level')?.touched" id="level-feedback" class="form-text text-danger">Level is required.</div>
                     </div>

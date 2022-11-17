@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { first } from "rxjs";
+import { Role, Roles } from "../data/roles";
 import { Toast, ToastType } from "../models/toast.model";
 import { AuthService } from "../services/authentication/auth.service";
 import { LoadingStatusService } from "../services/loading-status/loading-status.service";
@@ -16,7 +17,7 @@ import AppValidation from "../shared/utilities/validation";
 export class SignUpComponent 
 {
     public signUpForm!: FormGroup;
-    //private returnUrl!: string;
+    public roles: Role[] = Roles;
 
     constructor(
         private activatedRoute: ActivatedRoute, 
@@ -31,10 +32,18 @@ export class SignUpComponent
     ngOnInit()
     {
         this.signUpForm = new FormGroup({
+            'role': new FormControl(null, [Validators.required]),
             'firstName': new FormControl(null, [Validators.required]),
             'lastName': new FormControl(null, [Validators.required]),
             'email': new FormControl(null, [Validators.required, Validators.email]),
-            'password': new FormControl(null, [Validators.required, Validators.minLength(8)]),
+            'password': new FormControl(null, 
+                [Validators.required, 
+                Validators.minLength(8),
+                AppValidation.ContainsValidator(/[\W_]+/g, { doesNotContainNonAlphanumeric: true }),
+                AppValidation.ContainsValidator(/\d/g, { doesNotContainDigit: true }),
+                AppValidation.ContainsValidator(/[A-Z]/g, { doesNotContainLowercase: true }),
+                AppValidation.ContainsValidator(/[a-z]/g, { doesNotContainUppercase: true }) 
+            ]),
             'confirmPassword': new FormControl(null, [Validators.required]),
         },
         [AppValidation.MatchValidator('password', 'confirmPassword')]);
@@ -47,6 +56,10 @@ export class SignUpComponent
         if (this.signUpForm.invalid)
             return;
 
+        console.log(this.signUpForm.value, "CHECK");
+        return;
+
+        
         this.loadingService.setLoadingStatus(true);
 
         this.authService.register(this.signUpForm.value)

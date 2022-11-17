@@ -30,7 +30,14 @@ export class ChangePasswordComponent
     {
         this.changePasswordForm = new FormGroup({
             'currentPassword': new FormControl(null, [Validators.required]),
-            'newPassword': new FormControl(null, [Validators.required]),
+            'newPassword': new FormControl(null, 
+                [Validators.required, 
+                Validators.minLength(8),
+                AppValidation.ContainsValidator(/[\W_]+/g, { doesNotContainNonAlphanumeric: true }),
+                AppValidation.ContainsValidator(/\d/g, { doesNotContainDigit: true }),
+                AppValidation.ContainsValidator(/[A-Z]/g, { doesNotContainLowercase: true }),
+                AppValidation.ContainsValidator(/[a-z]/g, { doesNotContainUppercase: true }) 
+            ]),
             'confirmPassword': new FormControl(null, [Validators.required]),
         },
         [AppValidation.MatchValidator('newPassword', 'confirmPassword')]);

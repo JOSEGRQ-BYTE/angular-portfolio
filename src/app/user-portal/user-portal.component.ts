@@ -1,6 +1,8 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
+import { Observable } from "rxjs";
 import { Toast, ToastType } from "../models/toast.model";
+import { UserAuthentication } from "../models/user-auth.model";
 import { AuthService } from "../services/authentication/auth.service";
 import { ToastNotificationService } from "../services/notification/toast-notification.service";
 
@@ -12,8 +14,12 @@ import { ToastNotificationService } from "../services/notification/toast-notific
 export class UserPortalComponent
 {
 
+    userDetails$: Observable<UserAuthentication>;
+
     constructor(private authService: AuthService, private router: Router, private notificationService: ToastNotificationService)
-    {}
+    {
+        this.userDetails$ =  this.authService.user;
+    }
 
     onToggleUserPanel(e: any)
     {

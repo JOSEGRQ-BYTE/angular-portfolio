@@ -14,9 +14,7 @@ export class AuthInterceptorService implements HttpInterceptor
     constructor(private router: Router, 
         private authService: AuthService, 
         private toastService: ToastNotificationService)
-    {
-
-    }
+    {}
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable< HttpEvent<any> > 
     {
@@ -27,7 +25,7 @@ export class AuthInterceptorService implements HttpInterceptor
         if(!!storedInfo)
             userDetails = JSON.parse(storedInfo) as UserAuthentication;
         else
-            userDetails = new UserAuthentication(null, null, null, null, null, null, false);
+            userDetails = new UserAuthentication(null, null, null, null, null, null, false, false);
 
         // Handle Original Request
         if (!userDetails.token)

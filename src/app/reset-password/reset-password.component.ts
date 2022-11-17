@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { Subscription } from "rxjs";
@@ -13,7 +13,7 @@ import AppValidation from "../shared/utilities/validation";
     templateUrl: "./reset-password.component.html",
     styleUrls: ['./reset-password.component.css'],
 })
-export class ResetPasswordComponent 
+export class ResetPasswordComponent implements OnInit, OnDestroy
 {
     public resetPasswordForm!: FormGroup;
     private paramSubcription!: Subscription;
@@ -30,7 +30,14 @@ export class ResetPasswordComponent
     ngOnInit()
     {
         this.resetPasswordForm = new FormGroup({
-            'password': new FormControl(null, [Validators.required]),
+            'password': new FormControl(null, 
+                [Validators.required, 
+                Validators.minLength(8),
+                AppValidation.ContainsValidator(/[\W_]+/g, { doesNotContainNonAlphanumeric: true }),
+                AppValidation.ContainsValidator(/\d/g, { doesNotContainDigit: true }),
+                AppValidation.ContainsValidator(/[A-Z]/g, { doesNotContainLowercase: true }),
+                AppValidation.ContainsValidator(/[a-z]/g, { doesNotContainUppercase: true }) 
+            ]),
             'confirmPassword': new FormControl(null, [Validators.required]),
             'email': new FormControl(null, [Validators.required, Validators.email]),
             'token': new FormControl(null, [Validators.required]),
@@ -63,6 +70,9 @@ export class ResetPasswordComponent
 
     onResetPassword()
     {
+
+        console.log(this.resetPasswordForm)
+
         if (this.resetPasswordForm.invalid)
             return;
 
@@ -100,4 +110,10 @@ export class ResetPasswordComponent
             }
             });
     }
+
+    ngOnDestroy()
+    {
+        this.paramSubcription.unsubscribe();
+    }
+
 }

@@ -4,6 +4,15 @@
             <h1 class="text-center text-light mb-5">Register</h1>
 
             <div class="mb-3 col-12 col-md-8 col-lg-6 mx-auto">
+                <label for="role" class="form-label">User Role</label>
+                <select [ngClass]="{'is-invalid': signUpForm.get('role')?.errors && (signUpForm.get('role')?.touched || signUpForm.get('role')?.dirty), 'is-valid':signUpForm.get('role')?.valid}" id="role" class="form-select" formControlName="role">
+                    <option [ngValue]="null" selected>Select User Role</option>
+                    <option *ngFor="let role of roles" [ngValue]="role.name">{{ role.name }}</option>
+                  </select>
+                <div *ngIf="!signUpForm.get('role')?.valid && signUpForm.get('role')?.touched" id="role-feedback" class="form-text text-danger">Role is required.</div>
+            </div>
+
+            <div class="mb-3 col-12 col-md-8 col-lg-6 mx-auto">
                 <label for="firstName" class="form-label">First Name</label>
                 <input [ngClass]="{'is-invalid': signUpForm.get('firstName')?.errors && (signUpForm.get('firstName')?.touched || signUpForm.get('firstName')?.dirty), 'is-valid':signUpForm.get('firstName')?.valid}" formControlName="firstName" class="form-control text-dark" id="firstName" name="firstName">
                 <div *ngIf="!signUpForm.get('firstName')?.valid && signUpForm.get('firstName')?.touched" id="first-name-feedback" class="form-text text-danger">First name is required.</div>
@@ -24,13 +33,21 @@
             <div class="mb-3 col-12 col-md-8 col-lg-6 mx-auto">
                 <label for="password" class="form-label">Password</label>
                 <input [ngClass]="{'is-invalid': signUpForm.get('password')?.errors && (signUpForm.get('password')?.touched || signUpForm.get('password')?.dirty), 'is-valid':signUpForm.get('password')?.valid}" formControlName="password" type="password" class="form-control text-dark" id="password" name="password">
-                <div *ngIf="!signUpForm.get('password')?.valid && signUpForm.get('password')?.touched" id="password-feedback" class="form-text text-danger">Password is required.</div>
+                <ul class="list-group" *ngIf="!signUpForm.get('password')?.valid && signUpForm.get('password')?.touched">
+                    <li class="list-group-item form-text text-danger p-1 border-0" *ngIf="signUpForm.get('password')?.hasError('required')">Password is required.</li>
+                    <li class="list-group-item form-text text-danger p-1 border-0" *ngIf="signUpForm.get('password')?.hasError('doesNotContainDigit')">Must contain digit.</li>
+                    <li class="list-group-item form-text text-danger p-1 border-0" *ngIf="signUpForm.get('password')?.hasError('doesNotContainLowercase')">Must contain lowercase letter.</li>
+                    <li class="list-group-item form-text text-danger p-1 border-0" *ngIf="signUpForm.get('password')?.hasError('doesNotContainUppercase')">Must contain uppercase letter.</li>
+                    <li class="list-group-item form-text text-danger p-1 border-0" *ngIf="signUpForm.get('password')?.hasError('doesNotContainNonAlphanumeric')">Must contain non-alphanumeric.</li>
+                    <li class="list-group-item form-text text-danger p-1 border-0" *ngIf="signUpForm.get('password')?.hasError('minlength')">Must be minimum 8 characters in length.</li>
+
+                </ul>
             </div>
 
             <div class="mb-3 col-12 col-md-8 col-lg-6 mx-auto">
                 <label for="confirmPassword" class="form-label">Confirm Password</label>
                 <input [ngClass]="{'is-invalid': signUpForm.get('confirmPassword')?.errors && (signUpForm.get('confirmPassword')?.touched || signUpForm.get('confirmPassword')?.dirty), 'is-valid':signUpForm.get('confirmPassword')?.valid}" formControlName="confirmPassword" type="password" class="form-control text-dark" id="confirmPassword" name="confirmPassword">
-                <div *ngIf="!signUpForm.get('confirmPassword')?.valid && signUpForm.get('confirmPassword')?.touched" id="confirm-password-feedback" class="form-text text-danger">Password is required.</div>
+                <div *ngIf="!signUpForm.get('confirmPassword')?.valid && signUpForm.get('confirmPassword')?.touched && signUpForm.get('confirmPassword')?.hasError('matching')" class="form-text text-danger">Passwords do not match.</div>
             </div>
 
             <button class="btn btn-primary mt-2 col-12 col-md-8 col-lg-6 mx-auto" type="submit" >Register</button>
