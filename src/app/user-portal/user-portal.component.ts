@@ -46,7 +46,7 @@ export class UserPortalComponent
         this.authService.logout();
 
         const toast: Toast = {
-            type: ToastType.ERROR,
+            type: ToastType.SUCCESS,
             header: 'Signed Out',
             body: 'You were successfully signed out!'
         };

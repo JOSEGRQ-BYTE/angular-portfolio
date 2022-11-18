@@ -30,37 +30,32 @@ export class EmailVerificationComponent implements OnInit, OnDestroy
 
     ngOnInit() 
     {
-        //this.loadingService.setLoadingStatus(true);
-
         this.paramSubcription = this.route.queryParams
         .subscribe(
 
               (params: Params) => 
               {
-                console.log(params, "ALL");
                     const token = params['token'];
                     const email = params['email'];
 
-                    console.log(token, email, "HELLO")
-
                     if(!!token && !!email)
                     {
-
                         Promise.resolve().then(() => {
-                            this.loadingService.setLoadingStatus(true)
+                            this.loadingService.setLoadingStatus(true);
                         });
 
                         this.authService.confirmEmail(token, email)
                         .subscribe({
                             next: (res) => 
                             {
-                                console.log(res, ":)")
                                 this.loadingService.setLoadingStatus(false);
+
                                 this.verificationState$ = new Observable((x) => x.next("VERIFIED"));
                             },
                             error: (res) => 
                             {
                                 this.loadingService.setLoadingStatus(false);
+
                                 this.verificationState$ = new Observable((x) => x.next("FAILED"));
                                 const toast: Toast = {
                                     type: ToastType.ERROR,
@@ -73,9 +68,7 @@ export class EmailVerificationComponent implements OnInit, OnDestroy
                     }
                     else
                     {
-                        console.log('redirected')
-                        //this.router.navigate(['/Home']);
-                        //this.verificationState$ = new Observable((x) => x.next("FAILED"));
+                        this.router.navigate(['/Home']);
                     }
               });
     }

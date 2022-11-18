@@ -40,9 +40,9 @@ export class SignUpComponent
                 [Validators.required, 
                 Validators.minLength(8),
                 AppValidation.ContainsValidator(/[\W_]+/g, { doesNotContainNonAlphanumeric: true }),
-                AppValidation.ContainsValidator(/\d/g, { doesNotContainDigit: true }),
-                AppValidation.ContainsValidator(/[A-Z]/g, { doesNotContainLowercase: true }),
-                AppValidation.ContainsValidator(/[a-z]/g, { doesNotContainUppercase: true }) 
+                AppValidation.ContainsValidator(/\d/, { doesNotContainDigit: true }),
+                AppValidation.ContainsValidator(/[A-Z]/, { doesNotContainUppercase: true }),
+                AppValidation.ContainsValidator(/[a-z]/, { doesNotContainLowercase: true }) 
             ]),
             'confirmPassword': new FormControl(null, [Validators.required]),
         },
@@ -53,13 +53,10 @@ export class SignUpComponent
 
     onSignUp()
     {
+
         if (this.signUpForm.invalid)
             return;
 
-        console.log(this.signUpForm.value, "CHECK");
-        return;
-
-        
         this.loadingService.setLoadingStatus(true);
 
         this.authService.register(this.signUpForm.value)
@@ -70,7 +67,8 @@ export class SignUpComponent
 
                 console.log(res, "response");
 
-                this.loadingService.setLoadingStatus(false)
+                this.loadingService.setLoadingStatus(false);
+
                 const toast: Toast = {
                     type: ToastType.SUCCESS,
                     header: 'Registered',
@@ -82,8 +80,7 @@ export class SignUpComponent
             },
             error: (res) => 
             {
-
-                console.log(res, "response");
+                console.log(res, "response error");
 
                 this.loadingService.setLoadingStatus(false)
                 const toast: Toast = {

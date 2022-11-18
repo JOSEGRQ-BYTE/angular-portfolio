@@ -34,9 +34,9 @@ export class ChangePasswordComponent
                 [Validators.required, 
                 Validators.minLength(8),
                 AppValidation.ContainsValidator(/[\W_]+/g, { doesNotContainNonAlphanumeric: true }),
-                AppValidation.ContainsValidator(/\d/g, { doesNotContainDigit: true }),
-                AppValidation.ContainsValidator(/[A-Z]/g, { doesNotContainLowercase: true }),
-                AppValidation.ContainsValidator(/[a-z]/g, { doesNotContainUppercase: true }) 
+                AppValidation.ContainsValidator(/\d/, { doesNotContainDigit: true }),
+                AppValidation.ContainsValidator(/[A-Z]/, { doesNotContainUppercase: true }),
+                AppValidation.ContainsValidator(/[a-z]/, { doesNotContainLowercase: true }) 
             ]),
             'confirmPassword': new FormControl(null, [Validators.required]),
         },
