@@ -50,6 +50,21 @@
                 <div *ngIf="!signUpForm.get('confirmPassword')?.valid && signUpForm.get('confirmPassword')?.touched && signUpForm.get('confirmPassword')?.hasError('matching')" class="form-text text-danger">Passwords do not match.</div>
             </div>
 
+            <div class="mb-3 col-12 col-md-8 col-lg-6 mx-auto from-group">
+                <label for="profilePicture" class="form-label">Profile Picture:</label>
+                <input 
+                    id="profilePicture"
+                    type="file" 
+                    accept=".png,.jpg,.jpeg,.gif,.tif"
+                    class="form-control"
+                    (change)="onProfilePictureChanged($event)">
+                <div *ngIf="!signUpForm.get('profilePicture')?.valid && signUpForm.get('profilePicture')?.touched && signUpForm.get('profilePicture')?.hasError('required')" class="form-text text-danger">Profile picture is required.</div>
+            </div>
+
+            <div class="mb-3 col-12 col-md-8 col-lg-6 mx-auto from-group">
+                <img [src]="previewSource" *ngIf="previewSource" class="img-fluid img-thumbnail">
+            </div>
+
             <button class="btn btn-primary mt-2 col-12 col-md-8 col-lg-6 mx-auto" type="submit" >Register</button>
 
         </form>

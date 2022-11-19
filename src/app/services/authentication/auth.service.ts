@@ -68,7 +68,17 @@ export class AuthService
 
     public register(model: Register): Observable<Register> 
     {
-        return this.http.post<Register>(`${environment.usersURL}/SignUpUser`, model);
+        // Create Form with Profile
+        let formData = new FormData();
+        formData.append('role', model.role);
+        formData.append('firstName', model.firstName);
+        formData.append('lastName', model.lastName);
+        formData.append('email', model.email);
+        formData.append('password', model.password);
+        formData.append('confirmPassword', model.confirmPassword);
+        formData.append('profilePicture', model.profilePicture);
+
+        return this.http.post<Register>(`${environment.usersURL}/SignUpUser`, formData);
     }
 
     public confirmEmail(token: string, email: string): Observable<string>
