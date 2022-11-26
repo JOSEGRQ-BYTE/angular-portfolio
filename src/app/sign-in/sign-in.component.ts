@@ -56,7 +56,19 @@ export class SignInComponent implements OnInit
                 };
                 this.toastService.showToast(toast);
 
-                this.router.navigate([this.returnUrl]);
+
+                // Download profile picture if successful
+                this.authService.downloadProfilePicture().subscribe({
+                    next: () => 
+                    {
+                        this.router.navigate([this.returnUrl]);
+                    },
+                    error: () => 
+                    {
+                        this.router.navigate([this.returnUrl]);
+                    }
+
+                });
             },
             error: (res) => 
             {

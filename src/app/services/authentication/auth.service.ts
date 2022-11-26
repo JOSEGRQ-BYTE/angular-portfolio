@@ -17,6 +17,8 @@ export class AuthService
 {
     private userSubject: BehaviorSubject<UserAuthentication>;
     public user: Observable<UserAuthentication>;
+    private userProfilePicture : BehaviorSubject<string>;
+
 
     constructor(private http: HttpClient)
     {
@@ -30,7 +32,20 @@ export class AuthService
         // Set nullable data when token does not exist
         else
         {
-            this.userSubject = new BehaviorSubject(new UserAuthentication(null, null, null, null, null, null, false, false));
+            this.userSubject = new BehaviorSubject(new UserAuthentication(null, null, null, null, null, null, false, false, null));
+        }
+
+
+        // Current local storage has user data
+        const profilePicture = localStorage.getItem('userProfilePicture');
+        if(!!profilePicture)
+        {
+            this.userProfilePicture = new BehaviorSubject<string>(profilePicture);
+        }
+        // Set nullable data when token does not exist
+        else
+        {
+            this.userProfilePicture = new BehaviorSubject('');
         }
 
         // Set user to be the observable
@@ -40,7 +55,12 @@ export class AuthService
     // Get current value of user subject
     public get currentUserValue(): UserAuthentication
     {
-        return this.userSubject.value;
+        return this.userSubject.getValue();
+    }
+
+    public get currentUserProfilePicture(): string 
+    {
+        return this.userProfilePicture.getValue();
     }
 
     // Take in user info and return observable user
@@ -63,7 +83,9 @@ export class AuthService
     public logout(): void
     {
         localStorage.removeItem('userDetails');
-        this.userSubject.next(new UserAuthentication(null, null, null, null, null, null, false, false));
+        localStorage.removeItem('userProfilePicture');
+        this.userProfilePicture.next('');
+        this.userSubject.next(new UserAuthentication(null, null, null, null, null, null, false, false, null));
     }
 
     public register(model: Register): Observable<Register> 
@@ -112,6 +134,35 @@ export class AuthService
     public resetPassword(model: ResetPassword): Observable<string>
     {
         return this.http.post<string>(`${environment.usersURL}/ResetPassword`, model);
+    }
+
+    public downloadProfilePicture(): Observable<void>
+    {
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append("relativePath", this.currentUserValue.profilePictureURL?? "/");
+
+        return this.http.get(`${environment.usersURL}/DownloadProfilePicture`,{params:queryParams, responseType: 'blob'})
+        .pipe(
+            map((res: Blob) => 
+            {
+                // Turn Blob into file
+                const myFile = new File([res], `${this.currentUserValue.firstName}-profile-picture`, {
+                    type: res.type,
+                });
+
+                const reader = new FileReader();
+
+                reader.readAsDataURL(res);
+
+                reader.onload = () => 
+                {
+                    const base64String = reader.result as string;
+                    localStorage.setItem('userProfilePicture', base64String);
+                    this.userProfilePicture.next(base64String);
+
+                };
+            })
+        );
     }
 
 }

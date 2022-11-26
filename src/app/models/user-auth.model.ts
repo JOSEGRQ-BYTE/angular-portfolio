@@ -8,10 +8,19 @@ export class UserAuthentication
         private _token: string | null, 
         private expiration: string | null, 
         private _isLoggedIn: boolean,
-        private _isAdministrator: boolean
+        private _isAdministrator: boolean,
+        private _profilePictureURL: string | null
+
         )
     {
 
+    }
+    get profilePictureURL(): string | null
+    {
+        if(!this.expiration || new Date() > new Date(this.expiration))
+            return null;
+    
+        return this._profilePictureURL;
     }
 
     get isAdministrator(): boolean

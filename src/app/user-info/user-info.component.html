@@ -1,1 +1,38 @@
-<div>User Info Here</div>
+<div class="container-fluid p-0 d-flex align-items-center justify-content-center" style="min-height: calc(100vh - 75px)">
+    <div class="row">
+            
+        <div class="card w-100 flex-column flex-md-row p-2 shadow-sm" >
+            <div class="col-12 col-md-6 text-center d-flex">
+                <img [src]="profileSource" *ngIf="profileSource" class="card-img-top img-fluid" alt="...">
+                <i class="bi bi-person-circle m-auto" *ngIf="!profileSource" style="font-size: 13rem;"></i>
+                <!--<img src="assets/svg/avatar.svg" *ngIf="!profileSource" title="Avatar" class="card-img-top img-fluid" alt="...">-->
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="card-body text-center">
+                    <h1 class="card-title">Welcome {{(userDetails$ | async)?.firstName}}!</h1>
+                </div>
+                <div class="card-body">
+                    <form class="row g-3">
+                        <div class="col-md-12 p-0 p-md-2">
+                          <label for="firstName" class="form-label">First Name</label>
+                          <input disabled readonly type="text" class="form-control" id="firstName" value="{{(userDetails$ | async)?.firstName}}">
+                        </div>
+                        <div class="col-md-12 p-0 p-md-2">
+                            <label for="lastName" class="form-label">Last Name</label>
+                            <input disabled readonly type="text" class="form-control" id="lastName" value="{{(userDetails$ | async)?.lastName}}">
+                          </div>
+                        <div class="col-md-12 p-0 p-md-2">
+                          <label for="email" class="form-label">Email</label>
+                          <input disabled readonly type="email" class="form-control" id="email" value="{{(userDetails$ | async)?.email}}">
+                        </div>
+                        <div class="col-md-12 p-0 p-md-2">
+                            <label for="role" class="form-label">Role</label>
+                            <input disabled readonly type="text" class="form-control" id="role" value="{{(userDetails$ | async)?.isAdministrator? 'Administartor': 'General'}}">
+                          </div>
+                      </form>
+                      
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

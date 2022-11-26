@@ -30,7 +30,7 @@ export class SignUpComponent
         private loadingService: LoadingStatusService)
     {
         this.previewSource = '';
-        this.maxFileSize = (1048576);
+        this.maxFileSize = (1048576 * 2);
         this.validTypes = ['image/png', 'image/jpg', 'image/jpeg', 'image/gif','image/tif']
     }
 
@@ -64,6 +64,8 @@ export class SignUpComponent
 
         this.loadingService.setLoadingStatus(true);
 
+        const fileInput = document.getElementById('profilePicture') as HTMLInputElement;
+
         this.authService.register(this.signUpForm.value)
         .pipe(first())
         .subscribe({
@@ -84,7 +86,9 @@ export class SignUpComponent
                     profilePicture: null
                 });
                 
+                // reset input and preview
                 this.previewSource = '';
+                fileInput.value = '';
             },
             error: (res) => 
             {

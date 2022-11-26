@@ -38,6 +38,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { EmailVerificationComponent } from './email-verification/email-verification.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { NotAuthorizedComponent } from './not-authorized/not-authorized.component';
 
 
 @NgModule({
@@ -66,7 +67,8 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     SignUpComponent,
     EmailVerificationComponent,
     ForgotPasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    NotAuthorizedComponent
   ],
   imports: [
     BrowserModule,

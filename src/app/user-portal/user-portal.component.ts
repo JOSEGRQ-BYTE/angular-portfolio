@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { Toast, ToastType } from "../models/toast.model";
@@ -11,14 +11,21 @@ import { ToastNotificationService } from "../services/notification/toast-notific
     templateUrl: "./user-portal.component.html",
     styleUrls: ['./user-portal.component.css'],
 })
-export class UserPortalComponent
+export class UserPortalComponent implements OnInit
 {
 
     userDetails$: Observable<UserAuthentication>;
+    public profileSource: string;
 
     constructor(private authService: AuthService, private router: Router, private notificationService: ToastNotificationService)
     {
         this.userDetails$ =  this.authService.user;
+        this.profileSource = this.authService.currentUserProfilePicture;
+    }
+
+    ngOnInit() 
+    {
+
     }
 
     onToggleUserPanel(e: any)
