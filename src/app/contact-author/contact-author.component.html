@@ -18,22 +18,22 @@
                 <!-- User Input -->
                 <div class="mb-3">
                     <label for="firstname" class="form-label">First Name</label>
-                    <input [ngClass]="{'is-invalid': contactForm.get('firstname')?.errors && (contactForm.get('firstname')?.touched || contactForm.get('firstname')?.dirty), 'is-valid':contactForm.get('firstname')?.valid}" type="text" class="form-control" id="firstname" aria-describedby="firstname-feedback" formControlName="firstname">
+                    <input [ngClass]="{'is-invalid': contactForm.get('firstname')?.errors && (contactForm.get('firstname')?.touched || contactForm.get('firstname')?.dirty), 'is-valid':contactForm.get('firstname')?.valid}" type="text" class="form-control text-black" id="firstname" aria-describedby="firstname-feedback" formControlName="firstname">
                     <div *ngIf="!contactForm.get('firstname')?.valid && contactForm.get('firstname')?.touched" id="firstname-feedback" class="form-text text-danger">First name is required.</div>
                 </div>
                 <div class="mb-3">
                     <label for="lastname" class="form-label">Last Name</label>
-                    <input [ngClass]="{'is-invalid': contactForm.get('lastname')?.errors && (contactForm.get('lastname')?.touched || contactForm.get('lastname')?.dirty), 'is-valid':contactForm.get('lastname')?.valid}" type="text" class="form-control" id="lastname" aria-describedby="lastname-feedback" formControlName="lastname">
+                    <input [ngClass]="{'is-invalid': contactForm.get('lastname')?.errors && (contactForm.get('lastname')?.touched || contactForm.get('lastname')?.dirty), 'is-valid':contactForm.get('lastname')?.valid}" type="text" class="form-control text-black" id="lastname" aria-describedby="lastname-feedback" formControlName="lastname">
                     <div *ngIf="!contactForm.get('lastname')?.valid && contactForm.get('lastname')?.touched" id="lastname-feedback" class="form-text text-danger">Last name is required.</div>
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input [ngClass]="{'is-invalid': contactForm.get('email')?.errors && (contactForm.get('email')?.touched || contactForm.get('email')?.dirty), 'is-valid':contactForm.get('email')?.valid}" type="email" class="form-control" id="email" aria-describedby="email-feedback" formControlName="email">
+                    <input [ngClass]="{'is-invalid': contactForm.get('email')?.errors && (contactForm.get('email')?.touched || contactForm.get('email')?.dirty), 'is-valid':contactForm.get('email')?.valid}" type="email" class="form-control text-black" id="email" aria-describedby="email-feedback" formControlName="email">
                     <div *ngIf="!contactForm.get('email')?.valid && contactForm.get('email')?.touched" id="email-feedback" class="form-text text-danger">An email is required and must be valid.</div>
                 </div>
                 <div class="mb-3">
                     <label for="message" class="form-label">Message</label>
-                    <textarea [ngClass]="{'is-invalid': contactForm.get('message')?.errors && (contactForm.get('message')?.touched || contactForm.get('message')?.dirty), 'is-valid':contactForm.get('message')?.valid}" class="form-control" id="message" rows="3" formControlName="message"></textarea>
+                    <textarea [ngClass]="{'is-invalid': contactForm.get('message')?.errors && (contactForm.get('message')?.touched || contactForm.get('message')?.dirty), 'is-valid':contactForm.get('message')?.valid}" class="form-control text-black" id="message" rows="3" formControlName="message"></textarea>
                     <div *ngIf="!contactForm.get('message')?.valid && contactForm.get('message')?.touched" id="lastname-feedback" class="form-text text-danger">Don't be shy. Please write a message.</div>
                 </div>
 

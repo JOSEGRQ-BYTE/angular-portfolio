@@ -27,14 +27,14 @@
 
                     <div class="col-12 col-sm-6">
                         <label for="title" class="form-label">Title</label>
-                        <input [readonly]="viewMode == 'VIEW'" formControlName="title" [ngClass]="{'is-invalid': wodForm.get('title')?.errors && (wodForm.get('title')?.touched || wodForm.get('title')?.dirty), 'is-valid':wodForm.get('title')?.valid && viewMode != 'VIEW' }" type="text" class="form-control" id="title" aria-describedby="title-feedback">
+                        <input [readonly]="viewMode == 'VIEW'" formControlName="title" [ngClass]="{'is-invalid': wodForm.get('title')?.errors && (wodForm.get('title')?.touched || wodForm.get('title')?.dirty), 'is-valid':wodForm.get('title')?.valid && viewMode != 'VIEW' }" type="text" class="form-control text-black" id="title" aria-describedby="title-feedback">
                         <div *ngIf="!wodForm.get('title')?.valid && wodForm.get('title')?.touched" id="title-feedback" class="form-text text-danger">Title is required.</div>
                     </div>
 
 
                     <div class="col-12 col-sm-6">
                         <label for="level" class="form-label">Level</label>
-                        <select [ngClass]="{'is-invalid': wodForm.get('level')?.errors && (wodForm.get('level')?.touched || wodForm.get('level')?.dirty), 'is-valid':wodForm.get('level')?.valid && viewMode != 'VIEW' }" id="level" class="form-select" formControlName="level" [attr.disabled]="viewMode == 'VIEW'? 'disabled' : null">
+                        <select [ngClass]="{'is-invalid': wodForm.get('level')?.errors && (wodForm.get('level')?.touched || wodForm.get('level')?.dirty), 'is-valid':wodForm.get('level')?.valid && viewMode != 'VIEW' }" id="level" class="form-select text-black" formControlName="level" [attr.disabled]="viewMode == 'VIEW'? 'disabled' : null">
                             <option [ngValue]="null" selected>Select WOD Level</option>
                             <option *ngFor="let level of levels" [ngValue]="level.id">{{ level.name }}</option>
                           </select>
@@ -45,7 +45,7 @@
                 <!-- Description -->
                 <div class="mb-3">
                     <label for="description" class="form-label">Description</label>
-                    <textarea [readonly]="viewMode == 'VIEW'" rows="3" [ngClass]="{'is-invalid': wodForm.get('description')?.errors && (wodForm.get('description')?.touched || wodForm.get('description')?.dirty), 'is-valid':wodForm.get('description')?.valid && viewMode != 'VIEW'}" class="form-control" id="description" aria-describedby="description-feedback" formControlName="description">
+                    <textarea [readonly]="viewMode == 'VIEW'" rows="3" [ngClass]="{'is-invalid': wodForm.get('description')?.errors && (wodForm.get('description')?.touched || wodForm.get('description')?.dirty), 'is-valid':wodForm.get('description')?.valid && viewMode != 'VIEW'}" class="form-control text-black" id="description" aria-describedby="description-feedback" formControlName="description">
                     </textarea>
                     <div *ngIf="!wodForm.get('description')?.valid && wodForm.get('description')?.touched" id="description-feedback" class="form-text text-danger">Description is required.</div>
                 </div>
@@ -53,14 +53,14 @@
                 <!-- Coach Tip -->
                 <div class="mb-3">
                     <label for="coach-tip" class="form-label">Coach Tip</label>
-                    <textarea [readonly]="viewMode == 'VIEW'" class="form-control" id="coach-tip" rows="3" formControlName="coach-tip">
+                    <textarea [readonly]="viewMode == 'VIEW'" class="form-control text-black" id="coach-tip" rows="3" formControlName="coach-tip">
                     </textarea>
                 </div>
 
                 <!-- Results -->
                 <div class="mb-3">
                     <label for="results" class="form-label">Results</label>
-                    <textarea [readonly]="viewMode == 'VIEW'"  [ngClass]="{'is-invalid': wodForm.get('results')?.errors && (wodForm.get('results')?.touched || wodForm.get('results')?.dirty), 'is-valid':wodForm.get('results')?.valid && viewMode != 'VIEW'}" class="form-control" id="results" rows="3" formControlName="results">
+                    <textarea [readonly]="viewMode == 'VIEW'"  [ngClass]="{'is-invalid': wodForm.get('results')?.errors && (wodForm.get('results')?.touched || wodForm.get('results')?.dirty), 'is-valid':wodForm.get('results')?.valid && viewMode != 'VIEW'}" class="form-control text-black" id="results" rows="3" formControlName="results">
                     </textarea>
                     <div *ngIf="!wodForm.get('results')?.valid && wodForm.get('results')?.touched" id="results-feedback" class="form-text text-danger">Results is required.</div>
                 </div>

@@ -5,7 +5,7 @@
 
             <div class="mb-3 col-12 col-md-8 col-lg-6 mx-auto">
                 <label for="role" class="form-label">User Role</label>
-                <select [ngClass]="{'is-invalid': signUpForm.get('role')?.errors && (signUpForm.get('role')?.touched || signUpForm.get('role')?.dirty), 'is-valid':signUpForm.get('role')?.valid}" id="role" class="form-select" formControlName="role">
+                <select [ngClass]="{'is-invalid': signUpForm.get('role')?.errors && (signUpForm.get('role')?.touched || signUpForm.get('role')?.dirty), 'is-valid':signUpForm.get('role')?.valid}" id="role" class="form-select text-black" formControlName="role">
                     <option [ngValue]="null" selected>Select User Role</option>
                     <option *ngFor="let role of roles" [ngValue]="role.name">{{ role.name }}</option>
                   </select>
@@ -14,25 +14,25 @@
 
             <div class="mb-3 col-12 col-md-8 col-lg-6 mx-auto">
                 <label for="firstName" class="form-label">First Name</label>
-                <input [ngClass]="{'is-invalid': signUpForm.get('firstName')?.errors && (signUpForm.get('firstName')?.touched || signUpForm.get('firstName')?.dirty), 'is-valid':signUpForm.get('firstName')?.valid}" formControlName="firstName" class="form-control text-dark" id="firstName" name="firstName">
+                <input [ngClass]="{'is-invalid': signUpForm.get('firstName')?.errors && (signUpForm.get('firstName')?.touched || signUpForm.get('firstName')?.dirty), 'is-valid':signUpForm.get('firstName')?.valid}" formControlName="firstName" class="form-control text-black" id="firstName" name="firstName">
                 <div *ngIf="!signUpForm.get('firstName')?.valid && signUpForm.get('firstName')?.touched" id="first-name-feedback" class="form-text text-danger">First name is required.</div>
             </div>
 
             <div class="mb-3 col-12 col-md-8 col-lg-6 mx-auto">
                 <label for="lastName" class="form-label">Last Name</label>
-                <input [ngClass]="{'is-invalid': signUpForm.get('lastName')?.errors && (signUpForm.get('lastName')?.touched || signUpForm.get('lastName')?.dirty), 'is-valid':signUpForm.get('lastName')?.valid}" formControlName="lastName" class="form-control text-dark" id="lastName" name="lastName">
+                <input [ngClass]="{'is-invalid': signUpForm.get('lastName')?.errors && (signUpForm.get('lastName')?.touched || signUpForm.get('lastName')?.dirty), 'is-valid':signUpForm.get('lastName')?.valid}" formControlName="lastName" class="form-control text-black" id="lastName" name="lastName">
                 <div *ngIf="!signUpForm.get('lastName')?.valid && signUpForm.get('lastName')?.touched" id="last-name-feedback" class="form-text text-danger">Last name is required.</div>
             </div>
 
             <div class="mb-3 col-12 col-md-8 col-lg-6 mx-auto">
                 <label for="email" class="form-label">Email</label>
-                <input [ngClass]="{'is-invalid': signUpForm.get('email')?.errors && (signUpForm.get('email')?.touched || signUpForm.get('email')?.dirty), 'is-valid':signUpForm.get('email')?.valid}" formControlName="email" type="email" class="form-control text-dark" id="email" name="email">
+                <input [ngClass]="{'is-invalid': signUpForm.get('email')?.errors && (signUpForm.get('email')?.touched || signUpForm.get('email')?.dirty), 'is-valid':signUpForm.get('email')?.valid}" formControlName="email" type="email" class="form-control text-black" id="email" name="email">
                 <div *ngIf="!signUpForm.get('email')?.valid && signUpForm.get('email')?.touched" id="email-feedback" class="form-text text-danger">Email is required.</div>
             </div>
 
             <div class="mb-3 col-12 col-md-8 col-lg-6 mx-auto">
                 <label for="password" class="form-label">Password</label>
-                <input [ngClass]="{'is-invalid': signUpForm.get('password')?.errors && (signUpForm.get('password')?.touched || signUpForm.get('password')?.dirty), 'is-valid':signUpForm.get('password')?.valid}" formControlName="password" type="password" class="form-control text-dark" id="password" name="password">
+                <input [ngClass]="{'is-invalid': signUpForm.get('password')?.errors && (signUpForm.get('password')?.touched || signUpForm.get('password')?.dirty), 'is-valid':signUpForm.get('password')?.valid}" formControlName="password" type="password" class="form-control text-black" id="password" name="password">
                 <ul class="list-group" *ngIf="!signUpForm.get('password')?.valid && signUpForm.get('password')?.touched">
                     <li class="list-group-item form-text text-danger p-1 border-0" *ngIf="signUpForm.get('password')?.hasError('required')">Password is required.</li>
                     <li class="list-group-item form-text text-danger p-1 border-0" *ngIf="signUpForm.get('password')?.hasError('doesNotContainDigit')">Must contain digit.</li>
@@ -46,7 +46,7 @@
 
             <div class="mb-3 col-12 col-md-8 col-lg-6 mx-auto">
                 <label for="confirmPassword" class="form-label">Confirm Password</label>
-                <input [ngClass]="{'is-invalid': signUpForm.get('confirmPassword')?.errors && (signUpForm.get('confirmPassword')?.touched || signUpForm.get('confirmPassword')?.dirty), 'is-valid':signUpForm.get('confirmPassword')?.valid}" formControlName="confirmPassword" type="password" class="form-control text-dark" id="confirmPassword" name="confirmPassword">
+                <input [ngClass]="{'is-invalid': signUpForm.get('confirmPassword')?.errors && (signUpForm.get('confirmPassword')?.touched || signUpForm.get('confirmPassword')?.dirty), 'is-valid':signUpForm.get('confirmPassword')?.valid}" formControlName="confirmPassword" type="password" class="form-control text-black" id="confirmPassword" name="confirmPassword">
                 <div *ngIf="!signUpForm.get('confirmPassword')?.valid && signUpForm.get('confirmPassword')?.touched && signUpForm.get('confirmPassword')?.hasError('matching')" class="form-text text-danger">Passwords do not match.</div>
             </div>
 
@@ -56,7 +56,7 @@
                     id="profilePicture"
                     type="file" 
                     accept=".png,.jpg,.jpeg,.gif,.tif"
-                    class="form-control"
+                    class="form-control text-black"
                     (change)="onProfilePictureChanged($event)">
                 <div *ngIf="!signUpForm.get('profilePicture')?.valid && signUpForm.get('profilePicture')?.touched && signUpForm.get('profilePicture')?.hasError('required')" class="form-text text-danger">Profile picture is required.</div>
             </div>

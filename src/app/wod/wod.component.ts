@@ -88,7 +88,7 @@ export class WODComponent implements OnInit
         anchorCard.classList.add('selected');
 
         if(this.authService.currentUserValue.isLoggedIn && this.wodSelected != '')
-            this.router.navigate([`/WOD/${this.wodSelected}`]);
+            this.router.navigate([`/User/${this.authService.currentUserValue.id}/WOD/${this.wodSelected}`]);
 
     }
 }
