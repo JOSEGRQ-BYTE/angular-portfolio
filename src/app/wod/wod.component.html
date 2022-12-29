@@ -1,7 +1,17 @@
 <div class="container-fluid p-0 m-0 position-relative">
-    <div class="row m-0 pt-4 mt-lg-4">
+
+    <section class="row">
+        <h2>CrossFit Training</h2>
+        <app-wod-card *ngFor="let wod of (wods$ | async)" class="col-12 col-md-5 col-lg-3 mb-2 me-2 d-flex" (cardSelected)="onCardSelected($event)" [wod]="wod"></app-wod-card>        
+    </section>
+
+
+    <!--<div class="row m-0 pt-4 mt-lg-4">
         <div id="wod-container" class="col-12 d-flex flex-row flex-wrap justify-content-evenly">
-            <app-wod-card *ngFor="let wod of (wods$ | async)" class="col-12 col-md-5 col-lg-3 mb-2 me-2 d-flex" (cardSelected)="onCardSelected($event)" [wod]="wod"></app-wod-card>
+            <app-wod-card *ngFor="let wod of (wods$ | async)" class="col-12 col-md-5 col-lg-3 mb-2 me-2 d-flex" (cardSelected)="onCardSelected($event)" [wod]="wod"></app-wod-card>        
         </div>
-    </div>
+    </div>-->
+
+    <app-training></app-training>
+
 </div>

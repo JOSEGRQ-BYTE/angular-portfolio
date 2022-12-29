@@ -39,6 +39,7 @@ import { EmailVerificationComponent } from './email-verification/email-verificat
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { NotAuthorizedComponent } from './not-authorized/not-authorized.component';
+import { TrainingComponent } from './training/training.component';
 
 
 @NgModule({
@@ -68,7 +69,8 @@ import { NotAuthorizedComponent } from './not-authorized/not-authorized.componen
     EmailVerificationComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
-    NotAuthorizedComponent
+    NotAuthorizedComponent,
+    TrainingComponent
   ],
   imports: [
     BrowserModule,
