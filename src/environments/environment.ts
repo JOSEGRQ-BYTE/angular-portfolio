@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   usersURL: 'http://localhost:53113/API/Users',
   wodURL: 'http://localhost:53113/API/Workouts',
+  strengthTrainingURL: 'http://localhost:53113/API/StrengthTraining',
   contactURL: 'http://localhost:53113/API/Emails'
 };
 

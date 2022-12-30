@@ -1,22 +1,22 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { AboutAuthorComponent } from "./about-author/about-author.component";
-import { ChangePasswordComponent } from "./change-password/change-password.component";
-import { ContactAuthorComponent } from "./contact-author/contact-author.component";
-import { EmailVerificationComponent } from "./email-verification/email-verification.component";
-import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
-import { HomeComponent } from "./home/home.component";
-import { NotAuthorizedComponent } from "./not-authorized/not-authorized.component";
-import { NotFoundComponent } from "./not-found/not-found.component";
-import { ResetPasswordComponent } from "./reset-password/reset-password.component";
+import { AboutAuthorComponent } from "./components/about-author/about-author.component";
+import { ChangePasswordComponent } from "./components/change-password/change-password.component";
+import { ContactAuthorComponent } from "./components/contact-author/contact-author.component";
+import { EmailVerificationComponent } from "./components/email-verification/email-verification.component";
+import { ForgotPasswordComponent } from "./components/forgot-password/forgot-password.component";
+import { HomeComponent } from "./components/home/home.component";
+import { NotAuthorizedComponent } from "./components/not-authorized/not-authorized.component";
+import { NotFoundComponent } from "./components/not-found/not-found.component";
+import { ResetPasswordComponent } from "./components/reset-password/reset-password.component";
 import { AdminGuard } from "./services/authentication/admin.guard";
 import { AuthGuard } from "./services/authentication/auth.guard";
-import { SignInComponent } from "./sign-in/sign-in.component";
-import { SignUpComponent } from "./sign-up/sign-up.component";
-import { UserInfoComponent } from "./user-info/user-info.component";
-import { UserPortalComponent } from "./user-portal/user-portal.component";
-import { WODEditComponent } from "./wod/wod-edit/wod-edit.component";
-import { WODComponent } from "./wod/wod.component";
+import { SignInComponent } from "./components/sign-in/sign-in.component";
+import { SignUpComponent } from "./components/sign-up/sign-up.component";
+import { UserInfoComponent } from "./components/user-info/user-info.component";
+import { UserPortalComponent } from "./components/user-portal/user-portal.component";
+import { WODEditComponent } from "./components/wod/wod-edit/wod-edit.component";
+import { WODComponent } from "./components/wod/wod.component";
 
 const appRoutes: Routes = [
     {path: 'Home', component: HomeComponent },
