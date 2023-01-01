@@ -8,27 +8,8 @@
     bottom: 0 !important;
 }
 
-
-
-
 .mat-form-field {
     width: 100%;
-}
-
-
-.wod-background {
-
-    background-image: url(/assets/images/barbell.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    filter: blur(1px);
-    display: block;
 }
 
 .wod-form-container, .container {
@@ -63,4 +44,19 @@
     .wod-background {
         display: none;
     }
+}
+
+.buttons-popover {
+    bottom: -60px;
+    left: 50%;
+    min-width: calc(100% + 2em);
+    transform: translateX(-50%);
+    width: max-content;
+  }
+
+  .logs-button {
+    left: -25px;
+    top: -25px;
+    width: 50px !important;
+    height: 50px;
 }

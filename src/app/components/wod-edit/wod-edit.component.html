@@ -1,7 +1,13 @@
-<div class="container">
-    <div class="row wod-form-container position-relative h-100 d-flex align-items-center">
-            <div class="wod-background"></div>
-            <form class="col-12 m-0 mt-md-5 card bg-dark text-light py-3 px-0 px-md-3 mx-auto wod-form" [formGroup]="wodForm" (ngSubmit)="onSubmit()">
+<section class="row h-100">
+    <div class="col-12 d-flex flex-column justify-content-center align-items-center position-relative">
+
+        <div class="col-7 m-0 mt-md-5 card bg-dark text-light mx-auto shadow-lg position-relative">
+
+            <a title="View Training" href="#" routerLink="/WOD" class="d-flex btn btn-primary me-2 position-absolute logs-button rounded-circle text-center" style="width: fit-content;">
+                <i class="bi bi-list-task h4 m-auto"></i>
+            </a>
+
+            <form class="py-3 px-0 px-md-3 active" [formGroup]="wodForm" (ngSubmit)="onSubmit()">
 
                 <!-- User Input -->
 
@@ -65,24 +71,22 @@
                     <div *ngIf="!wodForm.get('results')?.valid && wodForm.get('results')?.touched" id="results-feedback" class="form-text text-danger">Results is required.</div>
                 </div>
 
-                <div class="row m-0">
+                <div class="row m-0 card position-absolute p-3 buttons-popover">
                     <!-- Submit -->
                     <div class="col p-0">
-                        <button *ngIf="viewMode == 'VIEW'" class="btn btn-primary me-2" type="button" style="width: fit-content;" (click)="onEdit()">Edit</button>
-                        <button *ngIf="viewMode != 'VIEW'" class="btn btn-primary me-2" type="submit" style="width: fit-content;">{{ viewMode == 'EDIT'? 'Update' : 'Add' }}</button>
-                        <button *ngIf="viewMode == 'EDIT'" class="btn btn-danger" type="button" style="width: fit-content;" (click)="onConfirm(content)">Delete</button>
-                    </div>
+                        <button *ngIf="viewMode != 'VIEW'" class="btn btn-primary me-2" type="submit" style="width: fit-content;"><i class="bi bi-save"></i><span class="button-detail ms-2">{{ viewMode == 'EDIT'? 'Update' : 'Save' }}</span></button>
+                        <button *ngIf="viewMode == 'EDIT'" class="btn btn-danger" type="button" style="width: fit-content;" (click)="onConfirm(content)"><i class="bi bi-trash3"></i>Delete</button>
                     
-
-
-                    <div class="col p-0">
-                        <a class="btn btn-primary float-end" href="#" routerLink="/WOD" >WODs</a>
                         <a *ngIf="viewMode != 'CREATE'" class="btn btn-primary float-end me-2" href="#" routerLink="/WOD/Create" >Add New</a>
+
+                        <button *ngIf="viewMode == 'VIEW'" class="btn btn-primary me-2" type="button" style="width: fit-content;" (click)="onEdit()"><i class="bi bi-pencil-square"><span class="button-detail ms-2">Edit</span></i></button>
+                        <button title="Clear Form" class="btn btn-primary float-end no-hightlight" type="button" (click)="onClearForm()"><i class="bi bi-x-lg"></i><span class="button-detail ms-2">Clear</span></button>
                     </div>
                 </div>
             </form>
+        </div>
     </div>
-</div>
+</section>
 
 
 <ng-template #content let-c="close" let-d="dismiss">

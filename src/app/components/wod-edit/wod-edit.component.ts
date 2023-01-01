@@ -275,4 +275,10 @@ export class WODEditComponent implements OnInit, OnDestroy {
 
         this.modalService.dismissAll('Delete WOD');
     }
+
+    onClearForm()
+    {
+        this.wodForm.reset();
+        this.wodID = '';
+    }
 }
