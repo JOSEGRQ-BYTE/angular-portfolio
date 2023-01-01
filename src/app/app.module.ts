@@ -17,8 +17,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { WODComponent } from './components/wod/wod.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { WODCardComponent } from './components/wod/wod-card/wod-card.component';
-import { WODEditComponent } from './components/wod/wod-edit/wod-edit.component';
+import { WODCardComponent } from './components/wod-card/wod-card.component';
+import { WODEditComponent } from './components/wod-edit/wod-edit.component';
 
 
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -38,8 +38,7 @@ import { EmailVerificationComponent } from './components/email-verification/emai
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { NotAuthorizedComponent } from './components/not-authorized/not-authorized.component';
-import { TrainingComponent } from './components/training/training.component';
-
+import { StrengthTrainingFormComponent } from './components/strength-training-form/strength-training-form.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +67,7 @@ import { TrainingComponent } from './components/training/training.component';
     ForgotPasswordComponent,
     ResetPasswordComponent,
     NotAuthorizedComponent,
-    TrainingComponent
+    StrengthTrainingFormComponent
   ],
   imports: [
     BrowserModule,

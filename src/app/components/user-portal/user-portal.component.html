@@ -3,8 +3,8 @@
         <div class="col-12">
             <router-outlet></router-outlet>
         </div>
-        <div class="d-flex flex-column flex-shrink-0 p-3 bg-dark user-side-bar position-fixed bottom-0 text-center border-end border-light">
-            <a class="user-side-bar-toggle" href="#" (click)="onToggleUserPanel($event)">
+        <div id="user-side-bar" class="d-flex flex-column flex-shrink-0 p-3 bg-dark user-side-bar position-fixed bottom-0 text-center border-end border-light">
+            <a id="user-side-bar-toggle" class="user-side-bar-toggle" href="#" (click)="onToggleUserPanel($event)">
                 <i class="bi bi-arrow-right-circle"></i>
             </a>
             <div class="d-flex align-items-center link-light text-center ms-auto me-auto">
@@ -14,21 +14,27 @@
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
               <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
-                <a href="#" class="nav-link link-light px-1" routerLink="./WOD/Create">
+                <a href="#" class="nav-link link-light px-1" (click)="onNavLinkClicked($event)" [attr.data-link]="'/User/' + (userDetails$ | async)?.id +'/WOD/Create'">
                     <i class="bi bi-fire fs-4"></i>
                     Add WOD
                 </a>
               </li>
               <li class="nav-item"  routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
-                <a href="#" class="nav-link link-light px-1" routerLink="./ChangePassword">
+                <a href="#" class="nav-link link-light px-1" (click)="onNavLinkClicked($event)" [attr.data-link]="'/User/' + (userDetails$ | async)?.id +'/ChangePassword'">
                     <i class="bi bi-key fs-4"></i>
                     Change Password
                 </a>
               </li>
               <li class="nav-item"  routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngIf="(userDetails$ | async)?.isLoggedIn && (userDetails$ | async)?.isAdministrator">
-                <a href="#" class="nav-link link-light px-1" routerLink="./Register">
+                <a href="#" class="nav-link link-light px-1" (click)="onNavLinkClicked($event)" [attr.data-link]="'/User/' + (userDetails$ | async)?.id +'/Register'">
                     <i class="bi bi-person-plus fs-4"></i>
                     Register
+                </a>
+              </li>
+              <li class="nav-item"  routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngIf="(userDetails$ | async)?.isLoggedIn && (userDetails$ | async)?.isAdministrator">
+                <a href="#" (click)="onNavLinkClicked($event)" [attr.data-link]="'/User/' + (userDetails$ | async)?.id +'/StrengthTraining'" class="nav-link link-light px-1" title="Log New Workout">
+                  <i class="bi bi-award fs-4"></i>
+                    Log Workout
                 </a>
               </li>
             </ul>

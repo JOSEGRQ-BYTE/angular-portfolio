@@ -7,6 +7,7 @@ export const environment = {
   usersURL: 'http://localhost:53113/API/Users',
   wodURL: 'http://localhost:53113/API/Workouts',
   strengthTrainingURL: 'http://localhost:53113/API/StrengthTraining',
+  exerciseURL: 'http://localhost:53113/API/Exercise',
   contactURL: 'http://localhost:53113/API/Emails'
 };
 

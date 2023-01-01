@@ -231,7 +231,6 @@ export class WODEditComponent implements OnInit, OnDestroy {
 
     onConfirm(content: any)
     {
-        console.log(content)
         this.modalService.open(content, { centered: true, backdropClass: 'light-blue-backdrop' }).result
         .then(
             (result) => 

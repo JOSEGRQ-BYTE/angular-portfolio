@@ -168,3 +168,9 @@ small, .text_small {font-size: 0.618rem;}
 .mat-form-field-suffix {
   margin: auto;
 }
+
+
+.no-hightlight:focus, .no-hightlight:active {
+  outline: none !important;
+  box-shadow: none !important;
+}

@@ -61,4 +61,20 @@ export class UserPortalComponent implements OnInit
         this.router.navigate(['/Home']);
 
     }
+
+    onNavLinkClicked(event: any)
+    {
+        event.preventDefault();
+        const anchorLink = event.target.closest('a') as HTMLAnchorElement;
+
+        const toggle = document.getElementById('user-side-bar-toggle') as HTMLAnchorElement;
+        const nav = document.getElementById('user-side-bar') as HTMLDivElement;
+
+        toggle.classList.remove('expanded');
+        nav.classList.remove('expanded');
+
+        this.router.navigate([anchorLink.dataset['link']]);
+
+
+    }
 }

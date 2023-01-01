@@ -15,8 +15,9 @@ import { SignInComponent } from "./components/sign-in/sign-in.component";
 import { SignUpComponent } from "./components/sign-up/sign-up.component";
 import { UserInfoComponent } from "./components/user-info/user-info.component";
 import { UserPortalComponent } from "./components/user-portal/user-portal.component";
-import { WODEditComponent } from "./components/wod/wod-edit/wod-edit.component";
+import { WODEditComponent } from "./components/wod-edit/wod-edit.component";
 import { WODComponent } from "./components/wod/wod.component";
+import { StrengthTrainingFormComponent } from "./components/strength-training-form/strength-training-form.component";
 
 const appRoutes: Routes = [
     {path: 'Home', component: HomeComponent },
@@ -27,6 +28,8 @@ const appRoutes: Routes = [
         {path: 'WOD/Create', component: WODEditComponent},
         {path: 'ChangePassword', component: ChangePasswordComponent},
         {path: 'Register', component: SignUpComponent, canActivate: [AdminGuard]},
+        {path: 'StrengthTraining/:id', component: StrengthTrainingFormComponent, canActivate: [AdminGuard]},
+        {path: 'StrengthTraining', component: StrengthTrainingFormComponent, canActivate: [AdminGuard]},
     ]},
     {path: 'EmailVerification', component: EmailVerificationComponent},
     {path: 'ForgotPassword', component: ForgotPasswordComponent},
