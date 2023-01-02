@@ -80,4 +80,15 @@ export class WODService
     {
         return this.http.delete<void>(`${environment.wodURL}/${id}`);
     }
+
+    public getWODsInRange(from: Date, to: Date): Observable<WOD[]>
+    {
+        return this.http.post<WOD[]>(`${environment.wodURL}/GetWODsInRange`, {from: from, to: to})
+        .pipe(
+            map(wods => {
+                this.wodsSubject.next(wods as WOD[]);
+                return wods;
+            })
+        );
+    }
 }

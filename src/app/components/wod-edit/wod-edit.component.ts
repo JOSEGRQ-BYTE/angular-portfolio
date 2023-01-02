@@ -9,15 +9,17 @@ import { ToastNotificationService } from "src/app/services/notification/toast-no
 import { WODService } from "src/app/services/workouts/wod.service";
 
 
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+
+
+import {NgbModal, ModalDismissReasons, NgbDatepicker, NgbDateStruct, NgbCalendar, NgbDate} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'app-wod-edit',
     templateUrl: './wod-edit.component.html',
     styleUrls: ['./wod-edit.component.css']
 })
-export class WODEditComponent implements OnInit, OnDestroy {
-    
+export class WODEditComponent implements OnInit, OnDestroy 
+{
 
     levels:{id: number, name: string}[] = [
         { id: 0, name: "Open" },
@@ -26,19 +28,22 @@ export class WODEditComponent implements OnInit, OnDestroy {
         { id: 3, name: "Scaled" }
     ]
 
-    // Reactive Form
+    // DATE PICKER
+	hoveredDate: NgbDate | null = null;
+	fromDate: NgbDate;
+	toDate: NgbDate | null = null;
+    navigation: string = 'arrows';
+    outsideDays: string = 'visible';
+    showWeekNumbers: boolean = true;
+
+
+    // FORM
+    public wods$: Observable<WOD[]>;
     public wodForm: FormGroup;
-
-    // Min Date for date picker 5 day prior today
     public minDate: Date = new Date();
-
-    // Flag to know whether user is editing or creating one
     public viewMode: string;
     private wodID: string;
-
-    // Parameter Subscribtion
     private paramSubcription!: Subscription;
-
     public wodItem$: Observable<WOD>;
 
 
@@ -47,7 +52,8 @@ export class WODEditComponent implements OnInit, OnDestroy {
         private loadingService: LoadingStatusService,
         private toastService: ToastNotificationService,
         private router: Router,
-        private modalService: NgbModal)
+        private modalService: NgbModal,
+        private calendar: NgbCalendar)
     {
         this.minDate.setDate(this.minDate.getDate() - 5);
         this.wodForm = new FormGroup({});
@@ -56,63 +62,66 @@ export class WODEditComponent implements OnInit, OnDestroy {
         this.wodID = '';
 
         this.viewMode = "READ";
+
+        this.toDate = calendar.getToday();
+		this.fromDate = calendar.getNext(calendar.getToday(), 'm', -2);
+
+        this.wods$ = this.wodService.wods;
     }
 
     ngOnInit() 
     {
 
         this.paramSubcription = this.activatedRoute.params
-        .subscribe(
-              (params: Params) => 
-              {
-                // Creating a New WOD
-                if(params['id']=='Create')
-                {
-                    this.viewMode = "CREATE";
-                    this.wodItem$ = new Observable<WOD>();
-                    this.wodForm.reset();
-                }
-                // Editing and Existing WOD
-                else 
-                {
-                    this.viewMode = "VIEW";
-                    this.wodID = params['id']
-                    this.wodItem$ = this.wodService.getWOD(params['id']);
+        .subscribe((params: Params) => 
+        {
+            // Creating a New WOD
+            if(params['id']=='Create')
+            {
+                this.viewMode = "CREATE";
+                this.wodItem$ = new Observable<WOD>();
+                this.wodForm.reset();
+            }
+            // Editing and Existing WOD
+            else 
+            {
+                this.viewMode = "VIEW";
+                this.wodID = params['id']
+                this.wodItem$ = this.wodService.getWOD(params['id']);
 
-                    Promise.resolve().then(() => {
-                        this.loadingService.setLoadingStatus(true)
-                    });
+                Promise.resolve().then(() => {
+                    this.loadingService.setLoadingStatus(true)
+                });
 
-                    // Fetch WOD Info & Load Form
-                    this.wodItem$.subscribe({
-                        next: (data) => 
-                        {
+                // Fetch WOD Info & Load Form
+                this.wodItem$.subscribe({
+                    next: (data) => 
+                    {
 
-                            this.loadingService.setLoadingStatus(false);
+                        this.loadingService.setLoadingStatus(false);
 
-                            this.wodForm.get('date')?.setValue(data.date);
-                            this.wodForm.get('title')?.setValue(data.title);
-                            this.wodForm.get('level')?.setValue(data.level);
-                            this.wodForm.get('description')?.setValue(data.description);
-                            this.wodForm.get('coach-tip')?.setValue(data.coachTip);
-                            this.wodForm.get('results')?.setValue(data.results);
-                        },
-                        error: (error) => 
-                        {
-                            this.loadingService.setLoadingStatus(false);
-                            const toast: Toast = {
-                                type: ToastType.ERROR,
-                                header: 'WOD Fetch',
-                                body: 'Error occurred while fetching WOD.'
-                            };
-                            this.toastService.showToast(toast);
-                        }
-                    });
-                }
+                        this.wodForm.get('date')?.setValue(data.date);
+                        this.wodForm.get('title')?.setValue(data.title);
+                        this.wodForm.get('level')?.setValue(data.level);
+                        this.wodForm.get('description')?.setValue(data.description);
+                        this.wodForm.get('coach-tip')?.setValue(data.coachTip);
+                        this.wodForm.get('results')?.setValue(data.results);
+                    },
+                    error: (error) => 
+                    {
+                        this.loadingService.setLoadingStatus(false);
+                        const toast: Toast = {
+                            type: ToastType.ERROR,
+                            header: 'WOD Fetch',
+                            body: 'Error occurred while fetching WOD.'
+                        };
+                        this.toastService.showToast(toast);
+                    }
+                });
+            }
 
-              });
-
-
+        });
+        
         this.wodForm = new FormGroup({
             'title': new FormControl(null, Validators.required),
             'description': new FormControl(null, Validators.required),
@@ -121,11 +130,6 @@ export class WODEditComponent implements OnInit, OnDestroy {
             'coach-tip': new FormControl(null),
             'results': new FormControl(null, [Validators.required])
         });
-
-
-
-        
-
     }
 
     onSubmit()
@@ -280,5 +284,75 @@ export class WODEditComponent implements OnInit, OnDestroy {
     {
         this.wodForm.reset();
         this.wodID = '';
+    }
+
+    onSelectWOD(modal: any) 
+    {
+        this.modalService.open(modal, { centered: true, backdropClass: 'light-blue-backdrop', size: 'lg' }).result;
+    }
+    
+    onLoadWODs()
+    {
+        if(this.toDate == null || this.fromDate == null)
+        {
+            return; 
+        }
+
+        const to = new Date(this.toDate.year, this.toDate.month - 1, this.toDate.day);
+        const from = new Date(this.fromDate.year, this.fromDate.month - 1, this.fromDate.day);
+
+        this.loadingService.setLoadingStatus(true);
+
+        this.wodService.getWODsInRange(from, to).subscribe({
+            error: (error) => 
+            {
+                this.loadingService.setLoadingStatus(false);
+
+                if (error.status != 401) 
+                {
+                    const toast: Toast = {
+                        type: ToastType.ERROR,
+                        header: 'WOD Fetch',
+                        body: 'Unexpected error occurred while fetching WODs.'
+                    };
+                    this.toastService.showToast(toast);
+                }
+            },
+            complete: () => 
+            {
+                this.loadingService.setLoadingStatus(false);
+            }
+        });
+
+    }
+
+    onDateSelection(date: NgbDate) {
+		if (!this.fromDate && !this.toDate) {
+			this.fromDate = date;
+		} else if (this.fromDate && !this.toDate && date.after(this.fromDate)) {
+			this.toDate = date;
+		} else {
+			this.toDate = null;
+			this.fromDate = date;
+		}
+	}
+
+	isHovered(date: NgbDate) {
+		return (
+			this.fromDate && !this.toDate && this.hoveredDate && date.after(this.fromDate) && date.before(this.hoveredDate)
+		);
+	}
+
+	isInside(date: NgbDate) {
+		return this.toDate && date.after(this.fromDate) && date.before(this.toDate);
+	}
+
+	isRange(date: NgbDate) {
+		return (
+			date.equals(this.fromDate) ||
+			(this.toDate && date.equals(this.toDate)) ||
+			this.isInside(date) ||
+			this.isHovered(date)
+		);
     }
 }

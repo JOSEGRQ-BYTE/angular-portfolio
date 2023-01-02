@@ -74,12 +74,12 @@
                 <div class="row m-0 card position-absolute p-3 buttons-popover">
                     <!-- Submit -->
                     <div class="col p-0">
-                        <button *ngIf="viewMode != 'VIEW'" class="btn btn-primary me-2" type="submit" style="width: fit-content;"><i class="bi bi-save"></i><span class="button-detail ms-2">{{ viewMode == 'EDIT'? 'Update' : 'Save' }}</span></button>
-                        <button *ngIf="viewMode == 'EDIT'" class="btn btn-danger" type="button" style="width: fit-content;" (click)="onConfirm(content)"><i class="bi bi-trash3"></i>Delete</button>
+                        <button *ngIf="viewMode != 'VIEW'" class="btn btn-primary me-2 no-hightlight " type="submit" style="width: fit-content;"><i class="bi bi-save"></i><span class="button-detail ms-2">{{ viewMode == 'EDIT'? 'Update' : 'Save' }}</span></button>
+                        <button *ngIf="viewMode == 'EDIT'" class="btn btn-danger no-hightlight" type="button" style="width: fit-content;" (click)="onConfirm(content)"><i class="bi bi-trash3"></i>Delete</button>
                     
-                        <a *ngIf="viewMode != 'CREATE'" class="btn btn-primary float-end me-2" href="#" routerLink="/WOD/Create" >Add New</a>
+                        <a *ngIf="viewMode != 'CREATE'" class="btn btn-primary float-end me-2 no-hightlight" href="#" routerLink="/WOD/Create" >Add New</a>
 
-                        <button *ngIf="viewMode == 'VIEW'" class="btn btn-primary me-2" type="button" style="width: fit-content;" (click)="onEdit()"><i class="bi bi-pencil-square"><span class="button-detail ms-2">Edit</span></i></button>
+                        <button class="btn btn-primary me-2 no-hightlight" type="button" style="width: fit-content;" (click)="onSelectWOD(wods)"><i class="bi bi-pencil-square"><span class="button-detail ms-2">Edit</span></i></button>
                         <button title="Clear Form" class="btn btn-primary float-end no-hightlight" type="button" (click)="onClearForm()"><i class="bi bi-x-lg"></i><span class="button-detail ms-2">Clear</span></button>
                     </div>
                 </div>
@@ -100,5 +100,78 @@
     <div class="modal-footer">
         <button type="button" class="btn btn-outline-danger" (click)="onDeleteWOD()">Delete</button>
         <button type="button" class="btn btn-outline-dark" (click)="c('Cancel click')">Cancel</button>
+    </div>
+</ng-template>
+
+
+  <ng-template #wods let-c="close" let-d="dismiss">
+    <div class="modal-header text-light bg-dark">
+      <h4 class="modal-title" id="modal-basic-title">Select WOD to Edit</h4>
+      <button type="button" class="btn-close text-light bg-dark" aria-label="Close" (click)="d('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-12 text-light bg-dark d-flex flex-column align-items-center" >
+
+                <h4>Select Date Range to Pull WODs</h4>
+                <div class="col">
+                    <ngb-datepicker 
+                    #dp 
+                    (dateSelect)="onDateSelection($event)" 
+                    [showWeekNumbers]="showWeekNumbers" 
+                    [outsideDays]="outsideDays" 
+                    [navigation]="navigation" 
+                    [displayMonths]="2" 
+                    [dayTemplate]="t" 
+                    outsideDays="hidden">
+                    </ngb-datepicker>
+                
+                    <ng-template #t let-date let-focused="focused">
+                        <span
+                            class="custom-day"
+                            [class.focused]="focused"
+                            [class.range]="isRange(date)"
+                            [class.faded]="isHovered(date) || isInside(date)"
+                            (mouseenter)="hoveredDate = date"
+                            (mouseleave)="hoveredDate = null"
+                            >
+                            {{ date.day }}
+                        </span>
+                    </ng-template>
+                </div>
+                <div class="col d-none">
+                    <div><span class="h5">From:</span> {{ fromDate.month + '/' + fromDate.day + '/' + fromDate.year }} </div>
+                    <div *ngIf="toDate != null" ><span class="h5">To:</span>  {{ toDate.month + '/' + toDate.day + '/' + toDate.year }} </div>
+                </div>
+
+            <div class="col-12 d-flex p-3 justify-content-evenly">
+                <span><span class="h5">From:</span> {{ fromDate.month + '/' + fromDate.day + '/' + fromDate.year }} </span>
+                <i class="bi bi-arrow-right fs-4"></i>
+                <span *ngIf="toDate != null" ><span class="h5">To:</span>  {{ toDate.month + '/' + toDate.day + '/' + toDate.year }} </span>
+                <span *ngIf="toDate == null" ><span class="h5">To:</span> <i class="bi bi-question-lg"></i> </span>
+            </div>
+
+            <hr/>
+
+            <div class="col-12">
+                <div class="list-group">
+
+                    <a href="#" class="list-group-item list-group-item-action" aria-current="true" *ngFor="let w of (wods$ | async)">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">{{w.title}}</h5>
+                        <small>{{ w.date | date: 'EEEE, MMMM d, y'}}</small>
+                      </div>
+                      <p class="mb-1 d-none">{{ w.description }}</p>
+                      <small>{{w.results}}</small>
+                    </a>
+
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button *ngIf="toDate != null && fromDate != null" type="button" class="btn btn-outline-light no-hightlight" (click)="onLoadWODs()">Load WODs</button>
     </div>
   </ng-template>

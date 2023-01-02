@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AboutAuthorComponent } from './components/about-author/about-author.component';
 import { RoutingModule } from './app-routing.module';
@@ -39,6 +39,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { NotAuthorizedComponent } from './components/not-authorized/not-authorized.component';
 import { StrengthTrainingFormComponent } from './components/strength-training-form/strength-training-form.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,9 @@ import { StrengthTrainingFormComponent } from './components/strength-training-fo
     MatNativeDateModule,
     BrowserAnimationsModule,
     MatInputModule,
-    MatCardModule
+    MatCardModule,
+    NgbModule,
+    FormsModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}
