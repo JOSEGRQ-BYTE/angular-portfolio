@@ -25,7 +25,7 @@ const appRoutes: Routes = [
     {path: 'User/:id', canActivate: [AuthGuard], component: UserPortalComponent, children: [
         {path: '', component: UserInfoComponent},
         {path: 'WOD/:id', component: WODEditComponent},
-        {path: 'WOD/Create', component: WODEditComponent},
+        {path: 'WOD', component: WODEditComponent},
         {path: 'ChangePassword', component: ChangePasswordComponent},
         {path: 'Register', component: SignUpComponent, canActivate: [AdminGuard]},
         {path: 'StrengthTraining/:id', component: StrengthTrainingFormComponent, canActivate: [AdminGuard]},

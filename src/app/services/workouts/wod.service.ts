@@ -91,4 +91,9 @@ export class WODService
             })
         );
     }
+
+    public clearWODS(): void 
+    {
+        this.wodsSubject.next([]);
+    }
 }

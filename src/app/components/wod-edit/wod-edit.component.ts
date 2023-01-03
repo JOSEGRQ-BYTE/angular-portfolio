@@ -41,8 +41,8 @@ export class WODEditComponent implements OnInit, OnDestroy
     public wods$: Observable<WOD[]>;
     public wodForm: FormGroup;
     public minDate: Date = new Date();
-    public viewMode: string;
-    private wodID: string;
+    //public viewMode: string;
+    public wodId: string | null;
     private paramSubcription!: Subscription;
     public wodItem$: Observable<WOD>;
 
@@ -59,9 +59,9 @@ export class WODEditComponent implements OnInit, OnDestroy
         this.wodForm = new FormGroup({});
 
         this.wodItem$ = new Observable<WOD>();
-        this.wodID = '';
+        this.wodId = null;
 
-        this.viewMode = "READ";
+        //this.viewMode = "READ";
 
         this.toDate = calendar.getToday();
 		this.fromDate = calendar.getNext(calendar.getToday(), 'm', -2);
@@ -71,57 +71,7 @@ export class WODEditComponent implements OnInit, OnDestroy
 
     ngOnInit() 
     {
-
-        this.paramSubcription = this.activatedRoute.params
-        .subscribe((params: Params) => 
-        {
-            // Creating a New WOD
-            if(params['id']=='Create')
-            {
-                this.viewMode = "CREATE";
-                this.wodItem$ = new Observable<WOD>();
-                this.wodForm.reset();
-            }
-            // Editing and Existing WOD
-            else 
-            {
-                this.viewMode = "VIEW";
-                this.wodID = params['id']
-                this.wodItem$ = this.wodService.getWOD(params['id']);
-
-                Promise.resolve().then(() => {
-                    this.loadingService.setLoadingStatus(true)
-                });
-
-                // Fetch WOD Info & Load Form
-                this.wodItem$.subscribe({
-                    next: (data) => 
-                    {
-
-                        this.loadingService.setLoadingStatus(false);
-
-                        this.wodForm.get('date')?.setValue(data.date);
-                        this.wodForm.get('title')?.setValue(data.title);
-                        this.wodForm.get('level')?.setValue(data.level);
-                        this.wodForm.get('description')?.setValue(data.description);
-                        this.wodForm.get('coach-tip')?.setValue(data.coachTip);
-                        this.wodForm.get('results')?.setValue(data.results);
-                    },
-                    error: (error) => 
-                    {
-                        this.loadingService.setLoadingStatus(false);
-                        const toast: Toast = {
-                            type: ToastType.ERROR,
-                            header: 'WOD Fetch',
-                            body: 'Error occurred while fetching WOD.'
-                        };
-                        this.toastService.showToast(toast);
-                    }
-                });
-            }
-
-        });
-        
+        // INITIALIZE FORM
         this.wodForm = new FormGroup({
             'title': new FormControl(null, Validators.required),
             'description': new FormControl(null, Validators.required),
@@ -130,12 +80,60 @@ export class WODEditComponent implements OnInit, OnDestroy
             'coach-tip': new FormControl(null),
             'results': new FormControl(null, [Validators.required])
         });
+
+        // GET DATA
+        this.paramSubcription = this.activatedRoute.params
+        .subscribe((params: Params) => 
+        {
+            const queryId : string | null = params['id'];
+            // CREATE
+            if(queryId == null)
+            {
+                this.wodId = null;
+                //this.viewMode = "CREATE";
+                this.wodItem$ = new Observable<WOD>();
+                this.wodForm.reset();
+            }
+            // VIEW/EDIT
+            else 
+            {
+                //this.viewMode = "VIEW";
+                this.wodId = queryId
+                this.wodItem$ = this.wodService.getWOD(this.wodId as string);
+
+                Promise.resolve().then(() => this.loadingService.setLoadingStatus(true));
+
+                // GET DETAILS
+                this.wodItem$.subscribe({
+                    next: (wod) => 
+                    {
+                        this.wodForm.get('date')?.setValue(wod.date);
+                        this.wodForm.get('title')?.setValue(wod.title);
+                        this.wodForm.get('level')?.setValue(wod.level);
+                        this.wodForm.get('description')?.setValue(wod.description);
+                        this.wodForm.get('coach-tip')?.setValue(wod.coachTip);
+                        this.wodForm.get('results')?.setValue(wod.results);
+                    },
+                    error: (error) => 
+                    {
+                        const toast: Toast = {
+                            type: ToastType.ERROR,
+                            header: 'WOD Fetch',
+                            body: 'Error occurred while fetching WOD.'
+                        };
+                        this.toastService.showToast(toast);
+
+                        this.loadingService.setLoadingStatus(false);
+                    },
+                    complete: () => this.loadingService.setLoadingStatus(false)
+                });
+            }
+
+        });
     }
 
     onSubmit()
     {
-
-        // Do nothing if form is invalid
         if (this.wodForm.invalid)
         {
             const toast: Toast = {
@@ -147,10 +145,10 @@ export class WODEditComponent implements OnInit, OnDestroy
             return;
         }
 
-        // Update existing WOD
-        if(this.wodForm.valid && this.viewMode == "EDIT")
+        // EDIT
+        if(this.wodForm.valid && this.wodId != null)
         {
-            this.wodItem$ = this.wodService.updateWOD(this.wodID ,this.wodForm.value);
+            this.wodItem$ = this.wodService.updateWOD(this.wodId ,this.wodForm.value);
 
             this.loadingService.setLoadingStatus(true);
 
@@ -163,13 +161,11 @@ export class WODEditComponent implements OnInit, OnDestroy
                         header: 'WOD Updated',
                         body: 'Successfully updated WOD!'
                     };
-                    this.viewMode = 'VIEW';
+                    //this.viewMode = 'VIEW';
                     this.toastService.showToast(toast);
                 },
                 error: (error) => 
                 {
-
-
                     if (error.status != 401) 
                     {
                         const toast: Toast = {
@@ -184,8 +180,8 @@ export class WODEditComponent implements OnInit, OnDestroy
                 }
             });
         }
-        // Create New WOD
-        else if(this.wodForm.valid && this.viewMode == "CREATE")
+        // CREATE
+        else if(this.wodForm.valid && this.wodId == null)
         {
             this.wodItem$ = this.wodService.addWOD(this.wodForm.value);
 
@@ -202,11 +198,11 @@ export class WODEditComponent implements OnInit, OnDestroy
                     };
                     this.toastService.showToast(toast);
 
-                    this.router.navigate(['/WOD']);
+                    this.wodForm.reset();
+                    //this.router.navigate(['/WOD']);
                 },
                 error: (error) => 
                 {
-
                     if (error.status != 401) 
                     {
                         const toast: Toast = {
@@ -228,10 +224,10 @@ export class WODEditComponent implements OnInit, OnDestroy
         this.paramSubcription.unsubscribe();
     }
 
-    onEdit()
+    /*onEdit()
     {
         this.viewMode = 'EDIT';
-    }
+    }*/
 
     onConfirm(content: any)
     {
@@ -249,8 +245,14 @@ export class WODEditComponent implements OnInit, OnDestroy
 
     onDeleteWOD()
     {
+
+        if(this.wodId == null)
+            return;
+
+        this.modalService.dismissAll('Delete WOD');
         this.loadingService.setLoadingStatus(true);
-        this.wodService.deleteWOD(this.wodID).subscribe({
+
+        this.wodService.deleteWOD(this.wodId).subscribe({
             next: () => 
             {
                 const toast: Toast = {
@@ -259,7 +261,12 @@ export class WODEditComponent implements OnInit, OnDestroy
                     body: 'Successfully deleted WOD!'
                 };
                 this.toastService.showToast(toast);
-                this.router.navigate(['/WOD']);
+
+                this.loadingService.setLoadingStatus(false);
+                this.wodService.clearWODS();
+                this.wodForm.reset();
+                this.wodId = null;
+                //this.router.navigate(['/WOD']);
             },
             error: (error) => 
             {
@@ -276,14 +283,12 @@ export class WODEditComponent implements OnInit, OnDestroy
                 }
             }
         });
-
-        this.modalService.dismissAll('Delete WOD');
     }
 
     onClearForm()
     {
         this.wodForm.reset();
-        this.wodID = '';
+        this.wodId = null;
     }
 
     onSelectWOD(modal: any) 

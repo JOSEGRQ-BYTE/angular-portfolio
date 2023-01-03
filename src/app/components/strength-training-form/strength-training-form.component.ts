@@ -200,6 +200,8 @@ export class StrengthTrainingFormComponent implements OnInit, OnDestroy
                                 body: 'Error occurred while fetching exercise.'
                             };
                             this.toastService.showToast(toast);
+
+                            this.loadingService.setLoadingStatus(false);
                         },
                         complete: () => this.loadingService.setLoadingStatus(false),
                     });
@@ -566,7 +568,7 @@ export class StrengthTrainingFormComponent implements OnInit, OnDestroy
                 }
             });
         }
-        else
+        else if(this.exerciseId != null)
         {
             this.exerciseService.deleteExercise(this.exerciseId as string).subscribe({
                 error: () => {

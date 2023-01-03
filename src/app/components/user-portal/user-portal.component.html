@@ -13,28 +13,28 @@
             </div>
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
-              <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
-                <a href="#" class="nav-link link-light px-1" (click)="onNavLinkClicked($event)" [attr.data-link]="'/User/' + (userDetails$ | async)?.id +'/WOD/Create'">
-                    <i class="bi bi-fire fs-4"></i>
-                    Add WOD
-                </a>
-              </li>
-              <li class="nav-item"  routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
-                <a href="#" class="nav-link link-light px-1" (click)="onNavLinkClicked($event)" [attr.data-link]="'/User/' + (userDetails$ | async)?.id +'/ChangePassword'">
-                    <i class="bi bi-key fs-4"></i>
-                    Change Password
-                </a>
-              </li>
               <li class="nav-item"  routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngIf="(userDetails$ | async)?.isLoggedIn && (userDetails$ | async)?.isAdministrator">
                 <a href="#" class="nav-link link-light px-1" (click)="onNavLinkClicked($event)" [attr.data-link]="'/User/' + (userDetails$ | async)?.id +'/Register'">
                     <i class="bi bi-person-plus fs-4"></i>
                     Register
                 </a>
               </li>
+              <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                <a href="#" class="nav-link link-light px-1" (click)="onNavLinkClicked($event)" [attr.data-link]="'/User/' + (userDetails$ | async)?.id +'/WOD'">
+                    <i class="bi bi-fire fs-4"></i>
+                    Log WOD
+                </a>
+              </li>
               <li class="nav-item"  routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngIf="(userDetails$ | async)?.isLoggedIn && (userDetails$ | async)?.isAdministrator">
                 <a href="#" (click)="onNavLinkClicked($event)" [attr.data-link]="'/User/' + (userDetails$ | async)?.id +'/StrengthTraining'" class="nav-link link-light px-1" title="Log New Workout">
                   <i class="bi bi-award fs-4"></i>
                     Log Workout
+                </a>
+              </li>
+              <li class="nav-item"  routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                <a href="#" class="nav-link link-light px-1" (click)="onNavLinkClicked($event)" [attr.data-link]="'/User/' + (userDetails$ | async)?.id +'/ChangePassword'">
+                    <i class="bi bi-key fs-4"></i>
+                    Change Password
                 </a>
               </li>
             </ul>
