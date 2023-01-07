@@ -25,7 +25,7 @@
     --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
   }
 
-
+/*
 .app-container{
     background-color: lightgray;
     min-height: 100vh;
@@ -37,7 +37,7 @@
 {
     padding-top: 0;
     min-height: 100;
-}
+}*/
 
 
 .overlay {
@@ -55,19 +55,17 @@
 /*Medium devices (tablets, 768px and up)*/
 @media (max-width: 991px) 
 {
-    .app-container > div 
-    {
-        padding-top: 0;
+
+    #app-content {
+        padding-top: 0 ;
     }
 }
 
 /*Large devices (desktops, 992px and up)*/
 @media (min-width: 992px) 
 {
-    .app-container > div 
-    {
+    #app-content {
         padding-top: 75px;
-        /*min-height: calc(100vh - 75px);*/
     }
 
     .toast-container {

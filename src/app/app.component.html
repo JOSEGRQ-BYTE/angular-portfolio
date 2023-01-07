@@ -1,11 +1,11 @@
-<div class="app-container bg-dark position-relative">
-    <!-- NAV BAR -->
-  <app-navigation-bar></app-navigation-bar>
 
-  <div class="container-fluid app-container-fluid container-lg bg-dark text-light h-100">
-    <!-- OVERLAY
-    <div class="overlay" [ngClass]="(toast$ | async)?.type == 0 ? 'd-none' : 'd-none'" (click)="onDismissToast()">
-    </div> -->
+  <!-- NAV BAR -->
+<app-navigation-bar></app-navigation-bar>
+
+<div class="d-flex flex-column min-vh-100 bg-dark text-light">
+
+  <div class="container flex-shrink-1 flex-grow-1 content-container bg-dark text-light" id="app-content">
+
 
     <!-- TOAST -->
     <div class="position-fixed toast-container" style="z-index: 12; top: 1rem; right: 1rem;">
@@ -21,14 +21,17 @@
       </div>
     </div>
 
+    <!-- SPINNER -->
     <div [ngClass]="(loading$ | async)? 'd-block' : 'd-none'" class="spinner-border text-light" role="status" style="position: fixed; width: 50px; height: 50px; top: calc(50% - 25px); left: calc(50% - 25px); z-index: 1100; filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 0, 0, 0.5));">
       <span class="visually-hidden">Loading...</span>
     </div>
 
     <router-outlet></router-outlet>
+
   </div>
-  
+
   <!-- FOOTER -->
-  <app-footer></app-footer>
+  <app-footer class="container-fluid flex-shrink-0 flex-grow-0 p-0"></app-footer>
+
 </div>
 

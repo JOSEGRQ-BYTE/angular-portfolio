@@ -29,7 +29,7 @@
                     <div class="accordion-collapse collapse show" id="crossfit-body" aria-labelledby="crossfit-heading">
                         <div class="accordion-body text-light ms-5">
                             <div class="row">
-                                <app-wod-card *ngFor="let wod of (wods$ | async)" class="col-12 col-md-5 col-lg-3 mb-2 me-2 d-flex" (cardSelected)="onCardSelected($event)" [wod]="wod"></app-wod-card>        
+                                <app-wod-card *ngFor="let wod of (wods$ | async)" class="col-12 col-md-6 col-lg-3 mb-2 d-flex" (cardSelected)="onCardSelected($event)" [wod]="wod"></app-wod-card>        
                                 <div class="text-center" *ngIf="(wods$ | async)?.length == 0">
                                         <p class="h4"><i class="bi bi-emoji-frown-fill me-2"></i>No recent data found</p>
                                 </div>
