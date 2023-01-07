@@ -162,6 +162,8 @@ export class WODEditComponent implements OnInit, OnDestroy
                         body: 'Successfully updated WOD!'
                     };
                     //this.viewMode = 'VIEW';
+
+                    this.wodService.clearWODS();
                     this.toastService.showToast(toast);
                 },
                 error: (error) => 
@@ -198,6 +200,7 @@ export class WODEditComponent implements OnInit, OnDestroy
                     };
                     this.toastService.showToast(toast);
 
+                    this.wodService.clearWODS();
                     this.wodForm.reset();
                     //this.router.navigate(['/WOD']);
                 },
@@ -223,11 +226,6 @@ export class WODEditComponent implements OnInit, OnDestroy
     {
         this.paramSubcription.unsubscribe();
     }
-
-    /*onEdit()
-    {
-        this.viewMode = 'EDIT';
-    }*/
 
     onConfirm(content: any)
     {
@@ -266,7 +264,6 @@ export class WODEditComponent implements OnInit, OnDestroy
                 this.wodService.clearWODS();
                 this.wodForm.reset();
                 this.wodId = null;
-                //this.router.navigate(['/WOD']);
             },
             error: (error) => 
             {
@@ -359,5 +356,46 @@ export class WODEditComponent implements OnInit, OnDestroy
 			this.isInside(date) ||
 			this.isHovered(date)
 		);
+    }
+
+    onWODSelected(event : any) 
+    {
+        event.preventDefault();
+        const anchor = event.target.closest("a") as HTMLAnchorElement;
+
+        this.wodId = anchor.dataset['id'] as string;
+
+        if(this.wodId == null)
+            return
+        
+        this.wodItem$ = this.wodService.getWOD(this.wodId);
+
+        this.loadingService.setLoadingStatus(true);
+        this.wodItem$.subscribe({
+            next: (wod) => 
+            {   
+                this.loadingService.setLoadingStatus(false);
+
+                this.wodForm.get('date')?.setValue(wod.date);
+                this.wodForm.get('title')?.setValue(wod.title);
+                this.wodForm.get('level')?.setValue(wod.level);
+                this.wodForm.get('description')?.setValue(wod.description);
+                this.wodForm.get('coach-tip')?.setValue(wod.coachTip);
+                this.wodForm.get('results')?.setValue(wod.results);
+
+            },
+            error: () => 
+            {
+                this.loadingService.setLoadingStatus(false);
+                const toast: Toast = {
+                    type: ToastType.ERROR,
+                    header: 'WOD Fetch',
+                    body: 'Error occurred while fetching wod.'
+                };
+                this.toastService.showToast(toast);
+            }
+        });
+
+        this.modalService.dismissAll('WOD Selected');
     }
 }

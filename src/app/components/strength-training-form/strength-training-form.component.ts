@@ -169,7 +169,6 @@ export class StrengthTrainingFormComponent implements OnInit, OnDestroy
 
     ngOnInit()
     {
-        this.onFetchData();
 
         this.paramSubcription = this.activatedRoute.params
         .subscribe(
@@ -226,6 +225,8 @@ export class StrengthTrainingFormComponent implements OnInit, OnDestroy
             'exerciseName': new FormControl(null, Validators.required),
             'description': new FormControl(null, Validators.required),
         });
+
+        this.onFetchData();
     }
 
     ngOnDestroy()

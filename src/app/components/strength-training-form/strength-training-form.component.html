@@ -3,7 +3,7 @@
 
 
         <h1 class="h2 text-muted text-uppercase">{{formTitle}}</h1>
-        <div class="col-4 m-0 mt-md-5 card bg-dark text-light mx-auto shadow-lg position-relative">
+        <div class="col-11 col-sm-6 col-md-5 col-lg-4 mt-md-5 card bg-dark text-light mx-auto shadow-lg position-relative">
 
             <a title="View Training" href="#" routerLink="/WOD" class="d-flex btn btn-primary me-2 position-absolute logs-button rounded-circle text-center" style="width: fit-content;">
                 <i class="bi bi-list-task h4 m-auto"></i>
@@ -13,7 +13,7 @@
                 <i class="bi bi-arrow-left-right h5"></i>
             </button>
 
-            <form class="py-3 px-0 px-md-3 active" [formGroup]="workoutForm" (ngSubmit)="onSubmit()" id="workout-form">
+            <form class="py-3 px-3 active" [formGroup]="workoutForm" (ngSubmit)="onSubmit()" id="workout-form">
 
                 <div class="mb-3 row g-3">
     
@@ -66,7 +66,7 @@
                 </div>
             </form>
 
-            <form class=" py-3 px-0 px-md-3" [formGroup]="exerciseForm" (ngSubmit)="onSubmitExercise()" id="exercise-form">
+            <form class=" py-3 px-3" [formGroup]="exerciseForm" (ngSubmit)="onSubmitExercise()" id="exercise-form">
                 <div class="mb-3 row g-3">
     
                     <!-- REPS -->

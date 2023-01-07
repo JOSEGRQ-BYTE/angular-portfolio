@@ -12,10 +12,6 @@
     width: 100%;
 }
 
-.wod-form-container, .container {
-    min-height: 100vh;
-}
-
 
 .wod-form {
     max-width: 700px;
@@ -47,7 +43,7 @@
 }
 
 .buttons-popover {
-    bottom: -60px;
+    bottom: -50px;
     left: 50%;
     min-width: calc(100% + 2em);
     transform: translateX(-50%);
@@ -59,6 +55,7 @@
     top: -25px;
     width: 50px !important;
     height: 50px;
+    z-index: 3;
 }
 
 
@@ -88,3 +85,34 @@
     background-color: transparent !important;
 }
 
+
+@media (max-width: 767px) 
+{
+    .logs-button {
+        left: calc(100% - 50px);
+        top: 1em;
+    }
+
+    #form-container {
+        width: calc(100% - 1em);
+        background-color: transparent !important;
+        border: none;
+        box-shadow: none !important;
+    }
+
+    .buttons-popover {
+        border: none;
+    }
+}
+
+@media (max-width: 575px)
+{
+    .button-detail {
+        display: none;
+    }
+
+    section {
+        padding-bottom: 6em;
+    }
+
+}

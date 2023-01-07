@@ -77,3 +77,11 @@ form.go-in {
     animation-fill-mode: forwards;
     animation-timing-function: linear;
 }
+
+
+@media (max-width: 575px)
+{
+  .button-detail {
+      display: none;
+  }
+}
