@@ -40,6 +40,7 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import { NotAuthorizedComponent } from './components/not-authorized/not-authorized.component';
 import { StrengthTrainingFormComponent } from './components/strength-training-form/strength-training-form.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SortByPropertyPipe } from './shared/utilities/pipes/sort-pipe';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ForgotPasswordComponent,
     ResetPasswordComponent,
     NotAuthorizedComponent,
-    StrengthTrainingFormComponent
+    StrengthTrainingFormComponent,
+    SortByPropertyPipe
   ],
   imports: [
     BrowserModule,

@@ -58,7 +58,7 @@
             <div class="accordion position-relative" id="training-accordion">
     
     
-                <div class="accordion-item mb-2 border-0 rounded-0"  *ngFor="let workout of (statistics$ | async); let index = index">
+                <div class="accordion-item mb-2 border-0 rounded-0"  *ngFor="let workout of (statistics$ | async)! | sortByProperty: 'exerciseName':'ASC'; let index = index">
                     <!-- ACCORDION TITLE -->
                     <h2 class="accordion-header position-relative" id="{{'training-accordion-header-' + index}}">
                         <button class="accordion-button collapsed rounded-0 p-2 m-0 d-block position-relative text-light shadow-none text-uppercase" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#training-accordion-body-' + index"  aria-expanded="true" [attr.aria-controls]="'training-accordion-body-' + index">

@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { catchError, combineLatest, forkJoin, Observable, of } from "rxjs";
+import { SortByPropertyPipe } from "src/app/shared/utilities/pipes/sort-pipe";
 import { StrengthTraining } from "../../models/strength-training.model";
 import { Toast, ToastType } from "../../models/toast.model";
 import { User } from "../../models/user";
@@ -17,7 +18,10 @@ import FunctionHelpers from "../../shared/utilities/functions";
 @Component({
     selector: 'app-wod',
     templateUrl: './wod.component.html',
-    styleUrls: ['./wod.component.css']
+    styleUrls: ['./wod.component.css'],
+    providers: [
+        SortByPropertyPipe
+    ]
 })
 export class WODComponent implements OnInit
 {
