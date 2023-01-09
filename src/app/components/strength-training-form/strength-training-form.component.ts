@@ -33,6 +33,7 @@ export class StrengthTrainingFormComponent implements OnInit, OnDestroy
     public workoutId: string | null;
     public exerciseId: string | null;
     public formTitle: string;
+    public isEditing: boolean;
 
     public currentExercise$ :Observable<ExerciseResponse>;
     public workoutDetails$: Observable<StrengthTrainingResponse>;
@@ -57,6 +58,7 @@ export class StrengthTrainingFormComponent implements OnInit, OnDestroy
         this.exerciseId = null;
         this.workoutDetails$ = new Observable<StrengthTrainingResponse>();
         this.formTitle = 'Log New Exercise';
+        this.isEditing = false;
 
         this.currentExercise$ = new Observable<ExerciseResponse>();
     }
@@ -77,6 +79,7 @@ export class StrengthTrainingFormComponent implements OnInit, OnDestroy
 
                 this.workoutForm.get('exerciseId')?.setValue(workout.exerciseId);
                 this.workoutForm.get('weight')?.setValue(workout.weight);
+                this.workoutForm.get('isBodyweight')?.setValue(workout.isBodyweight);
                 this.workoutForm.get('reps')?.setValue(workout.reps);
                 this.workoutForm.get('sets')?.setValue(workout.sets);
             },
@@ -188,6 +191,7 @@ export class StrengthTrainingFormComponent implements OnInit, OnDestroy
                         {
                             this.workoutForm.get('exerciseId')?.setValue(data.exerciseId);
                             this.workoutForm.get('weight')?.setValue(data.weight);
+                            this.workoutForm.get('isBodyweight')?.setValue(data.isBodyweight);
                             this.workoutForm.get('reps')?.setValue(data.reps);
                             this.workoutForm.get('sets')?.setValue(data.sets);
                         },
@@ -217,6 +221,7 @@ export class StrengthTrainingFormComponent implements OnInit, OnDestroy
         this.workoutForm = new FormGroup({
             'exerciseId': new FormControl(null, Validators.required),
             'weight': new FormControl(null, Validators.required),
+            'isBodyweight': new FormControl(false, Validators.required),
             'reps': new FormControl(null, Validators.required),
             'sets': new FormControl(null, Validators.required),
         });
@@ -287,10 +292,10 @@ export class StrengthTrainingFormComponent implements OnInit, OnDestroy
             });
         }
         // EDIT
-        else if(this.exerciseForm.valid)
+        else if(this.exerciseForm.valid && this.exerciseId != null && this.isEditing)
         {
 
-            this.currentExercise$ = this.exerciseService.updateExercise(this.exerciseId as string, this.exerciseForm.value);
+            this.currentExercise$ = this.exerciseService.updateExercise(this.exerciseId, this.exerciseForm.value);
 
             this.loadingService.setLoadingStatus(true);
 
@@ -305,8 +310,8 @@ export class StrengthTrainingFormComponent implements OnInit, OnDestroy
                     };
                     this.toastService.showToast(toast);
 
-                    // ENTER EDIT MODE
-                    this.exerciseId = null;
+                    //this.exerciseId = null;
+                    //this.
                 },
                 error: (error) => 
                 {
@@ -345,7 +350,7 @@ export class StrengthTrainingFormComponent implements OnInit, OnDestroy
         }
 
         // EDIT
-        if(this.workoutForm.valid && this.workoutId != null)
+        if(this.workoutForm.valid && this.workoutId != null && this.isEditing)
         {
             this.workoutDetails$ = this.workoutService.updateWorkout(this.workoutId, this.workoutForm.value as StrengthTrainingRequest);
 
@@ -419,6 +424,7 @@ export class StrengthTrainingFormComponent implements OnInit, OnDestroy
 
     onSwitchForms(event: any)
     {
+        this.isEditing = false;
         const switchButton = event.target.closest("button") as HTMLButtonElement;
 
         switchButton.disabled = true;
@@ -513,10 +519,11 @@ export class StrengthTrainingFormComponent implements OnInit, OnDestroy
         if(currentForm.id == 'exercise-form')
             this.exerciseForm.reset();
         else
-            this.workoutForm.reset();
+            this.workoutForm.reset({isBodyweight: false});
 
         this.exerciseId = null;
         this.workoutId = null;
+        this.isEditing = false;
     }
 
     onDeleteConfirmation(modalContet: any) 
@@ -566,6 +573,7 @@ export class StrengthTrainingFormComponent implements OnInit, OnDestroy
                     this.fetchWorkouts();
                     this.workoutForm.reset();
                     this.workoutId = null;
+                    this.isEditing = false;
                 }
             });
         }
@@ -594,8 +602,14 @@ export class StrengthTrainingFormComponent implements OnInit, OnDestroy
                     this.fetchExercises();
                     this.exerciseForm.reset();
                     this.exerciseId = null;
+                    this.isEditing = false;
                 }
             });
         }
+    }
+
+    onToggleEditMode()
+    {
+        this.isEditing = !this.isEditing;
     }
 }

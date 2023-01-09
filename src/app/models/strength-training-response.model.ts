@@ -5,6 +5,7 @@ export interface StrengthTrainingResponse
     description: string,
     exerciseName: string,
     weight: number,
+    isBodyweight: boolean,
     reps: number,
     sets: number,
     created: Date,
