@@ -29,7 +29,7 @@
                     <div class="accordion-collapse collapse show" id="crossfit-body" aria-labelledby="crossfit-heading">
                         <div class="accordion-body text-light ms-5">
                             <div class="row">
-                                <app-wod-card *ngFor="let wod of (wods$ | async)" class="col-12 col-md-6 col-lg-3 mb-2 d-flex" (cardSelected)="onCardSelected($event)" [wod]="wod"></app-wod-card>        
+                                <app-wod-card *ngFor="let wod of (wods$ | async)! | sortByProperty: 'date':'ASC'" class="col-12 col-md-6 col-lg-3 mb-2 d-flex" (cardSelected)="onCardSelected($event)" [wod]="wod"></app-wod-card>        
                                 <div class="text-center" *ngIf="(wods$ | async)?.length == 0">
                                         <p class="h4"><i class="bi bi-emoji-frown-fill me-2"></i>No recent data found</p>
                                 </div>
@@ -73,7 +73,7 @@
                         <div class="accordion-body text-light ms-5">
                             <div class="row d-flex">
                                 <div class="col-md-3 col-sm-6 text-center mb-4 mb-md-0">
-                                    <div class="border border-light rounded py-3">
+                                    <div class="border border-light rounded py-3 h-100">
                                         <i class="bi bi-award h1 d-block"></i>
                                         <span class="h3">{{workout.highestWeight}}lbs</span>
                                         <p class="text-uppercase fw-light">Personal Record</p>
@@ -81,7 +81,7 @@
                                 </div>
     
                                 <div class="col-md-3 col-sm-6 text-center mb-4 mb-md-0">
-                                    <div class="border border-light rounded py-3">
+                                    <div class="border border-light rounded py-3 h-100">
                                         <i class="bi bi-bar-chart-line h1 d-block"></i>
                                         <span class="h3">{{workout.latestWeight}}lbs</span>
                                         <p class="text-uppercase fw-light">Last Weight</p>
@@ -89,7 +89,7 @@
                                 </div>
     
                                 <div class="col-md-3 col-sm-6 text-center mb-4 mb-md-0">
-                                    <div class="border border-light rounded py-3">
+                                    <div class="border border-light rounded py-3 h-100">
                                         <i class="bi bi-arrow-bar-up h1 d-block"></i>
                                         <span class="h3">{{workout.lowestWeight}}lbs</span>
                                         <p class="text-uppercase fw-light">Lowest Weight</p>

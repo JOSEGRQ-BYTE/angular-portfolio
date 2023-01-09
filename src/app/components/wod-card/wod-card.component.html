@@ -3,15 +3,15 @@
 [attr.data-id]="wod.id" class="card border-light mb-3 text-light bg-transparent text-decoration-none w-100" href="#" (click)="onSelected($event)">
 
     <!-- HEADER -->
-    <div class="card-header bg-transparent border-light font-weight-bold h5">{{ wod.title ? wod.title : "No Title"  }}</div>
+    <div class="card-header bg-transparent border-light font-weight-bold h4">{{ wod.title ? wod.title : "No Title"  }}</div>
 
     <!-- BODY -->
     <div class="card-body text-light">
-      <h5 class="card-title text-light">Workout:</h5>
-      <p class="card-text text-light">{{ wod.description }}</p>
+      <h5 class="card-title text-light text-uppercase">Workout:</h5>
+      <p class="card-text text-light fw-light ms-2">{{ wod.description }}</p>
 
-      <h5 class="card-title text-light">Results:</h5>
-      <p class="card-text text-light">{{ wod.results }}</p>
+      <h5 class="card-title text-light text-uppercase">Results:</h5>
+      <p class="card-text text-light fw-light ms-2">{{ wod.results }}</p>
     </div>
 
     <!-- FOOTER -->

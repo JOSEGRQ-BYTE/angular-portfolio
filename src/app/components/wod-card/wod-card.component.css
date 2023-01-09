@@ -8,3 +8,7 @@
     cursor: auto;
     pointer-events: none;
 }
+
+.card-text {
+    white-space: break-spaces;
+}

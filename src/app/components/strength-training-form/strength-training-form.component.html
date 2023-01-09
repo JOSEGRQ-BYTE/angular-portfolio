@@ -22,7 +22,7 @@
                         <label for="exerciseId" class="form-label">Exercise</label>
                         <select [ngClass]="{'is-invalid': workoutForm.get('exerciseId')?.errors && (workoutForm.get('exerciseId')?.touched || workoutForm.get('exerciseId')?.dirty), 'is-valid':workoutForm.get('exerciseId')?.valid && workoutId == null }" id="exerciseId" class="form-select text-black" formControlName="exerciseId" [attr.disabled]="workoutId != null? 'disabled' : null">
                             <option [ngValue]="null" selected>Select Exercise</option>
-                            <option *ngFor="let e of (execises$ | async)" [ngValue]="e.id">{{ e.exerciseName }}</option>
+                            <option *ngFor="let e of (execises$ | async)! | sortByProperty: 'exerciseName':'ASC'" [ngValue]="e.id">{{ e.exerciseName }}</option>
                           </select>
                         <div *ngIf="!workoutForm.get('exerciseId')?.valid && workoutForm.get('exerciseId')?.touched" class="form-text text-danger">Exercise is required.</div>
                     </div>
@@ -31,7 +31,7 @@
                     <div class="col-12">
                         <label for="weight" class="form-label">Weight</label>
                         <input min="1" [readonly]="workoutId != null" formControlName="weight" [ngClass]="{'is-invalid': workoutForm.get('weight')?.errors && (workoutForm.get('weight')?.touched || workoutForm.get('weight')?.dirty), 'is-valid':workoutForm.get('weight')?.valid && workoutId == null }" type="number" class="form-control text-black" id="weight" aria-describedby="weight-feedback">
-                        <div *ngIf="!workoutForm.get('weight')?.valid && workoutForm.get('weight')?.touched" class="form-text text-danger" id="weight-feedback">Title is required.</div>
+                        <div *ngIf="!workoutForm.get('weight')?.valid && workoutForm.get('weight')?.touched" class="form-text text-danger" id="weight-feedback">Weight is required.</div>
                     </div>
     
                 </div>
@@ -42,14 +42,14 @@
                     <div class="col-12">
                         <label for="reps" class="form-label">Reps</label>
                         <input min="1" [readonly]="workoutId != null" formControlName="reps" [ngClass]="{'is-invalid': workoutForm.get('reps')?.errors && (workoutForm.get('reps')?.touched || workoutForm.get('reps')?.dirty), 'is-valid':workoutForm.get('reps')?.valid && workoutId == null }" type="number" class="form-control text-black" id="reps" aria-describedby="reps-feedback">
-                        <div *ngIf="!workoutForm.get('reps')?.valid && workoutForm.get('reps')?.touched" id="reps-feedback" class="form-text text-danger">Title is required.</div>
+                        <div *ngIf="!workoutForm.get('reps')?.valid && workoutForm.get('reps')?.touched" id="reps-feedback" class="form-text text-danger">Reps are required.</div>
                     </div>
     
                     <!-- SETS -->
                     <div class="col-12">
                         <label for="sets" class="form-label">Sets</label>
                         <input min="1" [readonly]="workoutId != null" formControlName="sets" [ngClass]="{'is-invalid': workoutForm.get('sets')?.errors && (workoutForm.get('sets')?.touched || workoutForm.get('sets')?.dirty), 'is-valid':workoutForm.get('sets')?.valid && workoutId == null }" type="number" class="form-control text-black" id="sets" aria-describedby="sets-feedback">
-                        <div *ngIf="!workoutForm.get('sets')?.valid && workoutForm.get('sets')?.touched" id="sets-feedback" class="form-text text-danger">Title is required.</div>
+                        <div *ngIf="!workoutForm.get('sets')?.valid && workoutForm.get('sets')?.touched" id="sets-feedback" class="form-text text-danger">Sets are required.</div>
                     </div>
     
                 </div>
@@ -69,7 +69,7 @@
             <form class=" py-3 px-3" [formGroup]="exerciseForm" (ngSubmit)="onSubmitExercise()" id="exercise-form">
                 <div class="mb-3 row g-3">
     
-                    <!-- REPS -->
+                    <!-- Name -->
                     <div class="col-12">
                         <label for="exerciseName" class="form-label">Name</label>
                         <input [readonly]="workoutId != null" formControlName="exerciseName" [ngClass]="{'is-invalid': exerciseForm.get('exerciseName')?.errors && (exerciseForm.get('exerciseName')?.touched || exerciseForm.get('exerciseName')?.dirty), 'is-valid':exerciseForm.get('exerciseName')?.valid && workoutId == null }" type="text" class="form-control text-black" id="exerciseName" aria-describedby="exercise-name-feedback">
@@ -111,7 +111,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="list-group border-3">
-                    <button (click)="onExerciseSelected(e.id)" href="#" class="list-group-item list-group-item-action" *ngFor="let e of (execises$ | async)">
+                    <button (click)="onExerciseSelected(e.id)" href="#" class="list-group-item list-group-item-action" *ngFor="let e of (execises$ | async)! | sortByProperty: 'exerciseName':'ASC'">
                       <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-2">{{ e.exerciseName }}</h5>
                       </div>
@@ -133,7 +133,7 @@
             <div class="col-12">
 
                 <ol class="list-group list-group-numbered">
-                    <li *ngFor="let w of (workouts$ | async)" class="list-group-item d-flex justify-content-between align-items-start">
+                    <li *ngFor="let w of (workouts$ | async)! | sortByProperty: 'exerciseName':'ASC'" class="list-group-item d-flex justify-content-between align-items-start">
                         <div class="ms-2 me-auto">
                         <div class="fw-bold">{{ w.exerciseName }}</div>
                         </div>

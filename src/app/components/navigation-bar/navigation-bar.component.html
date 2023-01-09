@@ -50,11 +50,11 @@
             <div class="dropdown pb-4 pb-md-4 pb-lg-0 my-lg-auto ms-0 ms-lg-5 me-lg-5">
                 <a href="#" class="d-flex align-items-center text-light text-decoration-none dropdown-toggle d-flex align-items-center" id="wod-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fs-4 bi bi-patch-plus"></i>
-                    <span class="d-none d-sm-inline ms-2">Fun</span>
+                    <span class="d-none d-sm-inline ms-2">Training</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark shadow bg-dark" aria-labelledby="wod-toggle">
                     <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                        <a class="dropdown-item text-light" href="#" routerLink="/WOD">CrossFit Training</a>
+                        <a class="dropdown-item text-light" href="#" routerLink="/WOD">Training & Statistics</a>
                     </li>
                     <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="(userDetails$ | async)?.isLoggedIn">
                         <a class="dropdown-item text-light" href="#" [routerLink]="['User', (userDetails$ | async)?.id]">Settings</a>
