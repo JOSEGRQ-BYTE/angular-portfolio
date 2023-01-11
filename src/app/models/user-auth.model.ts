@@ -6,7 +6,7 @@ export class UserAuthentication
         public firstName:string | null, 
         public lastName:string | null, 
         private _token: string | null, 
-        private expiration: string | null, 
+        public expiration: string | null, 
         private _isLoggedIn: boolean,
         private _isAdministrator: boolean,
         private _profilePictureURL: string | null
